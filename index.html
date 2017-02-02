@@ -151,6 +151,73 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS-first" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/02/iOS-first/">iOS 笔记一</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/02/iOS-first/" class="archive-article-date">
+  	<time datetime="2017-02-02T12:21:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="StoryBoard文件与-Swift文件的关联"><a href="#StoryBoard文件与-Swift文件的关联" class="headerlink" title="StoryBoard文件与.Swift文件的关联"></a>StoryBoard文件与.Swift文件的关联</h3><ul>
+<li>创建<code>StoryBoard</code>文件并设置属性<code>Class</code>对应到指定的<code>.Swift</code>文件即可创建两者之间的关联</li>
+<li>在<code>StoryBoard</code>文件中创建布局，并从<code>StoryBoard</code>创建到<code>.Swift</code>文件的<code>@IBOutlet</code>链接</li>
+<li>在<code>.Swift</code>文件中对所创建的<code>@IBOutlet</code>对象添加<code>addTarget</code>方法（对应<code>Android</code>中的<code>Listenner</code>）</li>
+<li><code>action</code> 的值为<code>#selector(func)</code>之类</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">iOS Swift Xcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/02/iOS-first/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -312,6 +379,10 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">iOS Swift Xcode</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
