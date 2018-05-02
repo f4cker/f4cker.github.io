@@ -151,6 +151,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Vue.js Bugs for Usage" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/02/Vue.js Bugs for Usage/">Laravel + Vue.js 前后端分离（SPA）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/02/Vue.js Bugs for Usage/" class="archive-article-date">
+  	<time datetime="2018-05-02T14:08:14.136Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="非单页应用引入第三方组件"><a href="#非单页应用引入第三方组件" class="headerlink" title="非单页应用引入第三方组件"></a>非单页应用引入第三方组件</h3><ol>
+<li>在<code>package.json</code>中添加组件，Like：<br><code>&quot;element-ui&quot;：&quot;^2.0.0&quot;</code></li>
+<li>运行<code>nom install</code>安装组件到项目<code>node_modules</code>文件夹</li>
+<li>在<code>resources/assets/js/app.js</code>中添加引用，Like:<br><code>import ElementUI from &quot;element-ui&quot;</code>,<code>import &quot;element-ui/lib/theme-default/index.css&quot;</code>,<br><code>Vue.use(ElementUI)</code></li>
+<li>编译好js文件即可</li>
+</ol>
+<h3 id="前后端分离时的-Oauth-处理"><a href="#前后端分离时的-Oauth-处理" class="headerlink" title="前后端分离时的 Oauth 处理"></a>前后端分离时的 Oauth 处理</h3><ol>
+<li>前端请求发起三方登录请求</li>
+<li>后端接受前端请求后拼接授权请求链接</li>
+<li>返回重定向前端重定向至授权请求页面</li>
+<li>用户登录第三方网站</li>
+<li>第三方回调返回后端，后端获取数据并存储相关数据</li>
+<li>后端返回重定向链接将前端重定向至专门接受 <code>Access_Token</code> 页面，再由前端处理后续逻辑</li>
+</ol>
+<h3 id="使用-VSCode-开发引入-iView-等第三方-UI-框架后出现-x-invalid-end-tag"><a href="#使用-VSCode-开发引入-iView-等第三方-UI-框架后出现-x-invalid-end-tag" class="headerlink" title="使用 VSCode 开发引入 iView 等第三方 UI 框架后出现 x-invalid-end-tag"></a>使用 VSCode 开发引入 iView 等第三方 UI 框架后出现 x-invalid-end-tag</h3><ol>
+<li>如果你是用 Vetur的话 配置.eslintrc.js 并没有什么卵用<blockquote>
+<p>Vetur automatically uses eslint-plugin-vue for linting template. Linting configuration is based on eslint-plugin-vue’s essential rule set.</p>
+<blockquote>
+<p>只能关掉它自带的eslint-plugin-vue 【”vetur.validation.template”: false】</p>
+</blockquote>
+</blockquote>
+</li>
+<li>重新配置 .eslintrc<blockquote>
+<p>“vue/no-parsing-error”: [2, { “x-invalid-end-tag”: false }]</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="Vue-Cli-axios-创建的项目生产环境（Nginx）跨域问题"><a href="#Vue-Cli-axios-创建的项目生产环境（Nginx）跨域问题" class="headerlink" title="Vue-Cli + axios 创建的项目生产环境（Nginx）跨域问题"></a>Vue-Cli + axios 创建的项目生产环境（Nginx）跨域问题</h3><ol>
+<li><p>修改 <code>nginx/conf/vhost/your.domain.conf</code> 配置文件</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">location / &#123;</div><div class="line">	try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /?<span class="variable">$args</span>;</div><div class="line">	<span class="comment"># 允许跨域以及允许跨域的请求类型的设置</span></div><div class="line">	add_header <span class="string">'Access-Control-Allow-Origin'</span> <span class="string">'*'</span>;</div><div class="line">	add_header <span class="string">'Access-Control-Allow-Credentials'</span> <span class="string">'true'</span>;</div><div class="line">	add_header <span class="string">'Access-Control-Allow-Methods'</span> <span class="string">'GET, POST, OPTIONS'</span>;</div><div class="line">&#125;</div><div class="line">    </div><div class="line">location ^~ /api &#123;</div><div class="line">	<span class="comment"># 要指向的域名，一般 SPA 时需要用到</span></div><div class="line">	proxy_set_header Host app.layoute.top;</div><div class="line">	<span class="comment"># 跨域是需要替换的路径，一般 SPA 时需要用到</span></div><div class="line">	proxy_pass https://app.layoute.top/api;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>重新载入 <code>nginx</code> 配置文件并重启 <code>nginx</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service nginxd reload &amp;&amp; service nginxd restart</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Laravel, vue.js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/02/Vue.js Bugs for Usage/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Java 实现 JavaScript eval() 函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -497,6 +593,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Java, Javascript, eval, 动态加载, 反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Laravel, vue.js</a>
               </li>
             
             <div class="clearfix"></div>

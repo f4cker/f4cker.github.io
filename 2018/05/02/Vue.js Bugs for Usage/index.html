@@ -6,14 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.layoute.xyz">
-  <title>Archives: 2018 | Layoute&#39;s Blog</title>
+  <title>Laravel + Vue.js 前后端分离（SPA） | Layoute&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Layoute's Blog">
-<meta property="og:url" content="http://www.layoute.xyz/archives/2018/index.html">
+  <meta name="description" content="非单页应用引入第三方组件
+在package.json中添加组件，Like：&amp;quot;element-ui&amp;quot;：&amp;quot;^2.0.0&amp;quot;
+运行nom install安装组件到项目node_modules文件夹
+在resources/assets/js/app.js中添加引用，Like:import ElementUI from &amp;quot;element-ui&amp;quot;,im">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel + Vue.js 前后端分离（SPA）">
+<meta property="og:url" content="http://www.layoute.xyz/2018/05/02/Vue.js Bugs for Usage/index.html">
 <meta property="og:site_name" content="Layoute's Blog">
+<meta property="og:description" content="非单页应用引入第三方组件
+在package.json中添加组件，Like：&amp;quot;element-ui&amp;quot;：&amp;quot;^2.0.0&amp;quot;
+运行nom install安装组件到项目node_modules文件夹
+在resources/assets/js/app.js中添加引用，Like:import ElementUI from &amp;quot;element-ui&amp;quot;,im">
+<meta property="og:updated_time" content="2018-05-02T14:11:29.444Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Layoute's Blog">
+<meta name="twitter:title" content="Laravel + Vue.js 前后端分离（SPA）">
+<meta name="twitter:description" content="非单页应用引入第三方组件
+在package.json中添加组件，Like：&amp;quot;element-ui&amp;quot;：&amp;quot;^2.0.0&amp;quot;
+运行nom install安装组件到项目node_modules文件夹
+在resources/assets/js/app.js中添加引用，Like:import ElementUI from &amp;quot;element-ui&amp;quot;,im">
   
     <link rel="alternative" href="/atom.xml" title="Layoute&#39;s Blog" type="application/atom+xml">
   
@@ -149,36 +162,90 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Vue.js Bugs for Usage" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/Vue.js Bugs for Usage/" class="archive-article-date">
-  	<time datetime="2018-05-02T14:08:14.136Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/Vue.js Bugs for Usage/">Laravel + Vue.js 前后端分离（SPA）</a>
+    <h1 class="article-title" itemprop="name">
+      Laravel + Vue.js 前后端分离（SPA）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/05/02/Vue.js Bugs for Usage/" class="archive-article-date">
+  	<time datetime="2018-05-02T14:08:14.136Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="非单页应用引入第三方组件"><a href="#非单页应用引入第三方组件" class="headerlink" title="非单页应用引入第三方组件"></a>非单页应用引入第三方组件</h3><ol>
+<li>在<code>package.json</code>中添加组件，Like：<br><code>&quot;element-ui&quot;：&quot;^2.0.0&quot;</code></li>
+<li>运行<code>nom install</code>安装组件到项目<code>node_modules</code>文件夹</li>
+<li>在<code>resources/assets/js/app.js</code>中添加引用，Like:<br><code>import ElementUI from &quot;element-ui&quot;</code>,<code>import &quot;element-ui/lib/theme-default/index.css&quot;</code>,<br><code>Vue.use(ElementUI)</code></li>
+<li>编译好js文件即可</li>
+</ol>
+<h3 id="前后端分离时的-Oauth-处理"><a href="#前后端分离时的-Oauth-处理" class="headerlink" title="前后端分离时的 Oauth 处理"></a>前后端分离时的 Oauth 处理</h3><ol>
+<li>前端请求发起三方登录请求</li>
+<li>后端接受前端请求后拼接授权请求链接</li>
+<li>返回重定向前端重定向至授权请求页面</li>
+<li>用户登录第三方网站</li>
+<li>第三方回调返回后端，后端获取数据并存储相关数据</li>
+<li>后端返回重定向链接将前端重定向至专门接受 <code>Access_Token</code> 页面，再由前端处理后续逻辑</li>
+</ol>
+<h3 id="使用-VSCode-开发引入-iView-等第三方-UI-框架后出现-x-invalid-end-tag"><a href="#使用-VSCode-开发引入-iView-等第三方-UI-框架后出现-x-invalid-end-tag" class="headerlink" title="使用 VSCode 开发引入 iView 等第三方 UI 框架后出现 x-invalid-end-tag"></a>使用 VSCode 开发引入 iView 等第三方 UI 框架后出现 x-invalid-end-tag</h3><ol>
+<li>如果你是用 Vetur的话 配置.eslintrc.js 并没有什么卵用<blockquote>
+<p>Vetur automatically uses eslint-plugin-vue for linting template. Linting configuration is based on eslint-plugin-vue’s essential rule set.</p>
+<blockquote>
+<p>只能关掉它自带的eslint-plugin-vue 【”vetur.validation.template”: false】</p>
+</blockquote>
+</blockquote>
+</li>
+<li>重新配置 .eslintrc<blockquote>
+<p>“vue/no-parsing-error”: [2, { “x-invalid-end-tag”: false }]</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="Vue-Cli-axios-创建的项目生产环境（Nginx）跨域问题"><a href="#Vue-Cli-axios-创建的项目生产环境（Nginx）跨域问题" class="headerlink" title="Vue-Cli + axios 创建的项目生产环境（Nginx）跨域问题"></a>Vue-Cli + axios 创建的项目生产环境（Nginx）跨域问题</h3><ol>
+<li><p>修改 <code>nginx/conf/vhost/your.domain.conf</code> 配置文件</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">location / &#123;</div><div class="line">	try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /?<span class="variable">$args</span>;</div><div class="line">	<span class="comment"># 允许跨域以及允许跨域的请求类型的设置</span></div><div class="line">	add_header <span class="string">'Access-Control-Allow-Origin'</span> <span class="string">'*'</span>;</div><div class="line">	add_header <span class="string">'Access-Control-Allow-Credentials'</span> <span class="string">'true'</span>;</div><div class="line">	add_header <span class="string">'Access-Control-Allow-Methods'</span> <span class="string">'GET, POST, OPTIONS'</span>;</div><div class="line">&#125;</div><div class="line">    </div><div class="line">location ^~ /api &#123;</div><div class="line">	<span class="comment"># 要指向的域名，一般 SPA 时需要用到</span></div><div class="line">	proxy_set_header Host app.layoute.top;</div><div class="line">	<span class="comment"># 跨域是需要替换的路径，一般 SPA 时需要用到</span></div><div class="line">	proxy_pass https://app.layoute.top/api;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>重新载入 <code>nginx</code> 配置文件并重启 <code>nginx</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service nginxd reload &amp;&amp; service nginxd restart</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -190,82 +257,88 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.layoute.xyz/2018/05/02/Vue.js Bugs for Usage/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/Java 实现 JavaScript eval() 函数/" class="archive-article-date">
-  	<time datetime="2018-05-02T13:50:42.468Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/16/InsertSort/" class="archive-article-date">
-  	<time datetime="2018-04-16T08:27:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-16</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/02/Java 实现 JavaScript eval() 函数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/16/BubbleSort/" class="archive-article-date">
-  	<time datetime="2018-04-16T08:24:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-16</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
+
   
-  
-    </div></section>
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -288,8 +361,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
