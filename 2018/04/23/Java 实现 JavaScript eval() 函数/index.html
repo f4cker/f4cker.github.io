@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.layoute.xyz">
-  <title>Archives | Layoute&#39;s Blog</title>
+  <title>Layoute&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Java 实现 JavaScript eval() 函数 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152import java.util.Arrays;import javax.tools.SimpleJavaFileObject;import javax">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Layoute's Blog">
-<meta property="og:url" content="http://www.layoute.xyz/archives/index.html">
+<meta property="og:url" content="http://www.layoute.xyz/2018/04/23/Java 实现 JavaScript eval() 函数/index.html">
 <meta property="og:site_name" content="Layoute's Blog">
+<meta property="og:description" content="Java 实现 JavaScript eval() 函数 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152import java.util.Arrays;import javax.tools.SimpleJavaFileObject;import javax">
+<meta property="og:updated_time" content="2018-04-23T05:18:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Layoute's Blog">
+<meta name="twitter:description" content="Java 实现 JavaScript eval() 函数 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152import java.util.Arrays;import javax.tools.SimpleJavaFileObject;import javax">
   
     <link rel="alternative" href="/atom.xml" title="Layoute&#39;s Blog" type="application/atom+xml">
   
@@ -149,118 +153,124 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java 实现 JavaScript eval() 函数" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/23/Java 实现 JavaScript eval() 函数/" class="archive-article-date">
-  	<time datetime="2018-04-23T02:39:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        <h1 id="Java-实现-JavaScript-eval-函数"><a href="#Java-实现-JavaScript-eval-函数" class="headerlink" title="Java 实现 JavaScript eval() 函数"></a>Java 实现 JavaScript eval() 函数</h1> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Arrays;</div><div class="line"><span class="keyword">import</span> javax.tools.SimpleJavaFileObject;</div><div class="line"><span class="keyword">import</span> javax.tools.JavaFileObject;</div><div class="line"><span class="keyword">import</span> javax.tools.JavaCompiler;</div><div class="line"><span class="keyword">import</span> javax.tools.ToolProvider;</div><div class="line"><span class="keyword">import</span> javax.tools.DiagnosticCollector;</div><div class="line"><span class="keyword">import</span> java.net.URI;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@version</span>  1.0</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClassLoader</span></span></div><div class="line">    <span class="keyword">extends</span> <span class="title">ClassLoader</span></div><div class="line">&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> Class&lt;?&gt; findClass(String str) <span class="keyword">throws</span> ClassNotFoundException</div><div class="line">    &#123;</div><div class="line">        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();</div><div class="line">        <span class="comment">//用于诊断源代码编译错误的对象</span></div><div class="line">        DiagnosticCollector diagnostics = <span class="keyword">new</span> DiagnosticCollector();</div><div class="line">        <span class="comment">//内存中的源代码保存在一个从JavaFileObject继承的类中 </span></div><div class="line">        JavaFileObject file = <span class="keyword">new</span> JavaSourceFromString(<span class="string">"Temp"</span>, str.toString());</div><div class="line">        Iterable compilationUnits = Arrays.asList(file);</div><div class="line">        <span class="comment">//建立一个编译任务</span></div><div class="line">        JavaCompiler.CompilationTask task = compiler.getTask(<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, compilationUnits);</div><div class="line">        <span class="comment">//编译源程序</span></div><div class="line">        <span class="keyword">boolean</span> result = task.call();</div><div class="line">        <span class="keyword">if</span> (result) </div><div class="line">        &#123;</div><div class="line">            <span class="keyword">return</span> Class.forName(<span class="string">"Temp"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">JavaSourceFromString</span> <span class="keyword">extends</span> <span class="title">SimpleJavaFileObject</span> </span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> String code;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">JavaSourceFromString</span><span class="params">(String name, String code)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">super</span>(URI.create(<span class="string">"string:///"</span> + name.replace(<span class="string">'.'</span>, <span class="string">'/'</span>) + Kind.SOURCE.extension), Kind.SOURCE);</div><div class="line">        <span class="keyword">this</span>.code = code;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> CharSequence <span class="title">getCharContent</span><span class="params">(<span class="keyword">boolean</span> ignoreEncodingErrors)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> code;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">import</span> java.lang.reflect.Method;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * <span class="doctag">@version</span>  1.0 </div><div class="line"> */  </div><div class="line">  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Eval</span>   </span></div><div class="line">&#123;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">eval</span><span class="params">(String str)</span> <span class="keyword">throws</span> Exception  </span></div><div class="line">    &#123;  </div><div class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();  </div><div class="line">        sb.append(<span class="string">"public class Temp"</span>);  </div><div class="line">        sb.append(<span class="string">"&#123;"</span>);  </div><div class="line">        sb.append(<span class="string">"    public Object getObject()"</span>);  </div><div class="line">        sb.append(<span class="string">"    &#123;"</span>);  </div><div class="line">        sb.append(<span class="string">"        "</span> + str + <span class="string">"return new Object();"</span>);  </div><div class="line">        sb.append(<span class="string">"    &#125;"</span>);  </div><div class="line">        sb.append(<span class="string">"&#125;"</span>);  </div><div class="line">        <span class="comment">//调用自定义类加载器加载编译在内存中class文件  </span></div><div class="line">        Class clazz = <span class="keyword">new</span> MyClassLoader().findClass(sb.toString());  </div><div class="line">        Method method = clazz.getMethod(<span class="string">"getObject"</span>);  </div><div class="line">        <span class="comment">//通过反射调用方法  </span></div><div class="line">        <span class="keyword">return</span> method.invoke(clazz.newInstance());  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception  </span></div><div class="line">    &#123;  </div><div class="line">        Object rval = eval(<span class="string">"System.out.println(/"</span>Hello World/<span class="string">");"</span>);  </div><div class="line">        System.out.println(rval);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.layoute.xyz/2018/04/23/Java 实现 JavaScript eval() 函数/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/02/iOS-first/" class="archive-article-date">
-  	<time datetime="2017-02-02T12:21:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-02</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/02/iOS-first/">iOS 笔记一</a>
-    </h1>
+  
+    <a href="/2017/02/02/iOS-first/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS 笔记一</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">iOS,Swift,Xcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/06/hello-world/" class="archive-article-date">
-  	<time datetime="2017-01-06T12:49:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/06/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -283,8 +293,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
