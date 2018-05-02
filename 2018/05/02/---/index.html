@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.layoute.xyz">
-  <title>Layoute&#39;s Blog</title>
+  <title>Java 实现 JavaScript eval() 函数 | Layoute&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="BubbleSort12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152public class BubbleSort &amp;#123;    public static void main() &amp;#123;        BubbleSort b = new Bu">
+  <meta name="description" content="Java 实现 JavaScript eval() 函数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Layoute's Blog">
-<meta property="og:url" content="http://www.layoute.xyz/2018/04/16/BubbleSort/index.html">
+<meta property="og:title" content="Java 实现 JavaScript eval() 函数">
+<meta property="og:url" content="http://www.layoute.xyz/2018/05/02/---/index.html">
 <meta property="og:site_name" content="Layoute's Blog">
-<meta property="og:description" content="BubbleSort12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152public class BubbleSort &amp;#123;    public static void main() &amp;#123;        BubbleSort b = new Bu">
-<meta property="og:updated_time" content="2018-04-16T08:27:15.000Z">
+<meta property="og:description" content="Java 实现 JavaScript eval() 函数">
+<meta property="og:updated_time" content="2018-05-02T13:57:00.762Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Layoute's Blog">
-<meta name="twitter:description" content="BubbleSort12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152public class BubbleSort &amp;#123;    public static void main() &amp;#123;        BubbleSort b = new Bu">
+<meta name="twitter:title" content="Java 实现 JavaScript eval() 函数">
+<meta name="twitter:description" content="Java 实现 JavaScript eval() 函数">
   
     <link rel="alternative" href="/atom.xml" title="Layoute&#39;s Blog" type="application/atom+xml">
   
@@ -153,13 +153,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-BubbleSort" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post----" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 实现 JavaScript eval() 函数
+    </h1>
+  
+
+        
+        <a href="/2018/05/02/---/" class="archive-article-date">
+  	<time datetime="2018-05-02T13:50:42.468Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="BubbleSort"><a href="#BubbleSort" class="headerlink" title="BubbleSort"></a>BubbleSort</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BubbleSort</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">        BubbleSort b = <span class="keyword">new</span> BubbleSort();</div><div class="line">        System.out.print(<span class="string">"请输入数组元素个数：\n"</span>);</div><div class="line">        Scanner input = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">        <span class="keyword">int</span> n = input.nextInt();</div><div class="line">        <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            arr[i] = (<span class="keyword">int</span>)(<span class="number">100</span> + Math.random() *<span class="number">100</span>);</div><div class="line">        &#125;</div><div class="line">        System.out.print(<span class="string">"排序前数组：\n"</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            System.out.print(arr[i] + <span class="string">" "</span>);</div><div class="line">        &#125;</div><div class="line">        b.sort2(arr);</div><div class="line">        System.out.print(<span class="string">"\n排序后数组：\n"</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            System.out.print(arr[i] + <span class="string">" "</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; arr.length; j++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = arr.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</div><div class="line">                <span class="keyword">if</span> (i &gt;= <span class="number">1</span> &amp;&amp; arr[i] &lt; arr[i - <span class="number">1</span>]) &#123;</div><div class="line">                    temp = arr[i];</div><div class="line">                    arr[i] = arr[i - <span class="number">1</span>];</div><div class="line">                    arr[i - <span class="number">1</span>] = temp;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sort2</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; arr.length - i; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</div><div class="line">                    temp = arr[j+<span class="number">1</span>];</div><div class="line">                    arr[j+<span class="number">1</span>] = arr[j];</div><div class="line">                    arr[j] = temp;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            System.out.printf(<span class="string">"第 %d 步排序结果：\n"</span>, i);</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; arr.length; k++) &#123;</div><div class="line">                System.out.print(<span class="string">" "</span> + arr[k]);</div><div class="line">            &#125;</div><div class="line">            System.out.printf(<span class="string">"\n"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+        <h1 id="Java-实现-JavaScript-eval-函数"><a href="#Java-实现-JavaScript-eval-函数" class="headerlink" title="Java 实现 JavaScript eval() 函数"></a>Java 实现 JavaScript eval() 函数</h1>
       
 
       
@@ -188,6 +202,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Java, Javascript, eval, 动态加载, 反射</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -238,7 +263,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.layoute.xyz/2018/04/16/BubbleSort/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.layoute.xyz/2018/05/02/---/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -252,18 +277,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/16/InsertSort/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/02/02/iOS-first/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">iOS 笔记一</div>
+    <a href="/2018/04/23/Java 实现 JavaScript eval() 函数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
   
