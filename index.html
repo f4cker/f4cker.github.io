@@ -8,7 +8,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next gemini use-motion" lang="">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '6.2.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
@@ -232,9 +232,6 @@
   
 
   
-    
-
-  
 
   
 </nav>
@@ -255,9 +252,156 @@
       <div class="main-inner">
         <div class="content-wrap">
           
+            
+
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2018/05/03/Java-实现-JavaScript-eval-函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Layoute">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Layoute's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/03/Java-实现-JavaScript-eval-函数/" itemprop="url">
+                  Java 实现 JavaScript eval 函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-05-03 12:14:01 / Modified: 12:17:24" itemprop="dateCreated datePublished" datetime="2018-05-03T12:14:01+08:00">2018-05-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p>MyClassLoader.java<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> javax.tools.SimpleJavaFileObject;</span><br><span class="line"><span class="keyword">import</span> javax.tools.JavaFileObject;</span><br><span class="line"><span class="keyword">import</span> javax.tools.JavaCompiler;</span><br><span class="line"><span class="keyword">import</span> javax.tools.ToolProvider;</span><br><span class="line"><span class="keyword">import</span> javax.tools.DiagnosticCollector;</span><br><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span>  1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClassLoader</span></span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">ClassLoader</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Class&lt;?&gt; findClass(String str) <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">    &#123;</span><br><span class="line">        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();</span><br><span class="line">        <span class="comment">//用于诊断源代码编译错误的对象</span></span><br><span class="line">        DiagnosticCollector diagnostics = <span class="keyword">new</span> DiagnosticCollector();</span><br><span class="line">        <span class="comment">//内存中的源代码保存在一个从JavaFileObject继承的类中 </span></span><br><span class="line">        JavaFileObject file = <span class="keyword">new</span> JavaSourceFromString(<span class="string">"Temp"</span>, str.toString());</span><br><span class="line">        Iterable compilationUnits = Arrays.asList(file);</span><br><span class="line">        <span class="comment">//建立一个编译任务</span></span><br><span class="line">        JavaCompiler.CompilationTask task = compiler.getTask(<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, compilationUnits);</span><br><span class="line">        <span class="comment">//编译源程序</span></span><br><span class="line">        <span class="keyword">boolean</span> result = task.call();</span><br><span class="line">        <span class="keyword">if</span> (result) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> Class.forName(<span class="string">"Temp"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JavaSourceFromString</span> <span class="keyword">extends</span> <span class="title">SimpleJavaFileObject</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String code;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">JavaSourceFromString</span><span class="params">(String name, String code)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(URI.create(<span class="string">"string:///"</span> + name.replace(<span class="string">'.'</span>, <span class="string">'/'</span>) + Kind.SOURCE.extension), Kind.SOURCE);</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CharSequence <span class="title">getCharContent</span><span class="params">(<span class="keyword">boolean</span> ignoreEncodingErrors)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/03/Java-实现-JavaScript-eval-函数/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -320,7 +464,7 @@
                 
               
 
-              <time title="Created: 2018-05-03 10:28:22 / Modified: 11:22:55" itemprop="dateCreated datePublished" datetime="2018-05-03T10:28:22+08:00">2018-05-03</time>
+              <time title="Created: 2018-05-03 10:28:22 / Modified: 12:04:46" itemprop="dateCreated datePublished" datetime="2018-05-03T10:28:22+08:00">2018-05-03</time>
             
 
             
@@ -359,16 +503,339 @@
 
       
         
-          
-            <h3 id="DTraceProviderBindings-node-issue"><a href="#DTraceProviderBindings-node-issue" class="headerlink" title="DTraceProviderBindings.node issue"></a>DTraceProviderBindings.node issue</h3><ul>
+          <h3 id="DTraceProviderBindings-node-issue"><a href="#DTraceProviderBindings-node-issue" class="headerlink" title="DTraceProviderBindings.node issue"></a>DTraceProviderBindings.node issue</h3><ul>
 <li><p>Mac 环境下使用如下命令重新编译安装 Hexo 的 node_modules 依赖</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd hexo installation directory</span></span><br><span class="line"><span class="built_in">cd</span> `<span class="built_in">which</span> hexo`/../..</span><br><span class="line"></span><br><span class="line"><span class="comment"># remove installed node modules</span></span><br><span class="line">rm -rvf node_modules</span><br><span class="line"></span><br><span class="line"><span class="comment"># reinstall all dependencies</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果是使用 nvm 管理 node 版本相关，使用一下方式修复即可</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># uninstall hexo-cli globally</span></span><br><span class="line">npm uninstall -g hexo-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># then reinstall it</span></span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># Till this step, when I went to my hexo blog folder and ran hexo server, dtrace-provider was still complaining. So I decided to remove all the node_modules and reinstall.</span></span><br><span class="line"><span class="comment"># under your hexo blog folder (where you have node_modules, public, scaffolds, source and others), remove node_modules</span></span><br><span class="line">rm -rf node_modules</span><br><span class="line"></span><br><span class="line"><span class="comment"># then reinstall them all</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></li>
-</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/03/Hexo-problems/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2018/04/10/HTTP-TO-HTTPS-（Centos-6-5-Final）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Layoute">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Layoute's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/10/HTTP-TO-HTTPS-（Centos-6-5-Final）/" itemprop="url">
+                  HTTP TO HTTPS （Centos 6.5 Final）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-04-10 12:21:21" itemprop="dateCreated datePublished" datetime="2018-04-10T12:21:21+08:00">2018-04-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-03 12:26:19" itemprop="dateModified" datetime="2018-05-03T12:26:19+08:00">2018-05-03</time>
+              
+            
+          </span>
 
           
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>因为 <code>Certbot</code> 的很多依赖并不在系统默认 Repo 中,需要先安装 <code>EPEL Repo</code> ,运行 <code>yum install epel-release</code> ,同时为了防止组件过旧导致的报错,建议运行一次 <code>yum update</code></p>
+<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .</p>
+<ul>
+<li><p>获取 <code>certbot-auto</code> 脚本并赋予执行权限</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> path/to/certbot-auto</span><br><span class="line">$ wget https://dl.eff.org/certbot-auto</span><br><span class="line">$ chmod a+x certbot-auto</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行 <code>certbot-auto</code> 脚本安装 <code>Certbot</code></p>
+</li>
+<li>PS:<code>cerbot-auto</code> 会自动下载最新版并进行安装,如果你希望使用某一特定版本并禁止自动更新的话，请在运行时加上 <code>--no-self-upgrade</code> .
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/10/HTTP-TO-HTTPS-（Centos-6-5-Final）/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2018/04/03/Laravel-日志踩坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Layoute">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Layoute's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/03/Laravel-日志踩坑/" itemprop="url">
+                  Laravel 日志踩坑
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-04-03 12:19:19" itemprop="dateCreated datePublished" datetime="2018-04-03T12:19:19+08:00">2018-04-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-03 12:20:23" itemprop="dateModified" datetime="2018-05-03T12:20:23+08:00">2018-05-03</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>分享一个大家可能会踩到的坑，如果你在使用 Laravel，并且日志配置是按天记录的（daily）,那么你千万不要用 root 角色来执行计划任务，请以你的 nginx 子进程用户（也就是我们平常说的 www 用户），比如我的机器 Ubuntu 默认 apt 安装 nginx 的话是 www-data，那么应该修改 crontab 配置像以下这样：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * www-data php [项目目录]/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/03/Laravel-日志踩坑/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -749,7 +1216,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -776,7 +1243,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
@@ -816,7 +1303,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -830,15 +1317,9 @@
 
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.2.0</div>
 
 
 
@@ -927,6 +1408,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
 
   
 

@@ -8,7 +8,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next gemini use-motion" lang="">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '6.2.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
@@ -110,7 +110,7 @@
 <meta property="og:site_name" content="Layoute&#39;s Blog">
 <meta property="og:description" content="DTraceProviderBindings.node issue Mac 环境下使用如下命令重新编译安装 Hexo 的 node_modules 依赖   12345678# cd hexo installation directorycd `which hexo`/../..# remove installed node modulesrm -rvf node_modules# reinsta">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-03T03:22:55.235Z">
+<meta property="og:updated_time" content="2018-05-03T04:04:46.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo problems">
 <meta name="twitter:description" content="DTraceProviderBindings.node issue Mac 环境下使用如下命令重新编译安装 Hexo 的 node_modules 依赖   12345678# cd hexo installation directorycd `which hexo`/../..# remove installed node modulesrm -rvf node_modules# reinsta">
@@ -236,9 +236,6 @@
   
 
   
-    
-
-  
 
   
 </nav>
@@ -258,6 +255,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -320,7 +320,7 @@
                 
               
 
-              <time title="Created: 2018-05-03 10:28:22 / Modified: 11:22:55" itemprop="dateCreated datePublished" datetime="2018-05-03T10:28:22+08:00">2018-05-03</time>
+              <time title="Created: 2018-05-03 10:28:22 / Modified: 12:04:46" itemprop="dateCreated datePublished" datetime="2018-05-03T10:28:22+08:00">2018-05-03</time>
             
 
             
@@ -361,9 +361,8 @@
         <h3 id="DTraceProviderBindings-node-issue"><a href="#DTraceProviderBindings-node-issue" class="headerlink" title="DTraceProviderBindings.node issue"></a>DTraceProviderBindings.node issue</h3><ul>
 <li><p>Mac 环境下使用如下命令重新编译安装 Hexo 的 node_modules 依赖</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd hexo installation directory</span></span><br><span class="line"><span class="built_in">cd</span> `<span class="built_in">which</span> hexo`/../..</span><br><span class="line"></span><br><span class="line"><span class="comment"># remove installed node modules</span></span><br><span class="line">rm -rvf node_modules</span><br><span class="line"></span><br><span class="line"><span class="comment"># reinstall all dependencies</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果是使用 nvm 管理 node 版本相关，使用一下方式修复即可</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># uninstall hexo-cli globally</span></span><br><span class="line">npm uninstall -g hexo-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># then reinstall it</span></span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># Till this step, when I went to my hexo blog folder and ran hexo server, dtrace-provider was still complaining. So I decided to remove all the node_modules and reinstall.</span></span><br><span class="line"><span class="comment"># under your hexo blog folder (where you have node_modules, public, scaffolds, source and others), remove node_modules</span></span><br><span class="line">rm -rf node_modules</span><br><span class="line"></span><br><span class="line"><span class="comment"># then reinstall them all</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></li>
+  <a id="more"></a></li>
+<li>如果是使用 nvm 管理 node 版本相关，使用一下方式修复即可  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># uninstall hexo-cli globally</span></span><br><span class="line">npm uninstall -g hexo-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># then reinstall it</span></span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># Till this step, when I went to my hexo blog folder and ran hexo server, dtrace-provider was still complaining. So I decided to remove all the node_modules and reinstall.</span></span><br><span class="line"><span class="comment"># under your hexo blog folder (where you have node_modules, public, scaffolds, source and others), remove node_modules</span></span><br><span class="line">rm -rf node_modules</span><br><span class="line"></span><br><span class="line"><span class="comment"># then reinstall them all</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -402,8 +401,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/02/iOS-first/" rel="next" title="iOS 笔记一">
-                <i class="fa fa-chevron-left"></i> iOS 笔记一
+              <a href="/2018/04/10/HTTP-TO-HTTPS-（Centos-6-5-Final）/" rel="next" title="HTTP TO HTTPS （Centos 6.5 Final）">
+                <i class="fa fa-chevron-left"></i> HTTP TO HTTPS （Centos 6.5 Final）
               </a>
             
           </div>
@@ -411,6 +410,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/03/Java-实现-JavaScript-eval-函数/" rel="prev" title="Java 实现 JavaScript eval 函数">
+                Java 实现 JavaScript eval 函数 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -484,7 +487,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -511,7 +514,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
@@ -567,7 +590,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -581,15 +604,9 @@
 
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.2.0</div>
 
 
 
@@ -678,6 +695,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>

@@ -102,24 +102,25 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="环境准备因为 Certbot 的很多依赖并不在系统默认 Repo 中,需要先安装 EPEL Repo ,运行 yum install epel-release ,同时为了防止组件过旧导致的报错,建议运行一次 yum update 安装 Certbot因为目前没有 CentOS 的预编译安装包，所以通过 certbot-auto 脚本来获得 Certbot .  获取 certbot-auto 脚本">
+<meta name="keywords" content="http,https,nginx,letsencrypt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://www.layoute.xyz/2017/01/06/hello-world/index.html">
+<meta property="og:title" content="HTTP TO HTTPS （Centos 6.5 Final）">
+<meta property="og:url" content="http://www.layoute.xyz/2018/04/10/HTTP-TO-HTTPS-（Centos-6-5-Final）/index.html">
 <meta property="og:site_name" content="Layoute&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="环境准备因为 Certbot 的很多依赖并不在系统默认 Repo 中,需要先安装 EPEL Repo ,运行 yum install epel-release ,同时为了防止组件过旧导致的报错,建议运行一次 yum update 安装 Certbot因为目前没有 CentOS 的预编译安装包，所以通过 certbot-auto 脚本来获得 Certbot .  获取 certbot-auto 脚本">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2017-01-06T12:49:54.000Z">
+<meta property="og:updated_time" content="2018-05-03T04:26:19.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="HTTP TO HTTPS （Centos 6.5 Final）">
+<meta name="twitter:description" content="环境准备因为 Certbot 的很多依赖并不在系统默认 Repo 中,需要先安装 EPEL Repo ,运行 yum install epel-release ,同时为了防止组件过旧导致的报错,建议运行一次 yum update 安装 Certbot因为目前没有 CentOS 的预编译安装包，所以通过 certbot-auto 脚本来获得 Certbot .  获取 certbot-auto 脚本">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.layoute.xyz/2017/01/06/hello-world/"/>
+  <link rel="canonical" href="http://www.layoute.xyz/2018/04/10/HTTP-TO-HTTPS-（Centos-6-5-Final）/"/>
 
 
 
@@ -129,7 +130,7 @@
   };
 </script>
 
-  <title>Hello World | Layoute's Blog</title>
+  <title>HTTP TO HTTPS （Centos 6.5 Final） | Layoute's Blog</title>
   
 
 
@@ -277,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2017/01/06/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2018/04/10/HTTP-TO-HTTPS-（Centos-6-5-Final）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Layoute">
@@ -294,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">HTTP TO HTTPS （Centos 6.5 Final）
               
             
           </h1>
@@ -319,9 +320,25 @@
                 
               
 
-              <time title="Created: 2017-01-06 20:49:54" itemprop="dateCreated datePublished" datetime="2017-01-06T20:49:54+08:00">2017-01-06</time>
+              <time title="Created: 2018-04-10 12:21:21" itemprop="dateCreated datePublished" datetime="2018-04-10T12:21:21+08:00">2018-04-10</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-03 12:26:19" itemprop="dateModified" datetime="2018-05-03T12:26:19+08:00">2018-05-03</time>
+              
             
           </span>
 
@@ -353,15 +370,43 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>因为 <code>Certbot</code> 的很多依赖并不在系统默认 Repo 中,需要先安装 <code>EPEL Repo</code> ,运行 <code>yum install epel-release</code> ,同时为了防止组件过旧导致的报错,建议运行一次 <code>yum update</code></p>
+<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .</p>
+<ul>
+<li><p>获取 <code>certbot-auto</code> 脚本并赋予执行权限</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> path/to/certbot-auto</span><br><span class="line">$ wget https://dl.eff.org/certbot-auto</span><br><span class="line">$ chmod a+x certbot-auto</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行 <code>certbot-auto</code> 脚本安装 <code>Certbot</code></p>
+</li>
+<li>PS:<code>cerbot-auto</code> 会自动下载最新版并进行安装,如果你希望使用某一特定版本并禁止自动更新的话，请在运行时加上 <code>--no-self-upgrade</code> .<a id="more"></a>
+<h3 id="使用-Certbot-生成证书"><a href="#使用-Certbot-生成证书" class="headerlink" title="使用 Certbot 生成证书"></a>使用 <code>Certbot</code> 生成证书</h3></li>
+<li>示例  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这个示例演示了3个域名使用了两个不同的web-root是如何生成证书的</span></span><br><span class="line">$ ./path/to/certbot-auto certonly --webroot -w /path/to/webroot1 <span class="_">-d</span> domain.com <span class="_">-d</span> www.domain.com -w /path/to/webroot2 <span class="_">-d</span> test.clamis.net -n</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="修改-Nginx-配置文件"><a href="#修改-Nginx-配置文件" class="headerlink" title="修改 Nginx 配置文件"></a>修改 Nginx 配置文件</h3><ul>
+<li><p>在原有的 <code>you.domain.com.conf</code> 文件基础上加上</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line"></span><br><span class="line">    ssl_certificate /etc/letsencrypt/live/your.domain.com/fullchain.pem;</span><br><span class="line">    ssl_certificate_key /etc/letsencrypt/live/your.domain.com/privkey.pem;</span><br><span class="line">    ssl_trusted_certificate /etc/letsencrypt/live/your.domain.com/chain.pem;</span><br><span class="line">    </span><br><span class="line">    // ... other settings ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行 <code>service nginx reload</code> 重载配置文件</p>
+</li>
+</ul>
+<h3 id="手动更新证书文件"><a href="#手动更新证书文件" class="headerlink" title="手动更新证书文件"></a>手动更新证书文件</h3><ul>
+<li><p>执行下面的命令并按照提示进行操作</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /path/to/certbot-auto certonly --webroot -w /path/to/webroot/ <span class="_">-d</span> your.domain.com`</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行下面的命令强制更新</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /path/to/certbot-auto renew --force-renewal</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="配置自动更新证书文件"><a href="#配置自动更新证书文件" class="headerlink" title="配置自动更新证书文件"></a>配置自动更新证书文件</h3><ul>
+<li><p>执行 </p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#模拟更新证书</span></span><br><span class="line">$ /path/to/certbot-auto renew --dry-run</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 Crontab 中添加定时更新任务</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/crontab</span><br><span class="line"><span class="comment"># 添加如下任务</span></span><br><span class="line">11 23 */2 * * ./path/to/certbot-auto renew --quiet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者如下</span></span><br><span class="line">$ crontab <span class="_">-e</span></span><br><span class="line"><span class="comment"># 添加如下任务</span></span><br><span class="line">11 23 */2 * * ./path/to/certbot-auto renew --quiet</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>搞定，收工！</p>
 
       
     </div>
@@ -380,6 +425,18 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/http/" rel="tag"># http</a>
+          
+            <a href="/tags/https/" rel="tag"># https</a>
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+            <a href="/tags/letsencrypt/" rel="tag"># letsencrypt</a>
+          
+        </div>
+      
 
       
       
@@ -389,14 +446,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/03/Laravel-日志踩坑/" rel="next" title="Laravel 日志踩坑">
+                <i class="fa fa-chevron-left"></i> Laravel 日志踩坑
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/02/iOS-first/" rel="prev" title="iOS 笔记一">
-                iOS 笔记一 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/03/Hexo-problems/" rel="prev" title="Hexo problems">
+                Hexo problems <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -554,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Certbot"><span class="nav-number">2.</span> <span class="nav-text">安装 Certbot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Certbot-生成证书"><span class="nav-number">3.</span> <span class="nav-text">使用 Certbot 生成证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-Nginx-配置文件"><span class="nav-number">4.</span> <span class="nav-text">修改 Nginx 配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手动更新证书文件"><span class="nav-number">5.</span> <span class="nav-text">手动更新证书文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置自动更新证书文件"><span class="nav-number">6.</span> <span class="nav-text">配置自动更新证书文件</span></a></li></ol></div>
             
 
           </div>
