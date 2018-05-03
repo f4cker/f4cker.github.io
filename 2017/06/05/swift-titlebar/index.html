@@ -102,19 +102,19 @@
 
 
 
-  <meta name="description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView) Example: 1234567override func windowDidLoad() &amp;#123;    super">
+  <meta name="description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
 <meta name="keywords" content="swift,NSWindowController">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 笔记：Swift 隐藏标题栏">
 <meta property="og:url" content="http://www.layoute.xyz/2017/06/05/swift-titlebar/index.html">
 <meta property="og:site_name" content="Layoute&#39;s Blog">
-<meta property="og:description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView) Example: 1234567override func windowDidLoad() &amp;#123;    super">
+<meta property="og:description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://i.stack.imgur.com/kEPdy.png">
-<meta property="og:updated_time" content="2018-05-03T07:55:02.465Z">
+<meta property="og:updated_time" content="2018-05-03T07:57:56.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 笔记：Swift 隐藏标题栏">
-<meta name="twitter:description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView) Example: 1234567override func windowDidLoad() &amp;#123;    super">
+<meta name="twitter:description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
 <meta name="twitter:image" content="https://i.stack.imgur.com/kEPdy.png">
 
 
@@ -339,7 +339,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-05-03 15:55:02" itemprop="dateModified" datetime="2018-05-03T15:55:02+08:00">2018-05-03</time>
+                <time title="Modified: 2018-05-03 15:57:56" itemprop="dateModified" datetime="2018-05-03T15:57:56+08:00">2018-05-03</time>
               
             
           </span>
@@ -377,6 +377,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.styleMask.insert(.fullSizeContentView)</span><br></pre></td></tr></table></figure>
 <p>Or</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.styleMask = window.styleMask.union(.fullSizeContentView)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>Example:</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">windowDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.windowDidLoad()</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> window = window <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    window.titlebarAppearsTransparent = <span class="literal">true</span></span><br><span class="line">    window.titleVisibility = .hidden</span><br><span class="line">    window.styleMask.insert(.fullSizeContentView)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.stack.imgur.com/kEPdy.png" alt="Example"></p>
