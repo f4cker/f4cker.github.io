@@ -102,18 +102,18 @@
 
 
 
-  <meta name="description" content="分享一个大家可能会踩到的坑，如果你在使用 Laravel，并且日志配置是按天记录的（daily）,那么你千万不要用 root 角色来执行计划任务，请以你的 nginx 子进程用户（也就是我们平常说的 www 用户），比如我的机器 Ubuntu 默认 apt 安装 nginx 的话是 www-data，那么应该修改 crontab 配置像以下这样：  1* * * * * www-data php">
+  <meta name="description" content="分享一个大家可能会踩到的坑，如果你在使用 Laravel，并且日志配置是按天记录的（daily）,那么你千万不要用 root 角色来执行计划任务，请以你的 nginx 子进程用户（也就是我们平常说的 www 用户），比如我的机器 Ubuntu 默认 apt 安装 nginx 的话是 www-data，那么应该修改 crontab 配置像以下这样：  1* * * * * www-data ph">
 <meta name="keywords" content="Laravel,Log">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel 日志踩坑">
 <meta property="og:url" content="http://www.layoute.xyz/2018/04/03/Laravel-日志踩坑/index.html">
 <meta property="og:site_name" content="Layoute&#39;s Blog">
-<meta property="og:description" content="分享一个大家可能会踩到的坑，如果你在使用 Laravel，并且日志配置是按天记录的（daily）,那么你千万不要用 root 角色来执行计划任务，请以你的 nginx 子进程用户（也就是我们平常说的 www 用户），比如我的机器 Ubuntu 默认 apt 安装 nginx 的话是 www-data，那么应该修改 crontab 配置像以下这样：  1* * * * * www-data php">
+<meta property="og:description" content="分享一个大家可能会踩到的坑，如果你在使用 Laravel，并且日志配置是按天记录的（daily）,那么你千万不要用 root 角色来执行计划任务，请以你的 nginx 子进程用户（也就是我们平常说的 www 用户），比如我的机器 Ubuntu 默认 apt 安装 nginx 的话是 www-data，那么应该修改 crontab 配置像以下这样：  1* * * * * www-data ph">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-03T04:20:23.023Z">
+<meta property="og:updated_time" content="2018-05-03T08:02:51.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel 日志踩坑">
-<meta name="twitter:description" content="分享一个大家可能会踩到的坑，如果你在使用 Laravel，并且日志配置是按天记录的（daily）,那么你千万不要用 root 角色来执行计划任务，请以你的 nginx 子进程用户（也就是我们平常说的 www 用户），比如我的机器 Ubuntu 默认 apt 安装 nginx 的话是 www-data，那么应该修改 crontab 配置像以下这样：  1* * * * * www-data php">
+<meta name="twitter:description" content="分享一个大家可能会踩到的坑，如果你在使用 Laravel，并且日志配置是按天记录的（daily）,那么你千万不要用 root 角色来执行计划任务，请以你的 nginx 子进程用户（也就是我们平常说的 www 用户），比如我的机器 Ubuntu 默认 apt 安装 nginx 的话是 www-data，那么应该修改 crontab 配置像以下这样：  1* * * * * www-data ph">
 
 
 
@@ -337,7 +337,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-05-03 12:20:23" itemprop="dateModified" datetime="2018-05-03T12:20:23+08:00">2018-05-03</time>
+                <time title="Modified: 2018-05-03 16:02:51" itemprop="dateModified" datetime="2018-05-03T16:02:51+08:00">2018-05-03</time>
               
             
           </span>
@@ -370,7 +370,8 @@
       
 
       
-        <blockquote>
+        <hr>
+<blockquote>
 <p>分享一个大家可能会踩到的坑，如果你在使用 Laravel，并且日志配置是按天记录的（daily）,那么你千万不要用 root 角色来执行计划任务，请以你的 nginx 子进程用户（也就是我们平常说的 www 用户），比如我的机器 Ubuntu 默认 apt 安装 nginx 的话是 www-data，那么应该修改 crontab 配置像以下这样：</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * www-data php [项目目录]/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
