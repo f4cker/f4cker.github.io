@@ -320,7 +320,7 @@
                 
               
 
-              <time title="Created: 2018-05-03 12:14:01 / Modified: 12:17:24" itemprop="dateCreated datePublished" datetime="2018-05-03T12:14:01+08:00">2018-05-03</time>
+              <time title="Created: 2018-05-03 12:14:01 / Modified: 15:38:19" itemprop="dateCreated datePublished" datetime="2018-05-03T12:14:01+08:00">2018-05-03</time>
             
 
             
@@ -359,7 +359,8 @@
 
       
         
-          <h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p>MyClassLoader.java<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> javax.tools.SimpleJavaFileObject;</span><br><span class="line"><span class="keyword">import</span> javax.tools.JavaFileObject;</span><br><span class="line"><span class="keyword">import</span> javax.tools.JavaCompiler;</span><br><span class="line"><span class="keyword">import</span> javax.tools.ToolProvider;</span><br><span class="line"><span class="keyword">import</span> javax.tools.DiagnosticCollector;</span><br><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span>  1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClassLoader</span></span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">ClassLoader</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Class&lt;?&gt; findClass(String str) <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">    &#123;</span><br><span class="line">        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();</span><br><span class="line">        <span class="comment">//用于诊断源代码编译错误的对象</span></span><br><span class="line">        DiagnosticCollector diagnostics = <span class="keyword">new</span> DiagnosticCollector();</span><br><span class="line">        <span class="comment">//内存中的源代码保存在一个从JavaFileObject继承的类中 </span></span><br><span class="line">        JavaFileObject file = <span class="keyword">new</span> JavaSourceFromString(<span class="string">"Temp"</span>, str.toString());</span><br><span class="line">        Iterable compilationUnits = Arrays.asList(file);</span><br><span class="line">        <span class="comment">//建立一个编译任务</span></span><br><span class="line">        JavaCompiler.CompilationTask task = compiler.getTask(<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, compilationUnits);</span><br><span class="line">        <span class="comment">//编译源程序</span></span><br><span class="line">        <span class="keyword">boolean</span> result = task.call();</span><br><span class="line">        <span class="keyword">if</span> (result) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> Class.forName(<span class="string">"Temp"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JavaSourceFromString</span> <span class="keyword">extends</span> <span class="title">SimpleJavaFileObject</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String code;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">JavaSourceFromString</span><span class="params">(String name, String code)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(URI.create(<span class="string">"string:///"</span> + name.replace(<span class="string">'.'</span>, <span class="string">'/'</span>) + Kind.SOURCE.extension), Kind.SOURCE);</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CharSequence <span class="title">getCharContent</span><span class="params">(<span class="keyword">boolean</span> ignoreEncodingErrors)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <hr>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p>MyClassLoader.java<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> javax.tools.SimpleJavaFileObject;</span><br><span class="line"><span class="keyword">import</span> javax.tools.JavaFileObject;</span><br><span class="line"><span class="keyword">import</span> javax.tools.JavaCompiler;</span><br><span class="line"><span class="keyword">import</span> javax.tools.ToolProvider;</span><br><span class="line"><span class="keyword">import</span> javax.tools.DiagnosticCollector;</span><br><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span>  1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClassLoader</span></span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">ClassLoader</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Class&lt;?&gt; findClass(String str) <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">    &#123;</span><br><span class="line">        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();</span><br><span class="line">        <span class="comment">//用于诊断源代码编译错误的对象</span></span><br><span class="line">        DiagnosticCollector diagnostics = <span class="keyword">new</span> DiagnosticCollector();</span><br><span class="line">        <span class="comment">//内存中的源代码保存在一个从JavaFileObject继承的类中 </span></span><br><span class="line">        JavaFileObject file = <span class="keyword">new</span> JavaSourceFromString(<span class="string">"Temp"</span>, str.toString());</span><br><span class="line">        Iterable compilationUnits = Arrays.asList(file);</span><br><span class="line">        <span class="comment">//建立一个编译任务</span></span><br><span class="line">        JavaCompiler.CompilationTask task = compiler.getTask(<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, compilationUnits);</span><br><span class="line">        <span class="comment">//编译源程序</span></span><br><span class="line">        <span class="keyword">boolean</span> result = task.call();</span><br><span class="line">        <span class="keyword">if</span> (result) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> Class.forName(<span class="string">"Temp"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JavaSourceFromString</span> <span class="keyword">extends</span> <span class="title">SimpleJavaFileObject</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String code;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">JavaSourceFromString</span><span class="params">(String name, String code)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(URI.create(<span class="string">"string:///"</span> + name.replace(<span class="string">'.'</span>, <span class="string">'/'</span>) + Kind.SOURCE.extension), Kind.SOURCE);</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CharSequence <span class="title">getCharContent</span><span class="params">(<span class="keyword">boolean</span> ignoreEncodingErrors)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/05/03/Java-实现-JavaScript-eval-函数/#more" rel="contents">
@@ -464,7 +465,7 @@
                 
               
 
-              <time title="Created: 2018-05-03 10:28:22 / Modified: 12:04:46" itemprop="dateCreated datePublished" datetime="2018-05-03T10:28:22+08:00">2018-05-03</time>
+              <time title="Created: 2018-05-03 10:28:22 / Modified: 15:37:35" itemprop="dateCreated datePublished" datetime="2018-05-03T10:28:22+08:00">2018-05-03</time>
             
 
             
@@ -503,7 +504,8 @@
 
       
         
-          <h3 id="DTraceProviderBindings-node-issue"><a href="#DTraceProviderBindings-node-issue" class="headerlink" title="DTraceProviderBindings.node issue"></a>DTraceProviderBindings.node issue</h3><ul>
+          <hr>
+<h2 id="DTraceProviderBindings-node-issue"><a href="#DTraceProviderBindings-node-issue" class="headerlink" title="DTraceProviderBindings.node issue"></a>DTraceProviderBindings.node issue</h2><ul>
 <li><p>Mac 环境下使用如下命令重新编译安装 Hexo 的 node_modules 依赖</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd hexo installation directory</span></span><br><span class="line"><span class="built_in">cd</span> `<span class="built_in">which</span> hexo`/../..</span><br><span class="line"></span><br><span class="line"><span class="comment"># remove installed node modules</span></span><br><span class="line">rm -rvf node_modules</span><br><span class="line"></span><br><span class="line"><span class="comment"># reinstall all dependencies</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
           <!--noindex-->
@@ -627,7 +629,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-05-03 12:26:19" itemprop="dateModified" datetime="2018-05-03T12:26:19+08:00">2018-05-03</time>
+                <time title="Modified: 2018-05-03 15:37:46" itemprop="dateModified" datetime="2018-05-03T15:37:46+08:00">2018-05-03</time>
               
             
           </span>
@@ -661,7 +663,8 @@
 
       
         
-          <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>因为 <code>Certbot</code> 的很多依赖并不在系统默认 Repo 中,需要先安装 <code>EPEL Repo</code> ,运行 <code>yum install epel-release</code> ,同时为了防止组件过旧导致的报错,建议运行一次 <code>yum update</code></p>
+          <hr>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>因为 <code>Certbot</code> 的很多依赖并不在系统默认 Repo 中,需要先安装 <code>EPEL Repo</code> ,运行 <code>yum install epel-release</code> ,同时为了防止组件过旧导致的报错,建议运行一次 <code>yum update</code></p>
 <h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .</p>
 <ul>
 <li><p>获取 <code>certbot-auto</code> 脚本并赋予执行权限</p>
@@ -1110,7 +1113,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-05-03 10:50:16" itemprop="dateModified" datetime="2018-05-03T10:50:16+08:00">2018-05-03</time>
+                <time title="Modified: 2018-05-03 15:38:20" itemprop="dateModified" datetime="2018-05-03T15:38:20+08:00">2018-05-03</time>
               
             
           </span>
@@ -1145,156 +1148,13 @@
       
         
           
-            <h3 id="StoryBoard文件与-Swift文件的关联"><a href="#StoryBoard文件与-Swift文件的关联" class="headerlink" title="StoryBoard文件与.Swift文件的关联"></a>StoryBoard文件与.Swift文件的关联</h3><ul>
+            <hr>
+<h3 id="StoryBoard文件与-Swift文件的关联"><a href="#StoryBoard文件与-Swift文件的关联" class="headerlink" title="StoryBoard文件与.Swift文件的关联"></a>StoryBoard文件与.Swift文件的关联</h3><ul>
 <li>创建<code>StoryBoard</code>文件并设置属性<code>Class</code>对应到指定的<code>.Swift</code>文件即可创建两者之间的关联</li>
 <li>在<code>StoryBoard</code>文件中创建布局，并从<code>StoryBoard</code>创建到<code>.Swift</code>文件的<code>@IBOutlet</code>链接</li>
 <li>在<code>.Swift</code>文件中对所创建的<code>@IBOutlet</code>对象添加<code>addTarget</code>方法（对应<code>Android</code>中的<code>Listenner</code>）</li>
 <li><code>action</code> 的值为<code>#selector(func)</code>之类</li>
 </ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2017/01/06/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/06/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-01-06 20:49:54" itemprop="dateCreated datePublished" datetime="2017-01-06T20:49:54+08:00">2017-01-06</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
@@ -1376,7 +1236,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
