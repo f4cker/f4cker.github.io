@@ -102,23 +102,25 @@
 
 
 
-  <meta name="description" content="体面、优雅的写博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Layoute&#39;s Blog">
-<meta property="og:url" content="http://www.layoute.xyz/tags/mac/index.html">
+  <meta name="description" content="Android 开发中，添加的依赖库多了以后，gradle build 时经常会碰到如下问题  Manifest merger failed : Attribute meta-data#android.support.VERSION@value value=(26.1.0) from [com.android.support:support-v13:26.1.0] AndroidManifes">
+<meta name="keywords" content="gradle,manifest,com.android.support">
+<meta property="og:type" content="article">
+<meta property="og:title" content="添加依赖库出现 Manifest merger failed 错误解决办法">
+<meta property="og:url" content="http://www.layoute.xyz/2017/12/14/grandle-manifest-merge-conflict/index.html">
 <meta property="og:site_name" content="Layoute&#39;s Blog">
-<meta property="og:description" content="体面、优雅的写博客">
+<meta property="og:description" content="Android 开发中，添加的依赖库多了以后，gradle build 时经常会碰到如下问题  Manifest merger failed : Attribute meta-data#android.support.VERSION@value value=(26.1.0) from [com.android.support:support-v13:26.1.0] AndroidManifes">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-14T02:16:57.199Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Layoute&#39;s Blog">
-<meta name="twitter:description" content="体面、优雅的写博客">
+<meta name="twitter:title" content="添加依赖库出现 Manifest merger failed 错误解决办法">
+<meta name="twitter:description" content="Android 开发中，添加的依赖库多了以后，gradle build 时经常会碰到如下问题  Manifest merger failed : Attribute meta-data#android.support.VERSION@value value=(26.1.0) from [com.android.support:support-v13:26.1.0] AndroidManifes">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.layoute.xyz/tags/mac/"/>
+  <link rel="canonical" href="http://www.layoute.xyz/2017/12/14/grandle-manifest-merge-conflict/"/>
 
 
 
@@ -128,7 +130,7 @@
   };
 </script>
 
-  <title>标签: mac | Layoute's Blog</title>
+  <title>添加依赖库出现 Manifest merger failed 错误解决办法 | Layoute's Blog</title>
   
 
 
@@ -175,7 +177,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -223,7 +225,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
   </li>
@@ -272,81 +274,301 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>mac<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2017/12/14/grandle-manifest-merge-conflict/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Layoute">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Layoute's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/12/03/fake-surge/" itemprop="url">
-              
-                <span itemprop="name">利用 libfaketime 无限期试用 Surge For Mac</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">添加依赖库出现 Manifest merger failed 错误解决办法
+              
+            
+          </h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-03T14:52:16+08:00"
-              content="2017-12-03" >
-          12-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-14 10:08:22" itemprop="dateCreated datePublished" datetime="2017-12-14T10:08:22+08:00">2017-12-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-05-14 10:16:57" itemprop="dateModified" datetime="2018-05-14T10:16:57+08:00">2018-05-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/Gradle/" itemprop="url" rel="index"><span itemprop="name">Gradle</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/14/grandle-manifest-merge-conflict/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/12/14/grandle-manifest-merge-conflict/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/14/grandle-manifest-merge-conflict/" class="leancloud_visitors" data-flag-title="添加依赖库出现 Manifest merger failed 错误解决办法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>Android 开发中，添加的依赖库多了以后，<code>gradle build</code> 时经常会碰到如下问题</p>
+<blockquote>
+<p>Manifest merger failed : Attribute meta-data#android.support.VERSION@value value=(26.1.0) from [com.android.support:support-v13:26.1.0] AndroidManifest.xml:28:13-35</p>
+</blockquote>
+<p>解决办法:</p>
+<ul>
+<li>在添加依赖的 build.gradle 文件中添加如下代码再次 <code>Sync</code> 即可解决  <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">configurations.all &#123;</span><br><span class="line">    resolutionStrategy.eachDependency &#123; </span><br><span class="line">        DependencyResolveDetails details -&gt;</span><br><span class="line">        <span class="keyword">def</span> requested = details.requested</span><br><span class="line">        <span class="keyword">if</span> (requested.group == <span class="string">'com.android.support'</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!requested.name.startsWith(<span class="string">"multidex"</span>)) &#123;</span><br><span class="line">                details.useVersion <span class="string">'25.3.1'</span> <span class="comment">// 此处为需要统一的 support 库版本号</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
 
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate me for a cup of coffee</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Layoute 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Layoute 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Layoute</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.layoute.xyz/2017/12/14/grandle-manifest-merge-conflict/" title="添加依赖库出现 Manifest merger failed 错误解决办法">http://www.layoute.xyz/2017/12/14/grandle-manifest-merge-conflict/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gradle/" rel="tag"># gradle</a>
+          
+            <a href="/tags/manifest/" rel="tag"># manifest</a>
+          
+            <a href="/tags/com-android-support/" rel="tag"># com.android.support</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/03/fake-surge/" rel="next" title="利用 libfaketime 无限期试用 Surge For Mac">
+                <i class="fa fa-chevron-left"></i> 利用 libfaketime 无限期试用 Surge For Mac
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/15/node-nginx/" rel="prev" title="Nginx 部署 Node Web 项目">
+                Nginx 部署 Node Web 项目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -688,6 +910,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
 
   
 
