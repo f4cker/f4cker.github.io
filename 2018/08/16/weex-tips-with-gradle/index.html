@@ -102,23 +102,25 @@
 
 
 
-  <meta name="description" content="体面、优雅的写博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Layoute&#39;s Blog">
-<meta property="og:url" content="http://www.layoute.xyz/categories/Android/index.html">
+  <meta name="description" content="随着 Weex、React Native 这些框架性能的进步,现在越来越多移动端项目会选择使用这类框架去进行混合开发,再提高效率的同时也不会使得性能有太大的问题.我们今天讲讲在集成这些框架到 Android Native 项目中时如何提高我们的工作效率.框架我们就不介绍了,可以自行了解:  Weex React Native  1. 打包篇">
+<meta name="keywords" content="Android,Gradle,Weex,Shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Gradle 实现自动打包 (Weex)">
+<meta property="og:url" content="http://www.layoute.xyz/2018/08/16/weex-tips-with-gradle/index.html">
 <meta property="og:site_name" content="Layoute&#39;s Blog">
-<meta property="og:description" content="体面、优雅的写博客">
+<meta property="og:description" content="随着 Weex、React Native 这些框架性能的进步,现在越来越多移动端项目会选择使用这类框架去进行混合开发,再提高效率的同时也不会使得性能有太大的问题.我们今天讲讲在集成这些框架到 Android Native 项目中时如何提高我们的工作效率.框架我们就不介绍了,可以自行了解:  Weex React Native  1. 打包篇">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-16T08:55:14.960Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Layoute&#39;s Blog">
-<meta name="twitter:description" content="体面、优雅的写博客">
+<meta name="twitter:title" content="使用 Gradle 实现自动打包 (Weex)">
+<meta name="twitter:description" content="随着 Weex、React Native 这些框架性能的进步,现在越来越多移动端项目会选择使用这类框架去进行混合开发,再提高效率的同时也不会使得性能有太大的问题.我们今天讲讲在集成这些框架到 Android Native 项目中时如何提高我们的工作效率.框架我们就不介绍了,可以自行了解:  Weex React Native  1. 打包篇">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.layoute.xyz/categories/Android/"/>
+  <link rel="canonical" href="http://www.layoute.xyz/2018/08/16/weex-tips-with-gradle/"/>
 
 
 
@@ -128,7 +130,7 @@
   };
 </script>
 
-  <title>分类: Android | Layoute's Blog</title>
+  <title>使用 Gradle 实现自动打包 (Weex) | Layoute's Blog</title>
   
 
 
@@ -175,7 +177,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -231,7 +233,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
   </li>
@@ -272,194 +274,292 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>Android<small>分类</small>
-        </h2>
-      </div>
-
-      
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2018/08/16/weex-tips-with-gradle/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Layoute">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Layoute's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/08/16/weex-tips-with-gradle/" itemprop="url">
-              
-                <span itemprop="name">使用 Gradle 实现自动打包 (Weex)</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">使用 Gradle 实现自动打包 (Weex)
+              
+            
+          </h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-16T14:50:36+08:00"
-              content="2018-08-16" >
-          08-16
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-16 14:50:36" itemprop="dateCreated datePublished" datetime="2018-08-16T14:50:36+08:00">2018-08-16</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/Gradle/" itemprop="url" rel="index"><span itemprop="name">Gradle</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/16/weex-tips-with-gradle/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/16/weex-tips-with-gradle/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/16/weex-tips-with-gradle/" class="leancloud_visitors" data-flag-title="使用 Gradle 实现自动打包 (Weex)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/14/weex-in-android/" itemprop="url">
-              
-                <span itemprop="name">将 Weex 组件集成到现有 Android 项目踩坑</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-14T23:17:59+08:00"
-              content="2018-08-14" >
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/21/custom-view/" itemprop="url">
-              
-                <span itemprop="name">Android 自定义 View 时 Wrap_Content 相关</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-21T11:49:45+08:00"
-              content="2018-03-21" >
-          03-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/14/grandle-manifest-merge-conflict/" itemprop="url">
-              
-                <span itemprop="name">添加依赖库出现 Manifest merger failed 错误解决办法</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-14T10:08:22+08:00"
-              content="2017-12-14" >
-          12-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/14/android-jshc/" itemprop="url">
-              
-                <span itemprop="name">Android 使用 Jshc SSH 连接服务器</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-14T14:47:08+08:00"
-              content="2017-08-14" >
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <hr>
+<p>随着 Weex、React Native 这些框架性能的进步,现在越来越多移动端项目会选择使用这类框架去进行混合开发,再提高效率的同时也不会使得性能有太大的问题.我们今天讲讲在集成这些框架到 Android Native 项目中时如何提高我们的工作效率.框架我们就不介绍了,可以自行了解:</p>
+<ul>
+<li><a href="http://weex-project.io/cn/guide/index.html" target="_blank" rel="noopener">Weex</a></li>
+<li><a href="https://reactnative.cn/" target="_blank" rel="noopener">React Native</a></li>
+</ul>
+<h3 id="1-打包篇"><a href="#1-打包篇" class="headerlink" title="1. 打包篇"></a>1. 打包篇</h3><a id="more"></a>
+<p>在将 Weex 集成到 Android 项目中的时候,因为 <code>Weex SDK</code> 需要加载的是 JSBundle 文件,所以我们得在编写完 Weex 项目后,执行<code>npm run build</code>,然后再将生成在 dist 文件夹内的 *.js 文件拷贝到 Android 项目的 assets 文件夹下然后再打包 Android 项目才能生成一个正常集成的 Android App,于是我们在这里引入 Gradle 来解决我们的效率问题</p>
+<ol>
+<li><p>在项目根目录下创建 <code>weex.sh</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># 进入 weex 项目目录,假设是在根目录下 weex 文件夹</span></span><br><span class="line"><span class="built_in">cd</span> ./weex</span><br><span class="line"><span class="comment"># 编译 Weex 项目完成后删除不需要的 web 文件并将生成的 js 文件复制到 assets</span></span><br><span class="line">npm run build &amp;&amp; rm dist/*.web.js &amp;&amp; cp dist/*.js ../app/src/main/assets/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑 App module 根目录下的 <code>build.gradle</code> 添加如下:</p>
+ <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line">afterEvaluate &#123;</span><br><span class="line">    android.applicationVariants.all &#123; variant -&gt;    </span><br><span class="line">        variant.outputs.each &#123; output -&gt;</span><br><span class="line">            <span class="keyword">def</span> outputFile = output.outputFile</span><br><span class="line">            <span class="keyword">def</span> weexTask = tasks.create(<span class="string">name:</span> <span class="string">"weex$&#123;variant.name.capitalize()&#125;"</span>,</span><br><span class="line"><span class="symbol">            description:</span> <span class="string">"Get $&#123;outputFile&#125; with weex files "</span>,</span><br><span class="line"><span class="symbol">            group:</span> <span class="string">"Weex"</span>, <span class="string">type:</span> Exec) &#123;</span><br><span class="line">                workingDir <span class="string">'..'</span></span><br><span class="line">                commandLine <span class="string">'sh'</span>, <span class="string">'weex.sh'</span></span><br><span class="line">            &#125;</span><br><span class="line">            weexTask.dependsOn variant.assemble</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">···</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样在右侧的 Gradle Task 面板就会生成 weexDebug、weexRelease 这类的 task,点击即可运行上述脚本.(当然,点击 build 按钮的时候此任务也是会运行的)</p>
+<p>搞定.收工!</p>
 
       
     </div>
 
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate me for a cup of coffee</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Layoute 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Layoute 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Layoute</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.layoute.xyz/2018/08/16/weex-tips-with-gradle/" title="使用 Gradle 实现自动打包 (Weex)">http://www.layoute.xyz/2018/08/16/weex-tips-with-gradle/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Gradle/" rel="tag"># Gradle</a>
+          
+            <a href="/tags/Weex/" rel="tag"># Weex</a>
+          
+            <a href="/tags/Shell/" rel="tag"># Shell</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/14/weex-in-android/" rel="next" title="将 Weex 组件集成到现有 Android 项目踩坑">
+                <i class="fa fa-chevron-left"></i> 将 Weex 组件集成到现有 Android 项目踩坑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -480,8 +580,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -710,6 +819,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-打包篇"><span class="nav-number">1.</span> <span class="nav-text">1. 打包篇</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -839,6 +964,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
 
   
 
