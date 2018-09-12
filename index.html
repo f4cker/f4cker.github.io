@@ -293,6 +293,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2018/09/12/jenkins-for-android-in-Docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Layoute">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Layoute's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/jenkins-for-android-in-Docker/" itemprop="url">
+                  Docker + Jenkins + Gradle 实现 Android 的持续集成
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-12 14:35:53" itemprop="dateCreated datePublished" datetime="2018-09-12T14:35:53+08:00">2018-09-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/12/jenkins-for-android-in-Docker/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/12/jenkins-for-android-in-Docker/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/09/12/jenkins-for-android-in-Docker/" class="leancloud_visitors" data-flag-title="Docker + Jenkins + Gradle 实现 Android 的持续集成">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<h2 id="1-镜像篇"><a href="#1-镜像篇" class="headerlink" title="1. 镜像篇"></a>1. 镜像篇</h2><h3 id="1-1-构建镜像"><a href="#1-1-构建镜像" class="headerlink" title="1.1 构建镜像"></a>1.1 构建镜像</h3><p>本例中我们使用 <code>Dockerfile</code> 来构建接下来需要用到的镜像,文件内容如下:</p>
+<p><code>Dockerfile</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">FROM daocloud.io/library/tomcat:8.5.15</span><br><span class="line">LABEL Name=<span class="string">"jenkins-tomcat"</span></span><br><span class="line">LABEL Version=<span class="string">"0.2"</span></span><br><span class="line">LABEL Maintainer=<span class="string">"Layoute &lt;reallayoute@gmail.com&gt;"</span></span><br><span class="line"><span class="comment"># 环境变量</span></span><br><span class="line">ENV GRADLE_VERSION 4.4</span><br><span class="line">ENV GRADLE_HOME /root/.sdkman/candidates/gradle/<span class="variable">$&#123;GRADLE_VERSION&#125;</span>/</span><br><span class="line"><span class="comment"># tomcat 容器自带 java 8u131 放弃安装</span></span><br><span class="line"><span class="comment"># ENV JAVA_VERSION 8.0.181_zulu</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装所需依赖</span></span><br><span class="line">RUN apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y \</span><br><span class="line">        git \</span><br><span class="line">        zip \</span><br><span class="line">        unzip \</span><br><span class="line">    &amp;&amp; apt-get clean \</span><br><span class="line">    &amp;&amp; apt-get autoclean</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 jenkins 为 80 端口根路径</span></span><br><span class="line">RUN rm -rf /usr/<span class="built_in">local</span>/tomcat/webapps/ROOT</span><br><span class="line">ADD http://ftp-nyc.osuosl.org/pub/jenkins/war-stable/2.121.3/jenkins.war /usr/<span class="built_in">local</span>/tomcat/webapps/ROOT.war</span><br><span class="line">RUN sed -i <span class="string">'s/8080/80/'</span> /usr/<span class="built_in">local</span>/tomcat/conf/server.xml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 SDKMAN 开发包管理器</span></span><br><span class="line">WORKDIR /root</span><br><span class="line">RUN curl <span class="_">-s</span> <span class="string">"https://get.sdkman.io"</span> | bash</span><br><span class="line">RUN /bin/bash -c <span class="string">"source /root/.sdkman/bin/sdkman-init.sh"</span></span><br><span class="line"><span class="comment"># 安装 Gradle 等依赖</span></span><br><span class="line"><span class="comment"># -l 伪装为登录的 shell 执行命令</span></span><br><span class="line"><span class="comment"># -c 读取字符串命令</span></span><br><span class="line">RUN yes | /bin/bash <span class="_">-l</span> -c <span class="string">'sdk install gradle $&#123;GRADLE_VERSION&#125;'</span></span><br><span class="line"><span class="comment"># RUN yes | /bin/bash -l -c 'sdk install java $&#123;JAVA_VERSION&#125;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露端口</span></span><br><span class="line">EXPOSE 80</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 entrypoint 权限并运行</span></span><br><span class="line">WORKDIR /usr/<span class="built_in">local</span>/tomcat</span><br><span class="line">COPY ./entrypoint.sh /usr/<span class="built_in">local</span>/tomcat/</span><br><span class="line">RUN <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/tomcat</span><br><span class="line">RUN chmod 0777 ./entrypoint.sh</span><br><span class="line"><span class="comment"># 执行脚本</span></span><br><span class="line">ENTRYPOINT [ <span class="string">"./entrypoint.sh"</span> ]</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/12/jenkins-for-android-in-Docker/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2018/08/16/weex-tips-with-gradle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1957,198 +2145,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2018/03/21/custom-view/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/21/custom-view/" itemprop="url">
-                  Android 自定义 View 时 Wrap_Content 相关
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-03-21 11:49:45" itemprop="dateCreated datePublished" datetime="2018-03-21T11:49:45+08:00">2018-03-21</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/自定义-View/" itemprop="url" rel="index"><span itemprop="name">自定义 View</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/21/custom-view/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/03/21/custom-view/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/03/21/custom-view/" class="leancloud_visitors" data-flag-title="Android 自定义 View 时 Wrap_Content 相关">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<p>在 Android 自定义 View 时我们需要测量 View 的宽度和高度, 那么当自定义View的布局参数设置成 <code>wrap_content</code>时时<br>一般的解决方案如下:<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/21/custom-view/#更多" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2191,7 +2192,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2349,7 +2350,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">50</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
