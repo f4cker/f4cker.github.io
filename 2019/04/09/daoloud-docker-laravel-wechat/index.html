@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!--icon-->
+    
+        <link rel="shortcut icon" type='image/x-icon' href="/favicon.png">
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- meta -->
+    
+    <title>DaoCloud + Local Server + Laravel + Laravel-Wechat 构建微信公众号测试平台 | Layoute&#39;s Blog</title>
+    
+    
+        <meta name="description" content="体面、优雅的写博客">
+    
+
+    <!--Social link-->
+     
+        <meta name="description" content="DaoCloud 使用 注册DaoCloud账号  Github 账号登录 微信账号登录   绑定支持的版本控制服务  Coding.net Github GitLab Bitbucket">
+<meta name="keywords" content="laravel,daocloud,docker,laravel-wechat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DaoCloud + Local Server + Laravel + Laravel-Wechat 构建微信公众号测试平台">
+<meta property="og:url" content="http://www.layoute.top/2019/04/09/daoloud-docker-laravel-wechat/index.html">
+<meta property="og:site_name" content="Layoute&#39;s Blog">
+<meta property="og:description" content="DaoCloud 使用 注册DaoCloud账号  Github 账号登录 微信账号登录   绑定支持的版本控制服务  Coding.net Github GitLab Bitbucket">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.layoute.top/img/daocloud_docker_laravel.png">
+<meta property="og:updated_time" content="2020-05-08T08:15:14.011Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DaoCloud + Local Server + Laravel + Laravel-Wechat 构建微信公众号测试平台">
+<meta name="twitter:description" content="DaoCloud 使用 注册DaoCloud账号  Github 账号登录 微信账号登录   绑定支持的版本控制服务  Coding.net Github GitLab Bitbucket">
+<meta name="twitter:image" content="http://www.layoute.top/img/daocloud_docker_laravel.png">
+    
+
+    <!-- feed -->
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+    
+
+    
+        <script src="/js/darkmode.js"></script>
+    
+
+    <!--LaTex-->
+    
+
+     
+
+    
+        
+             
+        
+             
+        
+    
+
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        
+            <a href="/" class="button">
+                <span class="logo__text">
+                    ← Layoute's Blog | 首页
+                </span>
+            </a>
+        
+    </div>
+    <div class="header__right">
+        
+            <a href="javaScript:void(0);" id="btn-toggle-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </a>
+        
+         
+            <a href="javaScript:void(0);" id="b2t" style="">
+                <svg class="svg-icon" viewBox="0 0 20 20" width='32' height='32' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.889,11.611c-0.17,0.17-0.443,0.17-0.612,0l-3.189-3.187l-3.363,3.36c-0.171,0.171-0.441,0.171-0.612,0c-0.172-0.169-0.172-0.443,0-0.611l3.667-3.669c0.17-0.17,0.445-0.172,0.614,0l3.496,3.493C14.058,11.167,14.061,11.443,13.889,11.611 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.692-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.383,10c0-4.07-3.312-7.382-7.383-7.382S2.618,5.93,2.618,10S5.93,17.381,10,17.381S17.383,14.07,17.383,10"></path>
+                </svg>
+            </a>
+         
+    </div>
+</header>
+
+
+            <main class="main">
+    <div class="post-title">
+    <h1 class="post-title__text">
+        DaoCloud + Local Server + Laravel + Laravel-Wechat 构建微信公众号测试平台
+    </h1>
+    <div class="post-title__meta">
+        
+            <a href="/archives/2019/04/" class="button" style="color: #808080;">
+    2019-04-09
+</a>
+        
+        
+            
+    <span class="separate-dot"></span><a href="/categories/PHP/" class="button">PHP</a>
+
+    <span class="separate-dot"></span><a href="/categories/PHP/Laravel/" class="button">Laravel</a>
+
+    <span class="separate-dot"></span><a href="/categories/Docker/" class="button">Docker</a>
+
+ 
+        
+        
+     
+ 
+
+  
+    </div>
+</div>
+
+
+    <div class="post__with-side">
+        <aside class="post-side">
+            <div class="post-side__toc">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DaoCloud-使用"><span class="toc-number">1.</span> <span class="toc-text">DaoCloud 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从项目创建DaoCloud-Docker镜像"><span class="toc-number">1.1.</span> <span class="toc-text">从项目创建DaoCloud Docker镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建应用编排（Stack：PHP-MYSQL）"><span class="toc-number">1.2.</span> <span class="toc-text">创建应用编排（Stack：PHP + MYSQL）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Laravel-Wechat-配置"><span class="toc-number">2.</span> <span class="toc-text">Laravel-Wechat 配置</span></a></li></ol>
+            </div>
+        </aside>
+
+<article class="post content-card">
+    <div class="post__header">
+        
+            
+    
+        <img alt="Cover Image" src="/img/daocloud_docker_laravel.png">
+    
+ 
+        
+        
+            
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2020-05-08"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+
+        
+    </div>
+    <div class="post__content">
+        <div class="markdown-body">
+            <h2 id="DaoCloud-使用"><a href="#DaoCloud-使用" class="headerlink" title="DaoCloud 使用"></a>DaoCloud 使用</h2><ol>
+<li><p>注册DaoCloud账号</p>
+<ul>
+<li>Github 账号登录</li>
+<li>微信账号登录</li>
+</ul>
+</li>
+<li><p>绑定支持的版本控制服务</p>
+<ul>
+<li><a href="https://coding.net" target="_blank" rel="noopener">Coding.net</a></li>
+<li><a href="https://github.com" target="_blank" rel="noopener">Github</a></li>
+<li><a href="https://gitlab.com/explore" target="_blank" rel="noopener">GitLab</a></li>
+<li><a href="https://bitbucket.org" target="_blank" rel="noopener">Bitbucket</a><a id="more"></a></li>
+</ul>
+</li>
+<li><p>添加自有主机/集群</p>
+ <img src="/2019/04/09/daoloud-docker-laravel-wechat/add_host.png" class="lazyload" data-srcset="/2019/04/09/daoloud-docker-laravel-wechat/add_host.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
+
+
+</li>
+</ol>
+<h3 id="从项目创建DaoCloud-Docker镜像"><a href="#从项目创建DaoCloud-Docker镜像" class="headerlink" title="从项目创建DaoCloud Docker镜像"></a>从项目创建DaoCloud Docker镜像</h3><ol>
+<li><p>在上述版本控制服务提供商处创建项目<code>laravel-english</code></p>
+</li>
+<li><p><code>DaoCloud</code> 控制台–&gt; 项目–&gt;创建项目</p>
+<img src="/2019/04/09/daoloud-docker-laravel-wechat/create_project.png" class="lazyload" data-srcset="/2019/04/09/daoloud-docker-laravel-wechat/create_project.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
+
+<ul>
+<li>输入项目名称</li>
+<li>从上述版本控制服务提供商处选择代码源</li>
+<li>选择发布应用镜像</li>
+</ul>
+</li>
+</ol>
+<h3 id="创建应用编排（Stack：PHP-MYSQL）"><a href="#创建应用编排（Stack：PHP-MYSQL）" class="headerlink" title="创建应用编排（Stack：PHP + MYSQL）"></a>创建应用编排（Stack：PHP + MYSQL）</h3><img src="/2019/04/09/daoloud-docker-laravel-wechat/add_stack.png" class="lazyload" data-srcset="/2019/04/09/daoloud-docker-laravel-wechat/add_stack.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
+
+<ol>
+<li>输入<code>Stack</code>名称</li>
+<li>使用YML语法编写需要创建的容器的编排 <img src="/2019/04/09/daoloud-docker-laravel-wechat/example_stack.png" class="lazyload" data-srcset="/2019/04/09/daoloud-docker-laravel-wechat/example_stack.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
+ <em><a href="http://guide.daocloud.io/dcs/%E9%83%A8%E7%BD%B2%E5%A4%8D%E6%9D%82%E7%9A%84%E5%A4%9A%E8%8A%82%E7%82%B9%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BA%94%E7%94%A8-9153682.html" target="_blank" rel="noopener">Compose YML怎么写</a></em> <br></li>
+<li>保存并部署应用编排,如下图得到在运行中的应用 <img src="/2019/04/09/daoloud-docker-laravel-wechat/example_stack_1.png" class="lazyload" data-srcset="/2019/04/09/daoloud-docker-laravel-wechat/example_stack_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg=="></li>
+<li>进去由 <code>lravel-english</code> 镜像创建的应用<code>TestLaravel-TestLaravel</code>—&gt;云隧道 <img src="/2019/04/09/daoloud-docker-laravel-wechat/cloud_tunnel.png" class="lazyload" data-srcset="/2019/04/09/daoloud-docker-laravel-wechat/cloud_tunnel.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg=="></li>
+<li>访问 <code>http://testlaravel.daocloudapp.com</code> 即可访问</li>
+</ol>
+<h2 id="Laravel-Wechat-配置"><a href="#Laravel-Wechat-配置" class="headerlink" title="Laravel-Wechat 配置"></a>Laravel-Wechat 配置</h2><ol>
+<li><p>安装</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ composer require <span class="string">'overtrue/laravel-wechat:~3.0'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 <code>config\app.php</code> 的 <code>providers</code> 部分</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'providers'</span> =&gt; [</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * Laravel Framework Service Providers...</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    ...</span><br><span class="line"> Overtrue\LaravelWechat\ServiceProvider::class,</span><br><span class="line">    ...</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>发布 <code>LaravelWechat</code> 相关配置（生成 <code>config\wechat.php</code>）</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php artisan vendor:publish --provider=<span class="string">"Overtrue\LaravelWechat\ServiceProvider"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>（可选）添加外观到 <code>config/app.php</code> 中的 <code>aliases</code> 部分:</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aliases'</span> =&gt; [</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">'EasyWeChat'</span> =&gt; Overtrue\LaravelWeChat\Facade::class,</span><br><span class="line">    ...</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建响应路由及Controller</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Route::any(<span class="string">'/wechat'</span>, <span class="string">'WechatController@serve'</span>)</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Log</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WeChatController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 处理微信的请求消息</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">serve</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Log::info(<span class="string">'request arrived.'</span>); <span class="comment"># 注意：Log 为 Laravel 组件，所以它记的日志去 Laravel 日志看，而不是 EasyWeChat 日志</span></span><br><span class="line"></span><br><span class="line">        $wechat = app(<span class="string">'wechat'</span>);</span><br><span class="line">        $server = $wechat-&gt;server;</span><br><span class="line">        $server-&gt;setMessageHandler(<span class="function"><span class="keyword">function</span> <span class="params">($message)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// $user_id = $message-&gt;FromUserName; // 用户的 openid</span></span><br><span class="line">            <span class="comment">// $type = $message-&gt;MsgType; // 消息类型：event, text....</span></span><br><span class="line">            Log::debug(<span class="string">'message is :'</span>, compact(<span class="string">'message'</span>));</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"您好！欢迎关注我!"</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> $server-&gt;serve();</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>app\Http\Middleware\VerifyCSRFToken.php</code></p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Middleware</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Http</span>\<span class="title">Middleware</span>\<span class="title">VerifyCsrfToken</span> <span class="title">as</span> <span class="title">BaseVerifier</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VerifyCsrfToken</span> <span class="keyword">extends</span> <span class="title">BaseVerifier</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * The URIs that should be excluded from CSRF verification.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@var</span> array</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">protected</span> $except = [</span><br><span class="line">        <span class="comment">// Add Urls you don't want to use CSRF protection</span></span><br><span class="line">        <span class="string">'/wechat'</span></span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>微信开发者中心设置URL为 <code>http://testlaravel.daocloudapp.com/wechat</code>，其余参数设置与 <code>config\wechat.php</code> 相同即可</p>
+</li>
+</ol>
+<p><a href="https://easywechat.org/zh-cn/docs/index.html" target="_blank" rel="noopener">EasyWeChat 文档</a></p>
+<p>搞定，收工！</p>
+
+        </div>
+    </div>
+    
+        
+    <div class="post__license">
+        <p>
+            <strong>本文作者：</strong>Layoute
+        </p>
+        
+            <p>
+                <strong>
+                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+                </strong>
+            </p>
+        
+        <p>
+            <strong>
+                本文链接：
+            </strong>
+            <a href="http://www.layoute.top/2019/04/09/daoloud-docker-laravel-wechat/">http://www.layoute.top/2019/04/09/daoloud-docker-laravel-wechat/</a>
+        </p>
+    </div>
+ 
+    
+    
+        <div class="post-meta post-footer__meta">
+    <p>
+        <!-- 最后更新于：2020-05-08 -->
+    </p>
+</div> 
+    
+    
+        <div class="post-cats post-card__cats">
+    
+        <a href="/categories/PHP/" class="post-cats__link button">PHP</a>
+    
+        <a href="/categories/PHP/Laravel/" class="post-cats__link button">Laravel</a>
+    
+        <a href="/categories/Docker/" class="post-cats__link button">Docker</a>
+    
+</div> 
+        <div class="post-tags post-card__tags">
+    
+        <a href="/tags/laravel/" class="post-tags__link button"># laravel</a>
+    
+        <a href="/tags/daocloud/" class="post-tags__link button"># daocloud</a>
+    
+        <a href="/tags/docker/" class="post-tags__link button"># docker</a>
+    
+        <a href="/tags/laravel-wechat/" class="post-tags__link button"># laravel-wechat</a>
+    
+</div> 
+     
+</article>
+<br>
+
+    <div class="post__comment content-card">
+        
+    <h4 style="margin-top: 0;">评论</h4>
+    
+        <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
+    
+    
+    
+    
+    
+    
+    
+
+
+    </div>
+
+
+    </div>
+
+
+
+    <br>
+    <div class="cover">
+        
+            <div class="cover__menus">
+                
+                    <a href="/" class="cover-menu button">
+                        首页
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/tags/" class="cover-menu button">
+                        标签
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/categories/" class="cover-menu button">
+                        分类
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/archives/" class="cover-menu button">
+                        归档
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/links/" class="cover-menu button">
+                        友链
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/about/" class="cover-menu button">
+                        关于
+                    </a>
+                    
+                
+            </div>
+        
+    </div>
+
+</main>
+<footer class="footer">
+     
+
+
+     
+  
+    
+        
+            <p>Copyright © 2020</p>
+
+        
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+
+        </div>
+        
+    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazyload",
+            threshold: 0
+        };
+    </script>
+
+
+ 
+
+ 
+
+ 
+
+  
+
+
+
+ 
+
+ 
+    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.2/dist/js/b2t.min.js"></script>
+ 
+
+
+    
+        
+            <script>
+                var disqus_shortname = 'layoutes-blog', disqus_url = 'http://www.layoute.top/2019/04/09/daoloud-docker-laravel-wechat/';
+                (function(){
+                    var dsq = document.createElement('script');
+                    dsq.type = 'text/javascript';
+                    dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+    </body>
+</html>

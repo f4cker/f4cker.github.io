@@ -1,2725 +1,809 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '6.2.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="体面、优雅的写博客">
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!--icon-->
+    
+        <link rel="shortcut icon" type='image/x-icon' href="/favicon.png">
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- meta -->
+    
+    <title>Layoute&#39;s Blog</title>
+    
+    
+        <meta name="description" content="体面、优雅的写博客">
+    
+
+    <!--Social link-->
+     
+        <meta name="description" content="体面、优雅的写博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Layoute&#39;s Blog">
-<meta property="og:url" content="http://www.layoute.xyz/page/2/index.html">
+<meta property="og:url" content="http://www.layoute.top/page/2/index.html">
 <meta property="og:site_name" content="Layoute&#39;s Blog">
 <meta property="og:description" content="体面、优雅的写博客">
 <meta property="og:locale" content="zh-CN">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Layoute&#39;s Blog">
 <meta name="twitter:description" content="体面、优雅的写博客">
+    
 
+    <!-- feed -->
+    
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
+    
 
+    
+        <script src="/js/darkmode.js"></script>
+    
 
+    <!--LaTex-->
+    
 
+     
 
-  <link rel="canonical" href="http://www.layoute.xyz/page/2/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>Layoute's Blog</title>
-  
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
+    
+        
+             
+        
+             
+        
+    
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Layoute's Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description"></h1>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
+    <div class="header__right">
         
-        
-        
-          
-          <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
-  </li>
-
-      
-      
-    </ul>
-  
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-            
-
-          
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2018/03/21/custom-view/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/21/custom-view/" itemprop="url">
-                  Android 自定义 View 时 Wrap_Content 相关
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-03-21 11:49:45" itemprop="dateCreated datePublished" datetime="2018-03-21T11:49:45+08:00">2018-03-21</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/自定义-View/" itemprop="url" rel="index"><span itemprop="name">自定义 View</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/21/custom-view/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/03/21/custom-view/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/03/21/custom-view/" class="leancloud_visitors" data-flag-title="Android 自定义 View 时 Wrap_Content 相关">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<p>在 Android 自定义 View 时我们需要测量 View 的宽度和高度, 那么当自定义View的布局参数设置成 <code>wrap_content</code>时时<br>一般的解决方案如下:<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/21/custom-view/#更多" rel="contents">
-              阅读全文 &raquo;
+            <a href="javaScript:void(0);" id="btn-toggle-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </a>
-          </div>
-          <!--/noindex-->
         
-      
+         
+            <a href="javaScript:void(0);" id="b2t" style="">
+                <svg class="svg-icon" viewBox="0 0 20 20" width='32' height='32' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.889,11.611c-0.17,0.17-0.443,0.17-0.612,0l-3.189-3.187l-3.363,3.36c-0.171,0.171-0.441,0.171-0.612,0c-0.172-0.169-0.172-0.443,0-0.611l3.667-3.669c0.17-0.17,0.445-0.172,0.614,0l3.496,3.493C14.058,11.167,14.061,11.443,13.889,11.611 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.692-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.383,10c0-4.07-3.312-7.382-7.383-7.382S2.618,5.93,2.618,10S5.93,17.381,10,17.381S17.383,14.07,17.383,10"></path>
+                </svg>
+            </a>
+         
+    </div>
+</header>
+
+
+    <div class="cover">
+        <div class="cover__logo">
+            
+                <h1>Layoute's Blog</h1>
+            
+        </div>
+        
+            <div class="cover__intro">
+                <p>体面、优雅的写博客!</p>
+ 
+            </div>
+         
+        
+            <div class="cover__menus">
+                
+                    <a href="/" class="cover-menu button">
+                        首页
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/tags/" class="cover-menu button">
+                        标签
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/categories/" class="cover-menu button">
+                        分类
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/archives/" class="cover-menu button">
+                        归档
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/links/" class="cover-menu button">
+                        友链
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/about/" class="cover-menu button">
+                        关于
+                    </a>
+                    
+                
+            </div>
+        
     </div>
 
+            <main class="main">
     
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2018/03/03/docker-note/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
+    <div class="posts">
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/03/docker-note/" itemprop="url">
-                  Docker 笔记
-                </a>
-              
             
-          </h2>
+                
+                <div class='post-card content-card'>
+                    <div class="post-card__header">
+    
         
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-03-03 15:42:12" itemprop="dateCreated datePublished" datetime="2018-03-03T15:42:12+08:00">2018-03-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/03/docker-note/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/03/03/docker-note/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/03/03/docker-note/" class="leancloud_visitors" data-flag-title="Docker 笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
-
+        <a href="/2018/04/10/HTTP-TO-HTTPS-（Centos-6-5-Final）/">
+            <img alt="Cover Image" src="/img/http_to_https.jpeg">
+        </a>
     
+ 
     
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+</div>
+<div class="post-card__content">
+    <a href="/2018/04/10/HTTP-TO-HTTPS-（Centos-6-5-Final）/" class="index-title">
+        <h2 class="post-card__title">
+            HTTP TO HTTPS （Centos 6.5 Final）
+        </h2>
+    </a>
+    <p class="post-card__descrption">
         
-          
-            <hr>
-<h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name dao_testlaravel_3 --link laravel-mysql:mysql <span class="_">-d</span> -p 80 daocloud.io/layoute/laravel-english</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>dao_testlaravel_3</code> 即为所需要的互联后的容器/应用名称</li>
-<li><code>laravel-mysql</code> 即为需要链接的 <code>mysql</code> 容器名称</li>
-<li><code>--link</code> 链接</li>
-<li><code>-d</code> 容器后台运行</li>
-<li><code>-p 80</code> 暴露 <code>dao_testlaravel_3</code> 容器的 80 端口到宿主机的动态端口</li>
-<li><code>daocloud.io/layoute/laravle-english</code> 为所需拉取的镜像</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2018/02/15/node-nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
+            <div class="markdown-body">
                 
-                <a class="post-title-link" href="/2018/02/15/node-nginx/" itemprop="url">
-                  Nginx 部署 Node Web 项目
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
+                    <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>因为 <code>Certbot</code> 的很多依赖并不在系统默认 Repo 中,需要先安装 <code>EPEL Repo</code> ,运行 <code>yum install epel-release</code> ,同时为了防止组件过旧导致的报错,建议运行一次 <code>yum update</code></p>
+<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .</p>
                 
-              
-
-              <time title="创建时间：2018-02-15 09:45:04" itemprop="dateCreated datePublished" datetime="2018-02-15T09:45:04+08:00">2018-02-15</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/15/node-nginx/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/15/node-nginx/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/02/15/node-nginx/" class="leancloud_visitors" data-flag-title="Nginx 部署 Node Web 项目">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+            </div>
+           
+    </p>
+</div>
+<div class="post-card__meta">
     
-
+        <a href="/archives/2018/04/" class="button" style="color: #808080;">
+    2018-04-10
+</a>
     
     
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          <hr>
-<h3 id="Nginx反向代理"><a href="#Nginx反向代理" class="headerlink" title="Nginx反向代理"></a>Nginx反向代理</h3><p>由于本例中服务器需要使用 php 服务，所以之前安装了 <a href="(http://http://www.wdlinux.cn/bbs/forum-23-1.html)"><code>WDCP</code></a> 面板(自带LNAMP)，所以此处不提如何安装Nginx</p>
+    <span class="separate-dot"></span><a href="/categories/Linux/" class="button">Linux</a>
+
+ 
+    
+</div>
+
+    <div class="post-tags post-card__tags">
+    
+        <a href="/tags/http/" class="post-tags__link button"># http</a>
+    
+        <a href="/tags/https/" class="post-tags__link button"># https</a>
+    
+        <a href="/tags/nginx/" class="post-tags__link button"># nginx</a>
+    
+        <a href="/tags/letsencrypt/" class="post-tags__link button"># letsencrypt</a>
+    
+</div> 
+
+
+                </div>
+                
+            
+                
+                <div class='post-card content-card'>
+                    <div class="post-card__header">
+    
+        
+    
+        <a href="/2018/04/03/Homestead-翻墙共享主机（Host）代理/">
+            <img alt="Cover Image" src="/img/laravel_homestead.png">
+        </a>
+    
+ 
+    
+</div>
+<div class="post-card__content">
+    <a href="/2018/04/03/Homestead-翻墙共享主机（Host）代理/" class="index-title">
+        <h2 class="post-card__title">
+            Homestead 翻墙共享主机（Host）代理
+        </h2>
+    </a>
+    <p class="post-card__descrption">
+        
+            <div class="markdown-body">
+                
+                    <ol>
+<li>homestead 里安装一个 <a href="https://github.com/cyfdecyf/cow" target="_blank" rel="noopener">cow</a>，然后在 <code>.env</code> 文件中增加一行 <code>HTTPS_PROXY=http://127.0.0.1:port_of_cow</code></li>
+<li>编辑 <code>～/.cow/rc</code> 文件 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen = http://127.0.0.1:7777</span><br><span class="line">proxy = ss://encryption:password@host:port</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+                
+            </div>
+           
+    </p>
+</div>
+<div class="post-card__meta">
+    
+        <a href="/archives/2018/04/" class="button" style="color: #808080;">
+    2018-04-03
+</a>
+    
+    
+        
+    <span class="separate-dot"></span><a href="/categories/PHP/" class="button">PHP</a>
+
+    <span class="separate-dot"></span><a href="/categories/PHP/Laravel/" class="button">Laravel</a>
+
+ 
+    
+</div>
+
+    <div class="post-tags post-card__tags">
+    
+        <a href="/tags/laravel/" class="post-tags__link button"># laravel</a>
+    
+        <a href="/tags/homestead/" class="post-tags__link button"># homestead</a>
+    
+        <a href="/tags/proxy/" class="post-tags__link button"># proxy</a>
+    
+</div> 
+
+
+                </div>
+                
+            
+                
+                <div class='post-card content-card'>
+                    <div class="post-card__header">
+    
+        
+    
+        <a href="/2018/04/03/Laravel-日志踩坑/">
+            <img alt="Cover Image" src="/img/laravel_log.png">
+        </a>
+    
+ 
+    
+</div>
+<div class="post-card__content">
+    <a href="/2018/04/03/Laravel-日志踩坑/" class="index-title">
+        <h2 class="post-card__title">
+            Laravel 日志踩坑
+        </h2>
+    </a>
+    <p class="post-card__descrption">
+        
+            <div class="markdown-body">
+                
+                    <blockquote>
+<p>分享一个大家可能会踩到的坑，如果你在使用 Laravel，并且日志配置是按天记录的（daily）,那么你千万不要用 root 角色来执行计划任务，请以你的 nginx 子进程用户（也就是我们平常说的 www 用户），比如我的机器 Ubuntu 默认 apt 安装 nginx 的话是 www-data，那么应该修改 crontab 配置像以下这样：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * www-data php [项目目录]/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+                
+            </div>
+           
+    </p>
+</div>
+<div class="post-card__meta">
+    
+        <a href="/archives/2018/04/" class="button" style="color: #808080;">
+    2018-04-03
+</a>
+    
+    
+        
+    <span class="separate-dot"></span><a href="/categories/PHP/" class="button">PHP</a>
+
+    <span class="separate-dot"></span><a href="/categories/PHP/Laravel/" class="button">Laravel</a>
+
+ 
+    
+</div>
+
+    <div class="post-tags post-card__tags">
+    
+        <a href="/tags/Laravel/" class="post-tags__link button"># Laravel</a>
+    
+        <a href="/tags/Log/" class="post-tags__link button"># Log</a>
+    
+</div> 
+
+
+                </div>
+                
+            
+                
+                <div class='post-card content-card'>
+                    <div class="post-card__header">
+    
+        
+    
+        <a href="/2018/03/21/custom-view/">
+            <img alt="Cover Image" src="/img/android_custom_view.jpeg">
+        </a>
+    
+ 
+    
+</div>
+<div class="post-card__content">
+    <a href="/2018/03/21/custom-view/" class="index-title">
+        <h2 class="post-card__title">
+            Android 自定义 View 时 Wrap_Content 相关
+        </h2>
+    </a>
+    <p class="post-card__descrption">
+        
+            <div class="markdown-body">
+                
+                    <p>在 Android 自定义 View 时我们需要测量 View 的宽度和高度, 那么当自定义View的布局参数设置成 <code>wrap_content</code>时时<br>一般的解决方案如下:</p>
+                
+            </div>
+           
+    </p>
+</div>
+<div class="post-card__meta">
+    
+        <a href="/archives/2018/03/" class="button" style="color: #808080;">
+    2018-03-21
+</a>
+    
+    
+        
+    <span class="separate-dot"></span><a href="/categories/Android/" class="button">Android</a>
+
+    <span class="separate-dot"></span><a href="/categories/Android/自定义-View/" class="button">自定义 View</a>
+
+ 
+    
+</div>
+
+    <div class="post-tags post-card__tags">
+    
+        <a href="/tags/Adnroid/" class="post-tags__link button"># Adnroid</a>
+    
+        <a href="/tags/View/" class="post-tags__link button"># View</a>
+    
+        <a href="/tags/wrap-content/" class="post-tags__link button"># wrap_content</a>
+    
+</div> 
+
+
+                </div>
+                
+            
+                
+                <div class='post-card content-card'>
+                    <div class="post-card__header">
+    
+         
+    
+</div>
+<div class="post-card__content">
+    <a href="/2018/03/03/docker-note/" class="index-title">
+        <h2 class="post-card__title">
+            Docker 笔记
+        </h2>
+    </a>
+    <p class="post-card__descrption">
+        
+            <div class="markdown-body">
+                
+                    <h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name dao_testlaravel_3 --link laravel-mysql:mysql -d -p 80 daocloud.io/layoute/laravel-english</span><br></pre></td></tr></table></figure>
+                
+            </div>
+           
+    </p>
+</div>
+<div class="post-card__meta">
+    
+        <a href="/archives/2018/03/" class="button" style="color: #808080;">
+    2018-03-03
+</a>
+    
+    
+        
+    <span class="separate-dot"></span><a href="/categories/Linux/" class="button">Linux</a>
+
+    <span class="separate-dot"></span><a href="/categories/Linux/Docker/" class="button">Docker</a>
+
+ 
+    
+</div>
+
+    <div class="post-tags post-card__tags">
+    
+        <a href="/tags/daocloud/" class="post-tags__link button"># daocloud</a>
+    
+        <a href="/tags/docker/" class="post-tags__link button"># docker</a>
+    
+</div> 
+
+
+                </div>
+                
+            
+                
+                <div class='post-card content-card'>
+                    <div class="post-card__header">
+    
+        
+    
+        <a href="/2018/02/15/node-nginx/">
+            <img alt="Cover Image" src="/img/nginx_node.png">
+        </a>
+    
+ 
+    
+</div>
+<div class="post-card__content">
+    <a href="/2018/02/15/node-nginx/" class="index-title">
+        <h2 class="post-card__title">
+            Nginx 部署 Node Web 项目
+        </h2>
+    </a>
+    <p class="post-card__descrption">
+        
+            <div class="markdown-body">
+                
+                    <h3 id="Nginx反向代理"><a href="#Nginx反向代理" class="headerlink" title="Nginx反向代理"></a>Nginx反向代理</h3><p>由于本例中服务器需要使用 php 服务，所以之前安装了 <a href="(http://http://www.wdlinux.cn/bbs/forum-23-1.html)"><code>WDCP</code></a> 面板(自带LNAMP)，所以此处不提如何安装Nginx</p>
 <ul>
 <li>Nginx添加vhost</li>
 <li>修改nginx/conf/vhost/your.domain.conf，如下  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name example.com;</span><br><span class="line">        </span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://localhost:9000;</span><br><span class="line">        ···</span><br><span class="line">    &#125;</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/15/node-nginx/#更多" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+                
+            </div>
+           
+    </p>
+</div>
+<div class="post-card__meta">
+    
+        <a href="/archives/2018/02/" class="button" style="color: #808080;">
+    2018-02-15
+</a>
+    
+    
         
-      
-    </div>
-
+ 
     
+</div>
 
+    <div class="post-tags post-card__tags">
     
+        <a href="/tags/node/" class="post-tags__link button"># node</a>
     
+        <a href="/tags/nginx/" class="post-tags__link button"># nginx</a>
     
+</div> 
 
+
+                </div>
+                
+            
+                
+                <div class='post-card content-card'>
+                    <div class="post-card__header">
     
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2017/12/14/grandle-manifest-merge-conflict/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
         
+    
+        <a href="/2017/12/14/grandle-manifest-merge-conflict/">
+            <img alt="Cover Image" src="/img/android_manifest.jpeg">
+        </a>
+    
+ 
+    
+</div>
+<div class="post-card__content">
+    <a href="/2017/12/14/grandle-manifest-merge-conflict/" class="index-title">
+        <h2 class="post-card__title">
+            添加依赖库出现 Manifest merger failed 错误解决办法
+        </h2>
+    </a>
+    <p class="post-card__descrption">
         
-          <h2 class="post-title" itemprop="name headline">
+            <div class="markdown-body">
                 
-                <a class="post-title-link" href="/2017/12/14/grandle-manifest-merge-conflict/" itemprop="url">
-                  添加依赖库出现 Manifest merger failed 错误解决办法
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-12-14 10:08:22" itemprop="dateCreated datePublished" datetime="2017-12-14T10:08:22+08:00">2017-12-14</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/Gradle/" itemprop="url" rel="index"><span itemprop="name">Gradle</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/14/grandle-manifest-merge-conflict/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/12/14/grandle-manifest-merge-conflict/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/14/grandle-manifest-merge-conflict/" class="leancloud_visitors" data-flag-title="添加依赖库出现 Manifest merger failed 错误解决办法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<p>Android 开发中，添加的依赖库多了以后，<code>gradle build</code> 时经常会碰到如下问题</p>
+                    <p>Android 开发中，添加的依赖库多了以后，<code>gradle build</code> 时经常会碰到如下问题</p>
 <blockquote>
 <p>Manifest merger failed : Attribute meta-data#android.support.VERSION@value value=(26.1.0) from [com.android.support:support-v13:26.1.0] AndroidManifest.xml:28:13-35</p>
 </blockquote>
-<p>解决办法:<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/grandle-manifest-merge-conflict/#更多" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2017/12/03/fake-surge/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
+<p>解决办法:</p>
                 
-                <a class="post-title-link" href="/2017/12/03/fake-surge/" itemprop="url">
-                  利用 libfaketime 无限期试用 Surge For Mac
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-12-03 14:52:16" itemprop="dateCreated datePublished" datetime="2017-12-03T14:52:16+08:00">2017-12-03</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/03/fake-surge/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/12/03/fake-surge/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/12/03/fake-surge/" class="leancloud_visitors" data-flag-title="利用 libfaketime 无限期试用 Surge For Mac">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<ol>
-<li><p>首先通过 brew 安装 libfaketime 。由于依赖 GNU 时间，还需要安装 coreutils 。如还未装 brew ，首先在终端运行如下命令安装:</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/ruby <span class="_">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/03/fake-surge/#更多" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2017/11/19/laravel-skill/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/19/laravel-skill/" itemprop="url">
-                  Laravel skills
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-11-19 08:51:44" itemprop="dateCreated datePublished" datetime="2017-11-19T08:51:44+08:00">2017-11-19</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/Laravel/" itemprop="url" rel="index"><span itemprop="name">Laravel</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/19/laravel-skill/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/11/19/laravel-skill/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/19/laravel-skill/" class="leancloud_visitors" data-flag-title="Laravel skills">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<h3 id="记录日志"><a href="#记录日志" class="headerlink" title="记录日志"></a>记录日志</h3><ul>
-<li>记录日志到<code>storage\logs\laravel.log</code>  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$writer = app(<span class="string">'log'</span>);</span><br><span class="line">$writer-&gt;error(<span class="string">'updates is :'</span>, compact(<span class="string">'updates'</span>));</span><br><span class="line">$message = $updates-&gt;getMessage();</span><br><span class="line">$writer-&gt;error(<span class="string">'Message is :'</span>, compact(<span class="string">'message'</span>));</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/19/laravel-skill/#更多" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2017/08/14/android-jshc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/14/android-jshc/" itemprop="url">
-                  Android 使用 Jshc SSH 连接服务器
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-08-14 14:47:08" itemprop="dateCreated datePublished" datetime="2017-08-14T14:47:08+08:00">2017-08-14</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/Library/" itemprop="url" rel="index"><span itemprop="name">Library</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/14/android-jshc/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/08/14/android-jshc/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/14/android-jshc/" class="leancloud_visitors" data-flag-title="Android 使用 Jshc SSH 连接服务器">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<ol>
-<li>添加依赖库。在 <code>app</code> module 的 build.gradle 中向 <code>dependencies</code> 中添加 <code>implementation ‘com.jcraft:jshc:0.1.54</code> 后执行 <code>gradle sync</code>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/14/android-jshc/#更多" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2017/06/05/swift-titlebar/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/05/swift-titlebar/" itemprop="url">
-                  iOS 笔记：Swift 隐藏标题栏
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-06-05 10:48:14" itemprop="dateCreated datePublished" datetime="2017-06-05T10:48:14+08:00">2017-06-05</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/05/swift-titlebar/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/06/05/swift-titlebar/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/05/swift-titlebar/" class="leancloud_visitors" data-flag-title="iOS 笔记：Swift 隐藏标题栏">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<p><strong>必须使用NSWindowController</strong></p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.styleMask.insert(.fullSizeContentView)</span><br></pre></td></tr></table></figure>
-<p>Or</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.styleMask = window.styleMask.union(.fullSizeContentView)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/05/swift-titlebar/#更多" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2017/02/16/pythonista-stash/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/16/pythonista-stash/" itemprop="url">
-                  Pythonista 3 安装 StaSh
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-02-16 10:23:48" itemprop="dateCreated datePublished" datetime="2017-02-16T10:23:48+08:00">2017-02-16</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Software/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/16/pythonista-stash/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/02/16/pythonista-stash/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/02/16/pythonista-stash/" class="leancloud_visitors" data-flag-title="Pythonista 3 安装 StaSh">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<blockquote>
-<p>StaSh (ywangd/stash)，这是一个可以在 Pythonista 里面运行的 Shell，内置了 Git 和 pip 工具。装完之后在里面运行 pip install <xxx> 就可以安装相应的第三方库了</xxx></p>
-</blockquote>
-<ol>
-<li><p>在 Pythonista Console 界面输入如下命令, 换行执行即可</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests <span class="keyword">as</span> r; exec(r.get(<span class="string">'https://raw.githubusercontent.com/ywangd/stash/master/getstash.py'</span>).text</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/16/pythonista-stash/#更多" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.layoute.xyz/2017/02/02/iOS-first/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Layoute">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Layoute's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/02/iOS-first/" itemprop="url">
-                  iOS 笔记一
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-02-02 20:21:43" itemprop="dateCreated datePublished" datetime="2017-02-02T20:21:43+08:00">2017-02-02</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/02/iOS-first/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/02/02/iOS-first/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/02/02/iOS-first/" class="leancloud_visitors" data-flag-title="iOS 笔记一">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h3 id="StoryBoard文件与-Swift文件的关联"><a href="#StoryBoard文件与-Swift文件的关联" class="headerlink" title="StoryBoard文件与.Swift文件的关联"></a>StoryBoard文件与.Swift文件的关联</h3><ul>
-<li>创建<code>StoryBoard</code>文件并设置属性<code>Class</code>对应到指定的<code>.Swift</code>文件即可创建两者之间的关联</li>
-<li>在<code>StoryBoard</code>文件中创建布局，并从<code>StoryBoard</code>创建到<code>.Swift</code>文件的<code>@IBOutlet</code>链接</li>
-<li>在<code>.Swift</code>文件中对所创建的<code>@IBOutlet</code>对象添加<code>addTarget</code>方法（对应<code>Android</code>中的<code>Listenner</code>）</li>
-<li><code>action</code> 的值为<code>#selector(func)</code>之类</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Layoute</p>
-              <p class="site-description motion-element" itemprop="description">体面、优雅的写博客</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">21</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">16</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">53</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/f4cker" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i></a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="mailto:reallayoute@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i></a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://twitter.com/L4y0ut3" target="_blank" title="Twitter" rel="external nofollow"><i class="fa fa-fw fa-twitter"></i></a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://instagram.com/redm4sk" target="_blank" title="Instagram" rel="external nofollow"><i class="fa fa-fw fa-instagram"></i></a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="http://weibo.com/2116895517" target="_blank" title="微博" rel="external nofollow"><i class="fa fa-fw fa-weibo"></i></a>
-                  
-                </span>
-              
             </div>
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
+           
+    </p>
+</div>
+<div class="post-card__meta">
+    
+        <a href="/archives/2017/12/" class="button" style="color: #808080;">
+    2017-12-14
+</a>
+    
+    
         
-      </div>
-    </main>
+    <span class="separate-dot"></span><a href="/categories/Android/" class="button">Android</a>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Layoute</span>
+    <span class="separate-dot"></span><a href="/categories/Android/Gradle/" class="button">Gradle</a>
 
-  
-
-  
+ 
+    
 </div>
 
-
-  
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
+    <div class="post-tags post-card__tags">
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
+        <a href="/tags/gradle/" class="post-tags__link button"># gradle</a>
     
-
+        <a href="/tags/manifest/" class="post-tags__link button"># manifest</a>
     
+        <a href="/tags/com-android-support/" class="post-tags__link button"># com.android.support</a>
+    
+</div> 
 
-  </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
-
-
-
-  
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  
-  
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(function (item) {
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: false,
-        appId: 'sU6fO7i7LvUjtF6FNlriroc2-gzGzoHsz',
-        appKey: 'rAQwFWcv6D5lDeMYEAY7TCnr',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("sU6fO7i7LvUjtF6FNlriroc2-gzGzoHsz", "rAQwFWcv6D5lDeMYEAY7TCnr");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            
-            counter.save(null, {
-              success: function(counter) {
+                </div>
                 
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            
                 
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
+                <div class='post-card content-card'>
+                    <div class="post-card__header">
+    
+         
+    
+</div>
+<div class="post-card__content">
+    <a href="/2017/12/03/fake-surge/" class="index-title">
+        <h2 class="post-card__title">
+            利用 libfaketime 无限期试用 Surge For Mac
+        </h2>
+    </a>
+    <p class="post-card__descrption">
+        
+            <div class="markdown-body">
+                
+                    <ol>
+<li><p>首先通过 brew 安装 libfaketime 。由于依赖 GNU 时间，还需要安装 coreutils 。如还未装 brew ，首先在终端运行如下命令安装:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+                
+            </div>
+           
+    </p>
+</div>
+<div class="post-card__meta">
+    
+        <a href="/archives/2017/12/" class="button" style="color: #808080;">
+    2017-12-03
+</a>
+    
+    
+        
+ 
+    
+</div>
+
+    <div class="post-tags post-card__tags">
+    
+        <a href="/tags/mac/" class="post-tags__link button"># mac</a>
+    
+        <a href="/tags/surge/" class="post-tags__link button"># surge</a>
+    
+        <a href="/tags/software/" class="post-tags__link button"># software</a>
+    
+</div> 
+
+
+                </div>
+                
             
-              var newcounter = new Counter();
-              /* Set ACL */
-              var acl = new AV.ACL();
-              acl.setPublicReadAccess(true);
-              acl.setPublicWriteAccess(true);
-              newcounter.setACL(acl);
-              /* End Set ACL */
-              newcounter.set("title", title);
-              newcounter.set("url", url);
-              newcounter.set("time", 1);
-              newcounter.save(null, {
-                success: function(newcounter) {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-                },
-                error: function(newcounter, error) {
-                  console.log('Failed to create');
-                }
-              });
+                
+                <div class='post-card content-card'>
+                    <div class="post-card__header">
+    
+         
+    
+</div>
+<div class="post-card__content">
+    <a href="/2017/11/19/laravel-skill/" class="index-title">
+        <h2 class="post-card__title">
+            Laravel skills
+        </h2>
+    </a>
+    <p class="post-card__descrption">
+        
+            <div class="markdown-body">
+                
+                    <h3 id="记录日志"><a href="#记录日志" class="headerlink" title="记录日志"></a>记录日志</h3><p>记录日志到 <code>storage\logs\laravel.log</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$writer = app(<span class="string">'log'</span>);</span><br><span class="line">$writer-&gt;error(<span class="string">'updates is :'</span>, compact(<span class="string">'updates'</span>));</span><br><span class="line">$message = $updates-&gt;getMessage();</span><br><span class="line">$writer-&gt;error(<span class="string">'Message is :'</span>, compact(<span class="string">'message'</span>));</span><br></pre></td></tr></table></figure>
+                
+            </div>
+           
+    </p>
+</div>
+<div class="post-card__meta">
+    
+        <a href="/archives/2017/11/" class="button" style="color: #808080;">
+    2017-11-19
+</a>
+    
+    
+        
+    <span class="separate-dot"></span><a href="/categories/PHP/" class="button">PHP</a>
+
+    <span class="separate-dot"></span><a href="/categories/PHP/Laravel/" class="button">Laravel</a>
+
+ 
+    
+</div>
+
+    <div class="post-tags post-card__tags">
+    
+        <a href="/tags/https/" class="post-tags__link button"># https</a>
+    
+        <a href="/tags/nginx/" class="post-tags__link button"># nginx</a>
+    
+        <a href="/tags/laravel/" class="post-tags__link button"># laravel</a>
+    
+        <a href="/tags/crontab/" class="post-tags__link button"># crontab</a>
+    
+</div> 
+
+
+                </div>
+                
             
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
+                
+                <div class='post-card content-card'>
+                    <div class="post-card__header">
+    
+        
+    
+        <a href="/2017/08/14/android-jshc/">
+            <img alt="Cover Image" src="/img/android_ssh.jpg">
+        </a>
+    
+ 
+    
+</div>
+<div class="post-card__content">
+    <a href="/2017/08/14/android-jshc/" class="index-title">
+        <h2 class="post-card__title">
+            Android 使用 Jshc SSH 连接服务器
+        </h2>
+    </a>
+    <p class="post-card__descrption">
+        
+            <div class="markdown-body">
+                
+                    <ol>
+<li>添加依赖库。在 <code>app</code> module 的 build.gradle 中向 <code>dependencies</code> 中添加 <code>implementation ‘com.jcraft:jshc:0.1.54</code> 后执行 <code>gradle sync</code>
+                
+            </div>
+           
+    </p>
+</div>
+<div class="post-card__meta">
+    
+        <a href="/archives/2017/08/" class="button" style="color: #808080;">
+    2017-08-14
+</a>
+    
+    
+        
+    <span class="separate-dot"></span><a href="/categories/Android/" class="button">Android</a>
 
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
+    <span class="separate-dot"></span><a href="/categories/Android/Library/" class="button">Library</a>
+
+ 
+    
+</div>
+
+    <div class="post-tags post-card__tags">
+    
+        <a href="/tags/Java/" class="post-tags__link button"># Java</a>
+    
+        <a href="/tags/Android/" class="post-tags__link button"># Android</a>
+    
+        <a href="/tags/SSH/" class="post-tags__link button"># SSH</a>
+    
+</div> 
 
 
+                </div>
+                
+            
+        
+    </div>
+    
+        
+            <br>
+            <nav role="navigation" aria-label="Pagination Navigation">
+                
+                    <a href="/" class="button">
+                        上一页
+                    </a>
+                
+                <span>2 / 3</span>
+                
+                    <a href="/page/3/" class="button">
+                        下一页>
+                    </a>
+                
+            </nav>
+        
+    
+
+
+</main>
+<footer class="footer">
+     
+
+
+     
+  
+    
+        
+            <p>Copyright © 2020</p>
+
+        
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+
+
+        </div>
+        
+    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazyload",
+            threshold: 0
+        };
+    </script>
+
+
+ 
+
+ 
+
+ 
 
   
 
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
 
 
-  
+ 
 
-  
-  
+ 
+    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.2/dist/js/b2t.min.js"></script>
+ 
 
-  
 
-  
 
-  
-
-  
-
-  
-
-</body>
+    </body>
 </html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!--icon-->
+    
+        <link rel="shortcut icon" type='image/x-icon' href="/favicon.png">
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- meta -->
+    
+    <title>Laravel + Vue.js 前后端分离（SPA） | Layoute&#39;s Blog</title>
+    
+    
+        <meta name="description" content="体面、优雅的写博客">
+    
+
+    <!--Social link-->
+     
+        <meta name="description" content="非单页应用引入第三方组件 在package.json中添加组件，Like：  1&quot;element-ui&quot;：&quot;^2.0.0&quot;  运行 npm install 安装组件到项目 node_modules 文件夹  在 resources/assets/js/app.js 中添加引用，Like:  1234import ElementUI from &quot;element-ui&quot;import &quot;element-">
+<meta name="keywords" content="laravel,vue,spa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel + Vue.js 前后端分离（SPA）">
+<meta property="og:url" content="http://www.layoute.top/2019/03/25/laravel-vue-spa/index.html">
+<meta property="og:site_name" content="Layoute&#39;s Blog">
+<meta property="og:description" content="非单页应用引入第三方组件 在package.json中添加组件，Like：  1&quot;element-ui&quot;：&quot;^2.0.0&quot;  运行 npm install 安装组件到项目 node_modules 文件夹  在 resources/assets/js/app.js 中添加引用，Like:  1234import ElementUI from &quot;element-ui&quot;import &quot;element-">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.layoute.top/img/laravel_vue_spa.png">
+<meta property="og:updated_time" content="2020-05-08T07:23:06.830Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Laravel + Vue.js 前后端分离（SPA）">
+<meta name="twitter:description" content="非单页应用引入第三方组件 在package.json中添加组件，Like：  1&quot;element-ui&quot;：&quot;^2.0.0&quot;  运行 npm install 安装组件到项目 node_modules 文件夹  在 resources/assets/js/app.js 中添加引用，Like:  1234import ElementUI from &quot;element-ui&quot;import &quot;element-">
+<meta name="twitter:image" content="http://www.layoute.top/img/laravel_vue_spa.png">
+    
+
+    <!-- feed -->
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+    
+
+    
+        <script src="/js/darkmode.js"></script>
+    
+
+    <!--LaTex-->
+    
+
+     
+
+    
+        
+             
+        
+             
+        
+    
+
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        
+            <a href="/" class="button">
+                <span class="logo__text">
+                    ← Layoute's Blog | 首页
+                </span>
+            </a>
+        
+    </div>
+    <div class="header__right">
+        
+            <a href="javaScript:void(0);" id="btn-toggle-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </a>
+        
+         
+            <a href="javaScript:void(0);" id="b2t" style="">
+                <svg class="svg-icon" viewBox="0 0 20 20" width='32' height='32' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.889,11.611c-0.17,0.17-0.443,0.17-0.612,0l-3.189-3.187l-3.363,3.36c-0.171,0.171-0.441,0.171-0.612,0c-0.172-0.169-0.172-0.443,0-0.611l3.667-3.669c0.17-0.17,0.445-0.172,0.614,0l3.496,3.493C14.058,11.167,14.061,11.443,13.889,11.611 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.692-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.383,10c0-4.07-3.312-7.382-7.383-7.382S2.618,5.93,2.618,10S5.93,17.381,10,17.381S17.383,14.07,17.383,10"></path>
+                </svg>
+            </a>
+         
+    </div>
+</header>
+
+
+            <main class="main">
+    <div class="post-title">
+    <h1 class="post-title__text">
+        Laravel + Vue.js 前后端分离（SPA）
+    </h1>
+    <div class="post-title__meta">
+        
+            <a href="/archives/2019/03/" class="button" style="color: #808080;">
+    2019-03-25
+</a>
+        
+        
+            
+    <span class="separate-dot"></span><a href="/categories/PHP/" class="button">PHP</a>
+
+    <span class="separate-dot"></span><a href="/categories/PHP/Laravel/" class="button">Laravel</a>
+
+    <span class="separate-dot"></span><a href="/categories/Vue/" class="button">Vue</a>
+
+ 
+        
+        
+     
+ 
+
+  
+    </div>
+</div>
+
+
+    <div class="post__with-side">
+        <aside class="post-side">
+            <div class="post-side__toc">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#非单页应用引入第三方组件"><span class="toc-number">1.</span> <span class="toc-text">非单页应用引入第三方组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前后端分离时的-Oauth-处理"><span class="toc-number">2.</span> <span class="toc-text">前后端分离时的 Oauth 处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-VSCode-开发引入-iView-等第三方-UI-框架后出现-x-invalid-end-tag"><span class="toc-number">3.</span> <span class="toc-text">使用 VSCode 开发引入 iView 等第三方 UI 框架后出现 x-invalid-end-tag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-Cli-axios-创建的项目生产环境（Nginx）跨域问题"><span class="toc-number">4.</span> <span class="toc-text">Vue-Cli + axios 创建的项目生产环境（Nginx）跨域问题</span></a></li></ol>
+            </div>
+        </aside>
+
+<article class="post content-card">
+    <div class="post__header">
+        
+            
+    
+        <img alt="Cover Image" src="/img/laravel_vue_spa.png">
+    
+ 
+        
+        
+            
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2020-05-08"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+
+        
+    </div>
+    <div class="post__content">
+        <div class="markdown-body">
+            <h2 id="非单页应用引入第三方组件"><a href="#非单页应用引入第三方组件" class="headerlink" title="非单页应用引入第三方组件"></a>非单页应用引入第三方组件</h2><ol>
+<li><p>在<code>package.json</code>中添加组件，Like：</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"element-ui"："^2.0.0"</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行 <code>npm install</code> 安装组件到项目 <code>node_modules</code> 文件夹</p>
+</li>
+<li><p>在 <code>resources/assets/js/app.js</code> 中添加引用，Like:</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ElementUI <span class="keyword">from</span> <span class="string">"element-ui"</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"element-ui/lib/theme-default/index.css"</span></span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译好js文件即可</p>
+</li>
+</ol>
+<h2 id="前后端分离时的-Oauth-处理"><a href="#前后端分离时的-Oauth-处理" class="headerlink" title="前后端分离时的 Oauth 处理"></a>前后端分离时的 Oauth 处理</h2><ol>
+<li>前端请求发起三方登录请求</li>
+<li>后端接受前端请求后拼接授权请求链接</li>
+<li>返回重定向前端重定向至授权请求页面</li>
+<li>用户登录第三方网站</li>
+<li>第三方回调返回后端，后端获取数据并存储相关数据</li>
+<li>后端返回重定向链接将前端重定向至专门接受 <code>Access_Token</code> 页面，再由前端处理后续逻辑</li>
+</ol>
+<h2 id="使用-VSCode-开发引入-iView-等第三方-UI-框架后出现-x-invalid-end-tag"><a href="#使用-VSCode-开发引入-iView-等第三方-UI-框架后出现-x-invalid-end-tag" class="headerlink" title="使用 VSCode 开发引入 iView 等第三方 UI 框架后出现 x-invalid-end-tag"></a>使用 VSCode 开发引入 iView 等第三方 UI 框架后出现 x-invalid-end-tag</h2><ol>
+<li>如果你是用 Vetur的话 配置.eslintrc.js 并没有什么卵用<blockquote>
+<p>Vetur automatically uses eslint-plugin-vue for linting template. Linting configuration is based on eslint-plugin-vue’s essential rule set.<br><br>只能关掉它自带的eslint-plugin-vue 【”vetur.validation.template”: false】</p>
+</blockquote>
+</li>
+<li>重新配置 .eslintrc<blockquote>
+<p>“vue/no-parsing-error”: [2, { “x-invalid-end-tag”: false }]</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="Vue-Cli-axios-创建的项目生产环境（Nginx）跨域问题"><a href="#Vue-Cli-axios-创建的项目生产环境（Nginx）跨域问题" class="headerlink" title="Vue-Cli + axios 创建的项目生产环境（Nginx）跨域问题"></a>Vue-Cli + axios 创建的项目生产环境（Nginx）跨域问题</h2><ol>
+<li><p>修改 <code>nginx/conf/vhost/your.domain.conf</code> 配置文件</p>
+ <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">	<span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /?<span class="variable">$args</span>;</span><br><span class="line">	<span class="comment"># 允许跨域以及允许跨域的请求类型的设置</span></span><br><span class="line">	<span class="attribute">add_header</span> <span class="string">'Access-Control-Allow-Origin'</span> <span class="string">'*'</span>;</span><br><span class="line">	<span class="attribute">add_header</span> <span class="string">'Access-Control-Allow-Credentials'</span> <span class="string">'true'</span>;</span><br><span class="line">	<span class="attribute">add_header</span> <span class="string">'Access-Control-Allow-Methods'</span> <span class="string">'GET, POST, OPTIONS'</span>;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="attribute">location</span><span class="regexp"> ^~</span> /api &#123;</span><br><span class="line">	<span class="comment"># 要指向的域名，一般 SPA 时需要用到</span></span><br><span class="line">	<span class="attribute">proxy_set_header</span> Host app.layoute.top;</span><br><span class="line">	<span class="comment"># 跨域是需要替换的路径，一般 SPA 时需要用到</span></span><br><span class="line">	<span class="attribute">proxy_pass</span> https://app.layoute.top/api;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新载入 <code>nginx</code> 配置文件并重启 <code>nginx</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service nginxd reload &amp;&amp; service nginxd restart</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+
+        </div>
+    </div>
+    
+        
+    <div class="post__license">
+        <p>
+            <strong>本文作者：</strong>Layoute
+        </p>
+        
+            <p>
+                <strong>
+                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+                </strong>
+            </p>
+        
+        <p>
+            <strong>
+                本文链接：
+            </strong>
+            <a href="http://www.layoute.top/2019/03/25/laravel-vue-spa/">http://www.layoute.top/2019/03/25/laravel-vue-spa/</a>
+        </p>
+    </div>
+ 
+    
+    
+        <div class="post-meta post-footer__meta">
+    <p>
+        <!-- 最后更新于：2020-05-08 -->
+    </p>
+</div> 
+    
+    
+        <div class="post-cats post-card__cats">
+    
+        <a href="/categories/PHP/" class="post-cats__link button">PHP</a>
+    
+        <a href="/categories/PHP/Laravel/" class="post-cats__link button">Laravel</a>
+    
+        <a href="/categories/Vue/" class="post-cats__link button">Vue</a>
+    
+</div> 
+        <div class="post-tags post-card__tags">
+    
+        <a href="/tags/laravel/" class="post-tags__link button"># laravel</a>
+    
+        <a href="/tags/vue/" class="post-tags__link button"># vue</a>
+    
+        <a href="/tags/spa/" class="post-tags__link button"># spa</a>
+    
+</div> 
+     
+</article>
+<br>
+
+    <div class="post__comment content-card">
+        
+    <h4 style="margin-top: 0;">评论</h4>
+    
+        <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
+    
+    
+    
+    
+    
+    
+    
+
+
+    </div>
+
+
+    </div>
+
+
+
+    <br>
+    <div class="cover">
+        
+            <div class="cover__menus">
+                
+                    <a href="/" class="cover-menu button">
+                        首页
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/tags/" class="cover-menu button">
+                        标签
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/categories/" class="cover-menu button">
+                        分类
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/archives/" class="cover-menu button">
+                        归档
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/links/" class="cover-menu button">
+                        友链
+                    </a>
+                    
+                        <span class="separate-dot"></span>
+                    
+                
+                    <a href="/about/" class="cover-menu button">
+                        关于
+                    </a>
+                    
+                
+            </div>
+        
+    </div>
+
+</main>
+<footer class="footer">
+     
+
+
+     
+  
+    
+        
+            <p>Copyright © 2020</p>
+
+        
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+
+        </div>
+        
+    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazyload",
+            threshold: 0
+        };
+    </script>
+
+
+ 
+
+ 
+
+ 
+
+  
+
+
+
+ 
+
+ 
+    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.2/dist/js/b2t.min.js"></script>
+ 
+
+
+    
+        
+            <script>
+                var disqus_shortname = 'layoutes-blog', disqus_url = 'http://www.layoute.top/2019/03/25/laravel-vue-spa/';
+                (function(){
+                    var dsq = document.createElement('script');
+                    dsq.type = 'text/javascript';
+                    dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+    </body>
+</html>
