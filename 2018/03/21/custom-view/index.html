@@ -37,7 +37,7 @@
 <meta property="og:description" content="在 Android 自定义 View 时我们需要测量 View 的宽度和高度, 那么当自定义View的布局参数设置成 wrap_content时时一般的解决方案如下:">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.layoute.top/img/android_custom_view.jpeg">
-<meta property="og:updated_time" content="2020-05-08T03:42:37.585Z">
+<meta property="og:updated_time" content="2020-05-10T00:39:37.133Z">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Android 自定义 View 时 Wrap_Content 相关">
 <meta name="twitter:description" content="在 Android 自定义 View 时我们需要测量 View 的宽度和高度, 那么当自定义View的布局参数设置成 wrap_content时时一般的解决方案如下:">
@@ -49,7 +49,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
     
 
     
@@ -134,18 +134,17 @@
                 
             </div>
         </aside>
-
-<article class="post content-card">
-    <div class="post__header">
-        
-            
+        <article class="post content-card">
+            <div class="post__header">
+                
+                    
     
         <img alt="Cover Image" src="/img/android_custom_view.jpeg">
     
  
-        
-        
-            
+                
+                
+                    
     <div class="post__expire" id="post-expired-notify">
         <p>
             本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
@@ -153,7 +152,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2020-05-08"),
+            var update = Date.parse("2020-05-10"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -165,62 +164,48 @@
         })();
     </script>
 
-        
-    </div>
-    <div class="post__content">
-        <div class="markdown-body">
-            <p>在 Android 自定义 View 时我们需要测量 View 的宽度和高度, 那么当自定义View的布局参数设置成 <code>wrap_content</code>时时<br>一般的解决方案如下:</p>
-<a id="more"></a>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取宽-测量规则的模式和大小</span></span><br><span class="line">    <span class="keyword">int</span> widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取高-测量规则的模式和大小</span></span><br><span class="line">    <span class="keyword">int</span> heightMode = MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> heightSize = MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置wrap_content的默认宽 / 高值</span></span><br><span class="line">    <span class="comment">// 默认宽/高的设定并无固定依据,根据需要灵活设置</span></span><br><span class="line">    <span class="comment">// 类似TextView,ImageView等针对wrap_content均在onMeasure()对设置默认宽 / 高值有特殊处理,具体读者可以自行查看</span></span><br><span class="line">    <span class="keyword">int</span> mWidth = <span class="number">400</span>;</span><br><span class="line">    <span class="keyword">int</span> mHeight = <span class="number">400</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当模式是AT_MOST（即wrap_content）时设置默认值</span></span><br><span class="line">    <span class="keyword">if</span> (widthMode == MeasureSpec.AT_MOST &amp;&amp; heightMode == MeasureSpec.AT_MOST) &#123;</span><br><span class="line">        setMeasuredDimension(mWidth, mHeight);</span><br><span class="line">    <span class="comment">// 宽 / 高任意一个模式为AT_MOST（即wrap_content）时，都设置默认值</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (widthMode == MeasureSpec.AT_MOST) &#123;</span><br><span class="line">        setMeasuredDimension(mWidth, heightSize);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (heightMode == MeasureSpec.AT_MOST) &#123;</span><br><span class="line">        setMeasuredDimension(widthSize, mHeight);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>这种方法在一定程度上确实可以解决这个问题,但是对于 MeasureSpec 的判断并不精确, 观察下表可以发现: View 的 <code>AT_MOST</code> 模式对应的不只是 <code>wrap_content</code> ，也有可能是 <code>match_parent</code><br></p>
-<img src="/2018/03/21/custom-view/1.png" class="lazyload" data-srcset="/2018/03/21/custom-view/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" title="view">
-<p>将上述方法修改如下即可:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">    <span class="comment">// 获取宽-测量规则的模式和大小</span></span><br><span class="line">    <span class="keyword">int</span> widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取高-测量规则的模式和大小</span></span><br><span class="line">    <span class="keyword">int</span> heightMode = MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> heightSize = MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置wrap_content的默认宽 / 高值</span></span><br><span class="line">    <span class="comment">// 默认宽/高的设定并无固定依据,根据需要灵活设置</span></span><br><span class="line">    <span class="comment">// 类似TextView,ImageView等针对wrap_content均在onMeasure()对设置默认宽 / 高值有特殊处理,具体读者可以自行查看</span></span><br><span class="line">    <span class="keyword">int</span> mWidth = <span class="number">400</span>;</span><br><span class="line">    <span class="keyword">int</span> mHeight = <span class="number">400</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当布局参数设置为wrap_content时，设置默认值</span></span><br><span class="line">    <span class="keyword">if</span> (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT &amp;&amp; getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">        setMeasuredDimension(mWidth, mHeight);</span><br><span class="line">    <span class="comment">// 宽 / 高任意一个布局参数为= wrap_content时，都设置默认值</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">        setMeasuredDimension(mWidth, heightSize);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">        setMeasuredDimension(widthSize, mHeight);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
+                
+            </div>
+            <div class="post__content">
+                <div class="markdown-body">
+                    <p>在 Android 自定义 View 时我们需要测量 View 的宽度和高度, 那么当自定义View的布局参数设置成 <code>wrap_content</code>时时<br>一般的解决方案如下:<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取宽-测量规则的模式和大小</span></span><br><span class="line">    <span class="keyword">int</span> widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取高-测量规则的模式和大小</span></span><br><span class="line">    <span class="keyword">int</span> heightMode = MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> heightSize = MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置wrap_content的默认宽 / 高值</span></span><br><span class="line">    <span class="comment">// 默认宽/高的设定并无固定依据,根据需要灵活设置</span></span><br><span class="line">    <span class="comment">// 类似TextView,ImageView等针对wrap_content均在onMeasure()对设置默认宽 / 高值有特殊处理,具体读者可以自行查看</span></span><br><span class="line">    <span class="keyword">int</span> mWidth = <span class="number">400</span>;</span><br><span class="line">    <span class="keyword">int</span> mHeight = <span class="number">400</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当模式是AT_MOST（即wrap_content）时设置默认值</span></span><br><span class="line">    <span class="keyword">if</span> (widthMode == MeasureSpec.AT_MOST &amp;&amp; heightMode == MeasureSpec.AT_MOST) &#123;</span><br><span class="line">        setMeasuredDimension(mWidth, mHeight);</span><br><span class="line">    <span class="comment">// 宽 / 高任意一个模式为AT_MOST（即wrap_content）时，都设置默认值</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (widthMode == MeasureSpec.AT_MOST) &#123;</span><br><span class="line">        setMeasuredDimension(mWidth, heightSize);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (heightMode == MeasureSpec.AT_MOST) &#123;</span><br><span class="line">        setMeasuredDimension(widthSize, mHeight);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种方法在一定程度上确实可以解决这个问题,但是对于 MeasureSpec 的判断并不精确, 观察下表可以发现: View 的 <code>AT_MOST</code> 模式对应的不只是 <code>wrap_content</code> ，也有可能是 <code>match_parent</code><br><br><img src="/2018/03/21/custom-view/1.png" class="lazyload" data-srcset="/2018/03/21/custom-view/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" title="view"><br>将上述方法修改如下即可:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">    <span class="comment">// 获取宽-测量规则的模式和大小</span></span><br><span class="line">    <span class="keyword">int</span> widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取高-测量规则的模式和大小</span></span><br><span class="line">    <span class="keyword">int</span> heightMode = MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> heightSize = MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置wrap_content的默认宽 / 高值</span></span><br><span class="line">    <span class="comment">// 默认宽/高的设定并无固定依据,根据需要灵活设置</span></span><br><span class="line">    <span class="comment">// 类似TextView,ImageView等针对wrap_content均在onMeasure()对设置默认宽 / 高值有特殊处理,具体读者可以自行查看</span></span><br><span class="line">    <span class="keyword">int</span> mWidth = <span class="number">400</span>;</span><br><span class="line">    <span class="keyword">int</span> mHeight = <span class="number">400</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当布局参数设置为wrap_content时，设置默认值</span></span><br><span class="line">    <span class="keyword">if</span> (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT &amp;&amp; getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">        setMeasuredDimension(mWidth, mHeight);</span><br><span class="line">    <span class="comment">// 宽 / 高任意一个布局参数为= wrap_content时，都设置默认值</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">        setMeasuredDimension(mWidth, heightSize);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">        setMeasuredDimension(widthSize, mHeight);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>通过判断 <code>getLayoutParams().width / getLayoutParams().height</code> 是否等于 <code>ViewGroup.LayoutParams.WRAP_CONTENT</code> 来确定是否为 <code>wrap_content</code>，保证了精确度</p>
 
-        </div>
-    </div>
-    
-        
+                </div>
+            </div>
+            
+                
     <div class="post__license">
         <p>
             <strong>本文作者：</strong>Layoute
         </p>
-        
-            <p>
-                <strong>
-                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
-
-                </strong>
-            </p>
-        
         <p>
             <strong>
                 本文链接：
             </strong>
             <a href="http://www.layoute.top/2018/03/21/custom-view/">http://www.layoute.top/2018/03/21/custom-view/</a>
         </p>
+        
     </div>
  
-    
-    
-        <div class="post-meta post-footer__meta">
+            
+            
+                <div class="post-meta post-footer__meta">
     <p>
-        <!-- 最后更新于：2020-05-08 -->
+        <!-- 最后更新于：2020-05-10 -->
     </p>
 </div> 
-    
-    
-        <div class="post-cats post-card__cats">
+            
+            
+                <div class="post-cats post-card__cats">
     
         <a href="/categories/Android/" class="post-cats__link button">Android</a>
     
         <a href="/categories/Android/自定义-View/" class="post-cats__link button">自定义 View</a>
     
 </div> 
-        <div class="post-tags post-card__tags">
+                <div class="post-tags post-card__tags">
     
         <a href="/tags/Adnroid/" class="post-tags__link button"># Adnroid</a>
     
@@ -229,12 +214,12 @@
         <a href="/tags/wrap-content/" class="post-tags__link button"># wrap_content</a>
     
 </div> 
-     
-</article>
-<br>
-
-    <div class="post__comment content-card">
+             
+        </article>
+        <br>
         
+            <div class="post__comment content-card">
+                
     <h4 style="margin-top: 0;">评论</h4>
     
         <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
@@ -247,9 +232,8 @@
     
 
 
-    </div>
-
-
+            </div>
+        
     </div>
 
 

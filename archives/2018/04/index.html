@@ -188,7 +188,7 @@
             <div class="markdown-body">
                 
                     <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>因为 <code>Certbot</code> 的很多依赖并不在系统默认 Repo 中,需要先安装 <code>EPEL Repo</code> ,运行 <code>yum install epel-release</code> ,同时为了防止组件过旧导致的报错,建议运行一次 <code>yum update</code></p>
-<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .</p>
+<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .<br>
                 
             </div>
            
@@ -250,7 +250,6 @@
                     <ol>
 <li>homestead 里安装一个 <a href="https://github.com/cyfdecyf/cow" target="_blank" rel="noopener">cow</a>，然后在 <code>.env</code> 文件中增加一行 <code>HTTPS_PROXY=http://127.0.0.1:port_of_cow</code></li>
 <li>编辑 <code>～/.cow/rc</code> 文件 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen = http://127.0.0.1:7777</span><br><span class="line">proxy = ss://encryption:password@host:port</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
                 

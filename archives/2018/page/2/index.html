@@ -177,7 +177,7 @@
         
             <div class="markdown-body">
                 
-                    <p>在 Android 自定义 View 时我们需要测量 View 的宽度和高度, 那么当自定义View的布局参数设置成 <code>wrap_content</code>时时<br>一般的解决方案如下:</p>
+                    <p>在 Android 自定义 View 时我们需要测量 View 的宽度和高度, 那么当自定义View的布局参数设置成 <code>wrap_content</code>时时<br>一般的解决方案如下:<br>
                 
             </div>
            
@@ -230,7 +230,7 @@
         
             <div class="markdown-body">
                 
-                    <h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name dao_testlaravel_3 --link laravel-mysql:mysql -d -p 80 daocloud.io/layoute/laravel-english</span><br></pre></td></tr></table></figure>
+                    <h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name dao_testlaravel_3 --link laravel-mysql:mysql <span class="_">-d</span> -p 80 daocloud.io/layoute/laravel-english</span><br></pre></td></tr></table></figure>
                 
             </div>
            
@@ -291,7 +291,6 @@
 <ul>
 <li>Nginx添加vhost</li>
 <li>修改nginx/conf/vhost/your.domain.conf，如下  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name example.com;</span><br><span class="line">        </span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://localhost:9000;</span><br><span class="line">        ···</span><br><span class="line">    &#125;</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
                 
@@ -313,9 +312,9 @@
 
     <div class="post-tags post-card__tags">
     
-        <a href="/tags/node/" class="post-tags__link button"># node</a>
-    
         <a href="/tags/nginx/" class="post-tags__link button"># nginx</a>
+    
+        <a href="/tags/node/" class="post-tags__link button"># node</a>
     
 </div> 
 

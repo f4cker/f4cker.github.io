@@ -36,7 +36,7 @@
 <meta property="og:site_name" content="Layoute&#39;s Blog">
 <meta property="og:description" content="具体实现">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-08T03:09:48.981Z">
+<meta property="og:updated_time" content="2020-05-10T00:39:37.132Z">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Java 实现 JavaScript eval 函数">
 <meta name="twitter:description" content="具体实现">
@@ -47,7 +47,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
     
 
     
@@ -130,14 +130,13 @@
                 <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#具体实现"><span class="toc-number">1.</span> <span class="toc-text">具体实现</span></a></li></ol>
             </div>
         </aside>
-
-<article class="post content-card">
-    <div class="post__header">
-        
-             
-        
-        
-            
+        <article class="post content-card">
+            <div class="post__header">
+                
+                     
+                
+                
+                    
     <div class="post__expire" id="post-expired-notify">
         <p>
             本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
@@ -145,7 +144,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2020-05-08"),
+            var update = Date.parse("2020-05-10"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -157,53 +156,46 @@
         })();
     </script>
 
-        
-    </div>
-    <div class="post__content">
-        <div class="markdown-body">
-            <h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><a id="more"></a>
+                
+            </div>
+            <div class="post__content">
+                <div class="markdown-body">
+                    <h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><a id="more"></a>
 <p>MyClassLoader.java<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> javax.tools.SimpleJavaFileObject;</span><br><span class="line"><span class="keyword">import</span> javax.tools.JavaFileObject;</span><br><span class="line"><span class="keyword">import</span> javax.tools.JavaCompiler;</span><br><span class="line"><span class="keyword">import</span> javax.tools.ToolProvider;</span><br><span class="line"><span class="keyword">import</span> javax.tools.DiagnosticCollector;</span><br><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span>  1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClassLoader</span></span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">ClassLoader</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Class&lt;?&gt; findClass(String str) <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">    &#123;</span><br><span class="line">        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();</span><br><span class="line">        <span class="comment">//用于诊断源代码编译错误的对象</span></span><br><span class="line">        DiagnosticCollector diagnostics = <span class="keyword">new</span> DiagnosticCollector();</span><br><span class="line">        <span class="comment">//内存中的源代码保存在一个从JavaFileObject继承的类中 </span></span><br><span class="line">        JavaFileObject file = <span class="keyword">new</span> JavaSourceFromString(<span class="string">"Temp"</span>, str.toString());</span><br><span class="line">        Iterable compilationUnits = Arrays.asList(file);</span><br><span class="line">        <span class="comment">//建立一个编译任务</span></span><br><span class="line">        JavaCompiler.CompilationTask task = compiler.getTask(<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, compilationUnits);</span><br><span class="line">        <span class="comment">//编译源程序</span></span><br><span class="line">        <span class="keyword">boolean</span> result = task.call();</span><br><span class="line">        <span class="keyword">if</span> (result) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> Class.forName(<span class="string">"Temp"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JavaSourceFromString</span> <span class="keyword">extends</span> <span class="title">SimpleJavaFileObject</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String code;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">JavaSourceFromString</span><span class="params">(String name, String code)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(URI.create(<span class="string">"string:///"</span> + name.replace(<span class="string">'.'</span>, <span class="string">'/'</span>) + Kind.SOURCE.extension), Kind.SOURCE);</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CharSequence <span class="title">getCharContent</span><span class="params">(<span class="keyword">boolean</span> ignoreEncodingErrors)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p> Eval.java<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">import</span> java.lang.reflect.Method;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span>  1.0 </span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Eval</span>   </span></span><br><span class="line"><span class="class"></span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">eval</span><span class="params">(String str)</span> <span class="keyword">throws</span> Exception  </span></span><br><span class="line"><span class="function">    </span>&#123;  </span><br><span class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();  </span><br><span class="line">        sb.append(<span class="string">"public class Temp"</span>);  </span><br><span class="line">        sb.append(<span class="string">"&#123;"</span>);  </span><br><span class="line">        sb.append(<span class="string">"    public Object getObject()"</span>);  </span><br><span class="line">        sb.append(<span class="string">"    &#123;"</span>);  </span><br><span class="line">        sb.append(<span class="string">"        "</span> + str + <span class="string">"return new Object();"</span>);  </span><br><span class="line">        sb.append(<span class="string">"    &#125;"</span>);  </span><br><span class="line">        sb.append(<span class="string">"&#125;"</span>);  </span><br><span class="line">        <span class="comment">//调用自定义类加载器加载编译在内存中class文件  </span></span><br><span class="line">        Class clazz = <span class="keyword">new</span> MyClassLoader().findClass(sb.toString());  </span><br><span class="line">        Method method = clazz.getMethod(<span class="string">"getObject"</span>);  </span><br><span class="line">        <span class="comment">//通过反射调用方法  </span></span><br><span class="line">        <span class="keyword">return</span> method.invoke(clazz.newInstance());  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception  </span></span><br><span class="line"><span class="function">    </span>&#123;  </span><br><span class="line">        Object rval = eval(<span class="string">"System.out.println(/"</span>Hello World/<span class="string">");"</span>);  </span><br><span class="line">        System.out.println(rval);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-        </div>
-    </div>
-    
-        
+                </div>
+            </div>
+            
+                
     <div class="post__license">
         <p>
             <strong>本文作者：</strong>Layoute
         </p>
-        
-            <p>
-                <strong>
-                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
-
-                </strong>
-            </p>
-        
         <p>
             <strong>
                 本文链接：
             </strong>
             <a href="http://www.layoute.top/2018/05/03/Java-实现-JavaScript-eval-函数/">http://www.layoute.top/2018/05/03/Java-实现-JavaScript-eval-函数/</a>
         </p>
+        
     </div>
  
-    
-    
-        <div class="post-meta post-footer__meta">
+            
+            
+                <div class="post-meta post-footer__meta">
     <p>
-        <!-- 最后更新于：2020-05-08 -->
+        <!-- 最后更新于：2020-05-10 -->
     </p>
 </div> 
-    
-    
-        <div class="post-cats post-card__cats">
+            
+            
+                <div class="post-cats post-card__cats">
     
         <a href="/categories/Java/" class="post-cats__link button">Java</a>
     
 </div> 
-        <div class="post-tags post-card__tags">
+                <div class="post-tags post-card__tags">
     
         <a href="/tags/Java/" class="post-tags__link button"># Java</a>
     
@@ -214,12 +206,12 @@
         <a href="/tags/反射/" class="post-tags__link button"># 反射</a>
     
 </div> 
-     
-</article>
-<br>
-
-    <div class="post__comment content-card">
+             
+        </article>
+        <br>
         
+            <div class="post__comment content-card">
+                
     <h4 style="margin-top: 0;">评论</h4>
     
         <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
@@ -232,9 +224,8 @@
     
 
 
-    </div>
-
-
+            </div>
+        
     </div>
 
 

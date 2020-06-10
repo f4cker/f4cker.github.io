@@ -37,7 +37,7 @@
 <meta property="og:description" content="环境准备因为 Certbot 的很多依赖并不在系统默认 Repo 中,需要先安装 EPEL Repo ,运行 yum install epel-release ,同时为了防止组件过旧导致的报错,建议运行一次 yum update 安装 Certbot因为目前没有 CentOS 的预编译安装包，所以通过 certbot-auto 脚本来获得 Certbot .">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.layoute.top/img/http_to_https.jpeg">
-<meta property="og:updated_time" content="2020-05-08T03:50:28.167Z">
+<meta property="og:updated_time" content="2020-05-10T00:39:37.131Z">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="HTTP TO HTTPS （Centos 6.5 Final）">
 <meta name="twitter:description" content="环境准备因为 Certbot 的很多依赖并不在系统默认 Repo 中,需要先安装 EPEL Repo ,运行 yum install epel-release ,同时为了防止组件过旧导致的报错,建议运行一次 yum update 安装 Certbot因为目前没有 CentOS 的预编译安装包，所以通过 certbot-auto 脚本来获得 Certbot .">
@@ -49,7 +49,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
     
 
     
@@ -132,18 +132,17 @@
                 <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境准备"><span class="toc-number">1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-Certbot"><span class="toc-number">2.</span> <span class="toc-text">安装 Certbot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-Certbot-生成证书"><span class="toc-number">3.</span> <span class="toc-text">使用 Certbot 生成证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改-Nginx-配置文件"><span class="toc-number">4.</span> <span class="toc-text">修改 Nginx 配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手动更新证书文件"><span class="toc-number">5.</span> <span class="toc-text">手动更新证书文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置自动更新证书文件"><span class="toc-number">6.</span> <span class="toc-text">配置自动更新证书文件</span></a></li></ol>
             </div>
         </aside>
-
-<article class="post content-card">
-    <div class="post__header">
-        
-            
+        <article class="post content-card">
+            <div class="post__header">
+                
+                    
     
         <img alt="Cover Image" src="/img/http_to_https.jpeg">
     
  
-        
-        
-            
+                
+                
+                    
     <div class="post__expire" id="post-expired-notify">
         <p>
             本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
@@ -151,7 +150,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2020-05-08"),
+            var update = Date.parse("2020-05-10"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -163,24 +162,20 @@
         })();
     </script>
 
-        
-    </div>
-    <div class="post__content">
-        <div class="markdown-body">
-            <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>因为 <code>Certbot</code> 的很多依赖并不在系统默认 Repo 中,需要先安装 <code>EPEL Repo</code> ,运行 <code>yum install epel-release</code> ,同时为了防止组件过旧导致的报错,建议运行一次 <code>yum update</code></p>
-<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .</p>
-<a id="more"></a>
+                
+            </div>
+            <div class="post__content">
+                <div class="markdown-body">
+                    <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>因为 <code>Certbot</code> 的很多依赖并不在系统默认 Repo 中,需要先安装 <code>EPEL Repo</code> ,运行 <code>yum install epel-release</code> ,同时为了防止组件过旧导致的报错,建议运行一次 <code>yum update</code></p>
+<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .<br><a id="more"></a></p>
 <ul>
 <li><p>获取 <code>certbot-auto</code> 脚本并赋予执行权限</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> path/to/certbot-auto</span><br><span class="line">$ wget https://dl.eff.org/certbot-auto</span><br><span class="line">$ chmod a+x certbot-auto</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>运行 <code>certbot-auto</code> 脚本安装 <code>Certbot</code></p>
 </li>
-<li><p>PS:<code>cerbot-auto</code> 会自动下载最新版并进行安装,如果你希望使用某一特定版本并禁止自动更新的话，请在运行时加上 <code>--no-self-upgrade</code> .</p>
-<h3 id="使用-Certbot-生成证书"><a href="#使用-Certbot-生成证书" class="headerlink" title="使用 Certbot 生成证书"></a>使用 <code>Certbot</code> 生成证书</h3></li>
-<li><p>示例</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这个示例演示了3个域名使用了两个不同的web-root是如何生成证书的</span></span><br><span class="line">$ ./path/to/certbot-auto certonly --webroot -w /path/to/webroot1 -d domain.com -d www.domain.com -w /path/to/webroot2 -d test.clamis.net -n</span><br></pre></td></tr></table></figure>
-
+<li>PS:<code>cerbot-auto</code> 会自动下载最新版并进行安装,如果你希望使用某一特定版本并禁止自动更新的话，请在运行时加上 <code>--no-self-upgrade</code> .<h3 id="使用-Certbot-生成证书"><a href="#使用-Certbot-生成证书" class="headerlink" title="使用 Certbot 生成证书"></a>使用 <code>Certbot</code> 生成证书</h3></li>
+<li>示例  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这个示例演示了3个域名使用了两个不同的web-root是如何生成证书的</span></span><br><span class="line">$ ./path/to/certbot-auto certonly --webroot -w /path/to/webroot1 <span class="_">-d</span> domain.com <span class="_">-d</span> www.domain.com -w /path/to/webroot2 <span class="_">-d</span> test.clamis.net -n</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="修改-Nginx-配置文件"><a href="#修改-Nginx-配置文件" class="headerlink" title="修改 Nginx 配置文件"></a>修改 Nginx 配置文件</h3><ul>
@@ -192,11 +187,10 @@
 </ul>
 <h3 id="手动更新证书文件"><a href="#手动更新证书文件" class="headerlink" title="手动更新证书文件"></a>手动更新证书文件</h3><ul>
 <li><p>执行下面的命令并按照提示进行操作</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /path/to/certbot-auto certonly --webroot -w /path/to/webroot/ -d your.domain.com`</span><br></pre></td></tr></table></figure>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /path/to/certbot-auto certonly --webroot -w /path/to/webroot/ <span class="_">-d</span> your.domain.com`</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>执行下面的命令强制更新</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /path/to/certbot-auto renew --force-renewal</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 <h3 id="配置自动更新证书文件"><a href="#配置自动更新证书文件" class="headerlink" title="配置自动更新证书文件"></a>配置自动更新证书文件</h3><ul>
@@ -204,51 +198,43 @@
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#模拟更新证书</span></span><br><span class="line">$ /path/to/certbot-auto renew --dry-run</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在 Crontab 中添加定时更新任务</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/crontab</span><br><span class="line"><span class="comment"># 添加如下任务</span></span><br><span class="line">11 23 */2 * * ./path/to/certbot-auto renew --quiet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者如下</span></span><br><span class="line">$ crontab -e</span><br><span class="line"><span class="comment"># 添加如下任务</span></span><br><span class="line">11 23 */2 * * ./path/to/certbot-auto renew --quiet</span><br></pre></td></tr></table></figure>
-
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/crontab</span><br><span class="line"><span class="comment"># 添加如下任务</span></span><br><span class="line">11 23 */2 * * ./path/to/certbot-auto renew --quiet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者如下</span></span><br><span class="line">$ crontab <span class="_">-e</span></span><br><span class="line"><span class="comment"># 添加如下任务</span></span><br><span class="line">11 23 */2 * * ./path/to/certbot-auto renew --quiet</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>搞定，收工！</p>
 
-        </div>
-    </div>
-    
-        
+                </div>
+            </div>
+            
+                
     <div class="post__license">
         <p>
             <strong>本文作者：</strong>Layoute
         </p>
-        
-            <p>
-                <strong>
-                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
-
-                </strong>
-            </p>
-        
         <p>
             <strong>
                 本文链接：
             </strong>
             <a href="http://www.layoute.top/2018/04/10/HTTP-TO-HTTPS-（Centos-6-5-Final）/">http://www.layoute.top/2018/04/10/HTTP-TO-HTTPS-（Centos-6-5-Final）/</a>
         </p>
+        
     </div>
  
-    
-    
-        <div class="post-meta post-footer__meta">
+            
+            
+                <div class="post-meta post-footer__meta">
     <p>
-        <!-- 最后更新于：2020-05-08 -->
+        <!-- 最后更新于：2020-05-10 -->
     </p>
 </div> 
-    
-    
-        <div class="post-cats post-card__cats">
+            
+            
+                <div class="post-cats post-card__cats">
     
         <a href="/categories/Linux/" class="post-cats__link button">Linux</a>
     
 </div> 
-        <div class="post-tags post-card__tags">
+                <div class="post-tags post-card__tags">
     
         <a href="/tags/http/" class="post-tags__link button"># http</a>
     
@@ -259,12 +245,12 @@
         <a href="/tags/letsencrypt/" class="post-tags__link button"># letsencrypt</a>
     
 </div> 
-     
-</article>
-<br>
-
-    <div class="post__comment content-card">
+             
+        </article>
+        <br>
         
+            <div class="post__comment content-card">
+                
     <h4 style="margin-top: 0;">评论</h4>
     
         <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
@@ -277,9 +263,8 @@
     
 
 
-    </div>
-
-
+            </div>
+        
     </div>
 
 

@@ -37,7 +37,7 @@
 <meta property="og:description" content="Android 开发的同学应该都有被 Android Studio 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️) 为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.layoute.top/img/jenkins_ci_gradle.png">
-<meta property="og:updated_time" content="2020-05-08T08:27:36.584Z">
+<meta property="og:updated_time" content="2020-05-10T00:39:37.148Z">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Docker + Jenkins + Gradle 实现 Android 的持续集成">
 <meta name="twitter:description" content="Android 开发的同学应该都有被 Android Studio 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️) 为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～">
@@ -49,7 +49,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
     
 
     
@@ -134,18 +134,17 @@
                 <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-镜像篇"><span class="toc-number">1.</span> <span class="toc-text">1. 镜像篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-构建镜像"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 构建镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-部署镜像"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 部署镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Android-构建集成"><span class="toc-number">2.</span> <span class="toc-text">2. Android 构建集成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Jenkins-配置"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Jenkins 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-全局工具配置"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 全局工具配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-全局凭据配置"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 全局凭据配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-构建任务配置"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 构建任务配置</span></a></li></ol></li></ol>
             </div>
         </aside>
-
-<article class="post content-card">
-    <div class="post__header">
-        
-            
+        <article class="post content-card">
+            <div class="post__header">
+                
+                    
     
         <img alt="Cover Image" src="/img/jenkins_ci_gradle.png">
     
  
-        
-        
-            
+                
+                
+                    
     <div class="post__expire" id="post-expired-notify">
         <p>
             本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
@@ -153,7 +152,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2020-05-08"),
+            var update = Date.parse("2020-05-10"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -165,40 +164,25 @@
         })();
     </script>
 
-        
-    </div>
-    <div class="post__content">
-        <div class="markdown-body">
-            <p>Android 开发的同学应该都有被 <code>Android Studio</code> 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️)</p>
-<p>为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～</p>
-<a id="more"></a>
-<h2 id="1-镜像篇"><a href="#1-镜像篇" class="headerlink" title="1. 镜像篇"></a>1. 镜像篇</h2><h3 id="1-1-构建镜像"><a href="#1-1-构建镜像" class="headerlink" title="1.1 构建镜像"></a>1.1 构建镜像</h3><p>本例中我们使用 <code>Dockerfile</code> 来构建接下来需要用到的镜像,文件内容如下:</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> daocloud.io/library/tomcat:<span class="number">8.5</span>.<span class="number">15</span></span><br><span class="line"><span class="keyword">LABEL</span><span class="bash"> Name=<span class="string">"jenkins-tomcat"</span></span></span><br><span class="line"><span class="keyword">LABEL</span><span class="bash"> Version=<span class="string">"0.2"</span></span></span><br><span class="line"><span class="keyword">LABEL</span><span class="bash"> Maintainer=<span class="string">"Layoute &lt;reallayoute@gmail.com&gt;"</span></span></span><br><span class="line"><span class="comment"># 环境变量</span></span><br><span class="line"><span class="keyword">ENV</span> GRADLE_VERSION <span class="number">4.4</span></span><br><span class="line"><span class="keyword">ENV</span> GRADLE_HOME /root/.sdkman/candidates/gradle/$&#123;GRADLE_VERSION&#125;/</span><br><span class="line"><span class="comment"># tomcat 容器自带 java 8u131 放弃安装</span></span><br><span class="line"><span class="comment"># ENV JAVA_VERSION 8.0.181_zulu</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装所需依赖</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get install -y \</span></span><br><span class="line"><span class="bash">        git \</span></span><br><span class="line"><span class="bash">        zip \</span></span><br><span class="line"><span class="bash">        unzip \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get clean \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get autoclean</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 jenkins 为 80 端口根路径</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> rm -rf /usr/<span class="built_in">local</span>/tomcat/webapps/ROOT</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> http://ftp-nyc.osuosl.org/pub/jenkins/war-stable/2.121.3/jenkins.war /usr/<span class="built_in">local</span>/tomcat/webapps/ROOT.war</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> sed -i <span class="string">'s/8080/80/'</span> /usr/<span class="built_in">local</span>/tomcat/conf/server.xml</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 SDKMAN 开发包管理器</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /root</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> curl -s <span class="string">"https://get.sdkman.io"</span> | bash</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> /bin/bash -c <span class="string">"source /root/.sdkman/bin/sdkman-init.sh"</span></span></span><br><span class="line"><span class="comment"># 安装 Gradle 等依赖</span></span><br><span class="line"><span class="comment"># -l 伪装为登录的 shell 执行命令</span></span><br><span class="line"><span class="comment"># -c 读取字符串命令</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yes | /bin/bash -l -c <span class="string">'sdk install gradle $&#123;GRADLE_VERSION&#125;'</span></span></span><br><span class="line"><span class="comment"># RUN yes | /bin/bash -l -c 'sdk install java $&#123;JAVA_VERSION&#125;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露端口</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 entrypoint 权限并运行</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /usr/<span class="built_in">local</span>/tomcat</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> ./entrypoint.sh /usr/<span class="built_in">local</span>/tomcat/</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/tomcat</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> chmod 0777 ./entrypoint.sh</span></span><br><span class="line"><span class="comment"># 执行脚本</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> [ <span class="string">"./entrypoint.sh"</span> ]</span></span><br></pre></td></tr></table></figure>
-
+                
+            </div>
+            <div class="post__content">
+                <div class="markdown-body">
+                    <p>Android 开发的同学应该都有被 <code>Android Studio</code> 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️)</p>
+<p>为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～<br><a id="more"></a></p>
+<h2 id="1-镜像篇"><a href="#1-镜像篇" class="headerlink" title="1. 镜像篇"></a>1. 镜像篇</h2><h3 id="1-1-构建镜像"><a href="#1-1-构建镜像" class="headerlink" title="1.1 构建镜像"></a>1.1 构建镜像</h3><p>本例中我们使用 <code>Dockerfile</code> 来构建接下来需要用到的镜像,文件内容如下:<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> daocloud.io/library/tomcat:<span class="number">8.5</span>.<span class="number">15</span></span><br><span class="line"><span class="keyword">LABEL</span><span class="bash"> Name=<span class="string">"jenkins-tomcat"</span></span></span><br><span class="line"><span class="bash">LABEL Version=<span class="string">"0.2"</span></span></span><br><span class="line"><span class="bash">LABEL Maintainer=<span class="string">"Layoute &lt;reallayoute@gmail.com&gt;"</span></span></span><br><span class="line"><span class="bash"><span class="comment"># 环境变量</span></span></span><br><span class="line"><span class="bash">ENV GRADLE_VERSION 4.4</span></span><br><span class="line"><span class="bash">ENV GRADLE_HOME /root/.sdkman/candidates/gradle/<span class="variable">$&#123;GRADLE_VERSION&#125;</span>/</span></span><br><span class="line"><span class="bash"><span class="comment"># tomcat 容器自带 java 8u131 放弃安装</span></span></span><br><span class="line"><span class="bash"><span class="comment"># ENV JAVA_VERSION 8.0.181_zulu</span></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 安装所需依赖</span></span></span><br><span class="line"><span class="bash">RUN apt-get update \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get install -y \</span></span><br><span class="line"><span class="bash">        git \</span></span><br><span class="line"><span class="bash">        zip \</span></span><br><span class="line"><span class="bash">        unzip \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get clean \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get autoclean</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 配置 jenkins 为 80 端口根路径</span></span></span><br><span class="line"><span class="bash">RUN rm -rf /usr/<span class="built_in">local</span>/tomcat/webapps/ROOT</span></span><br><span class="line"><span class="bash">ADD http://ftp-nyc.osuosl.org/pub/jenkins/war-stable/2.121.3/jenkins.war /usr/<span class="built_in">local</span>/tomcat/webapps/ROOT.war</span></span><br><span class="line"><span class="bash">RUN sed -i <span class="string">'s/8080/80/'</span> /usr/<span class="built_in">local</span>/tomcat/conf/server.xml</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 安装 SDKMAN 开发包管理器</span></span></span><br><span class="line"><span class="bash">WORKDIR /root</span></span><br><span class="line"><span class="bash">RUN curl <span class="_">-s</span> <span class="string">"https://get.sdkman.io"</span> | bash</span></span><br><span class="line"><span class="bash">RUN /bin/bash -c <span class="string">"source /root/.sdkman/bin/sdkman-init.sh"</span></span></span><br><span class="line"><span class="bash"><span class="comment"># 安装 Gradle 等依赖</span></span></span><br><span class="line"><span class="bash"><span class="comment"># -l 伪装为登录的 shell 执行命令</span></span></span><br><span class="line"><span class="bash"><span class="comment"># -c 读取字符串命令</span></span></span><br><span class="line"><span class="bash">RUN yes | /bin/bash <span class="_">-l</span> -c <span class="string">'sdk install gradle $&#123;GRADLE_VERSION&#125;'</span></span></span><br><span class="line"><span class="bash"><span class="comment"># RUN yes | /bin/bash -l -c 'sdk install java $&#123;JAVA_VERSION&#125;'</span></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 暴露端口</span></span></span><br><span class="line"><span class="bash">EXPOSE 80</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 设置 entrypoint 权限并运行</span></span></span><br><span class="line"><span class="bash">WORKDIR /usr/<span class="built_in">local</span>/tomcat</span></span><br><span class="line"><span class="bash">COPY ./entrypoint.sh /usr/<span class="built_in">local</span>/tomcat/</span></span><br><span class="line"><span class="bash">RUN <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/tomcat</span></span><br><span class="line"><span class="bash">RUN chmod 0777 ./entrypoint.sh</span></span><br><span class="line"><span class="bash"><span class="comment"># 执行脚本</span></span></span><br><span class="line"><span class="bash">ENTRYPOINT [ <span class="string">"./entrypoint.sh"</span> ]</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>entrypoint.sh 为入口指令,包含镜像部署启东时会运行的一系列指令</p>
-</blockquote>
 <h3 id="1-2-部署镜像"><a href="#1-2-部署镜像" class="headerlink" title="1.2 部署镜像"></a>1.2 部署镜像</h3><p>接下来就是将构建好的镜像部署到服务器,我们使用 docker-compose 来实现部署</p>
-<p><code>docker-compose.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'2'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">nginx-proxy:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">index.docker.io/jwilder/nginx-proxy:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">nginx-proxy</span></span><br><span class="line">    <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">80</span><span class="string">:80</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">443</span><span class="string">:443</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/nginx/conf.d</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/nginx/vhost.d:/etc/nginx/vhost.d</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/nginx/html:/usr/share/nginx/html</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/nginx/certs:/etc/nginx/certs:ro</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/var/run/docker.sock:/tmp/docker.sock:ro</span></span><br><span class="line">  </span><br><span class="line">  <span class="attr">letsencrypt:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">jrcs/letsencrypt-nginx-proxy-companion</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">letsencrypt</span></span><br><span class="line">    <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">volumes_from:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">nginx-proxy</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/nginx/certs:/etc/nginx/certs</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/var/run/docker.sock:/var/run/docker.sock:ro</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">jenkins:</span></span><br><span class="line">    <span class="attr">build:</span> </span><br><span class="line">      <span class="attr">dockerfile:</span> <span class="string">./Dockerfile</span></span><br><span class="line">      <span class="attr">context:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">jenkins_sdkman</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">jenkins</span></span><br><span class="line">    <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">'80'</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/jenkins:/root/.jenkins/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/jenkins_home:/var/jenkins_home</span></span><br><span class="line">    <span class="attr">volumes_from:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">android_sdk</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">LETSENCRYPT_MAIL=email@example.com</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">LETSENCRYPT_HOST=domain.example.com</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">VIRTUAL_HOST=domain.example.com</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">android_sdk:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">runmymind/docker-android-sdk:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">android_sdk</span></span><br><span class="line">    <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">REPO_OS_OVERRIDE=linux</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/android/sdk:/opt/android-sdk-linux</span></span><br></pre></td></tr></table></figure>
-
+</blockquote>
+<p><code>docker-compose.yml</code><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'2'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  nginx-proxy:</span></span><br><span class="line"><span class="attr">    image:</span> index.docker.io/jwilder/nginx-proxy:latest</span><br><span class="line"><span class="attr">    container_name:</span> nginx-proxy</span><br><span class="line"><span class="attr">    privileged:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    restart:</span> always</span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">80</span>:<span class="number">80</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">443</span>:<span class="number">443</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">    -</span> /etc/nginx/conf.d</span><br><span class="line"><span class="bullet">    -</span> /etc/nginx/vhost.d:/etc/nginx/vhost.d</span><br><span class="line"><span class="bullet">    -</span> /etc/nginx/html:/usr/share/nginx/html</span><br><span class="line"><span class="bullet">    -</span> /etc/nginx/certs:/etc/nginx/certs:ro</span><br><span class="line"><span class="bullet">    -</span> /var/run/docker.sock:/tmp/docker.sock:ro</span><br><span class="line">  </span><br><span class="line"><span class="attr">  letsencrypt:</span></span><br><span class="line"><span class="attr">    image:</span> jrcs/letsencrypt-nginx-proxy-companion</span><br><span class="line"><span class="attr">    container_name:</span> letsencrypt</span><br><span class="line"><span class="attr">    privileged:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    restart:</span> always</span><br><span class="line"><span class="attr">    volumes_from:</span></span><br><span class="line"><span class="bullet">    -</span> nginx-proxy</span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">    -</span> /etc/nginx/certs:/etc/nginx/certs</span><br><span class="line"><span class="bullet">    -</span> /var/run/docker.sock:/var/run/docker.sock:ro</span><br><span class="line"></span><br><span class="line"><span class="attr">  jenkins:</span></span><br><span class="line"><span class="attr">    build:</span> </span><br><span class="line"><span class="attr">      dockerfile:</span> ./Dockerfile</span><br><span class="line"><span class="attr">      context:</span> .</span><br><span class="line"><span class="attr">    image:</span> jenkins_sdkman</span><br><span class="line"><span class="attr">    container_name:</span> jenkins</span><br><span class="line"><span class="attr">    privileged:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    restart:</span> always</span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'80'</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">    -</span> /etc/jenkins:/root/.jenkins/</span><br><span class="line"><span class="bullet">    -</span> /etc/jenkins_home:/var/jenkins_home</span><br><span class="line"><span class="attr">    volumes_from:</span></span><br><span class="line"><span class="bullet">    -</span> android_sdk</span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="bullet">    -</span> LETSENCRYPT_MAIL=email@example.com</span><br><span class="line"><span class="bullet">    -</span> LETSENCRYPT_HOST=domain.example.com</span><br><span class="line"><span class="bullet">    -</span> VIRTUAL_HOST=domain.example.com</span><br><span class="line"></span><br><span class="line"><span class="attr">  android_sdk:</span></span><br><span class="line"><span class="attr">    image:</span> runmymind/docker-android-sdk:latest</span><br><span class="line"><span class="attr">    container_name:</span> android_sdk</span><br><span class="line"><span class="attr">    privileged:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    restart:</span> always</span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="bullet">    -</span> REPO_OS_OVERRIDE=linux</span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">    -</span> /etc/android/sdk:/opt/android-sdk-linux</span><br></pre></td></tr></table></figure></p>
 <p>上述文件包含了 <code>nginx-proxy</code> 作为代理服务器来进行反向代理, <code>LetsEncrypt</code> 主要是用来签发证书,实现 <code>https</code>, <code>jenkins</code> 即为我们的持续集成服务提供者,<code>android-sdk</code> 则是用来为 <code>jenkins</code> 提供 Android SDK 支持</p>
-<h2 id="2-Android-构建集成"><a href="#2-Android-构建集成" class="headerlink" title="2. Android 构建集成"></a>2. Android 构建集成</h2><h3 id="2-1-Jenkins-配置"><a href="#2-1-Jenkins-配置" class="headerlink" title="2.1 Jenkins 配置"></a>2.1 Jenkins 配置</h3><p>按照网上的基本配置教程配置好 Jenkins ,设置完管理员密码</p>
-<img src="/2018/09/12/jenkins-for-android-in-Docker/1.png" class="lazyload" data-srcset="/2018/09/12/jenkins-for-android-in-Docker/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
-
+<h2 id="2-Android-构建集成"><a href="#2-Android-构建集成" class="headerlink" title="2. Android 构建集成"></a>2. Android 构建集成</h2><h3 id="2-1-Jenkins-配置"><a href="#2-1-Jenkins-配置" class="headerlink" title="2.1 Jenkins 配置"></a>2.1 Jenkins 配置</h3><p>按照网上的基本配置教程配置好 Jenkins ,设置完管理员密码<br><img src="/2018/09/12/jenkins-for-android-in-Docker/1.png" class="lazyload" data-srcset="/2018/09/12/jenkins-for-android-in-Docker/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg=="></p>
 <img src="/2018/09/12/jenkins-for-android-in-Docker/2.png" class="lazyload" data-srcset="/2018/09/12/jenkins-for-android-in-Docker/2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
-
 <img src="/2018/09/12/jenkins-for-android-in-Docker/3.png" class="lazyload" data-srcset="/2018/09/12/jenkins-for-android-in-Docker/3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
-
-<h3 id="2-2-全局工具配置"><a href="#2-2-全局工具配置" class="headerlink" title="2.2 全局工具配置"></a>2.2 全局工具配置</h3><p>此处配置主要用来配置全局的以来环境等,我们这里只需要关注 <code>JDK</code>,<code>Git</code>,<code>Gradle</code> 三项的配置,均可选择新增按钮添加需要支持的版本后应用保存即可</p>
-<img src="/2018/09/12/jenkins-for-android-in-Docker/9.png" class="lazyload" data-srcset="/2018/09/12/jenkins-for-android-in-Docker/9.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
-
-<h3 id="2-3-全局凭据配置"><a href="#2-3-全局凭据配置" class="headerlink" title="2.3 全局凭据配置"></a>2.3 全局凭据配置</h3><p>因为我们使用的是 <code>Github</code> 来托管项目,那就需要从 Github 上面同步代码到服务器用来构建,这里涉及到 SSH Key 的问题,我们可以去凭据管理里面新增一个凭据,类型选择 SSH Key **** 类型,别名随便填,但是后面得使用别名生成 SSH Key 如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C “上面设置的别名”</span><br><span class="line"><span class="comment"># 读取私钥</span></span><br><span class="line">$ cat ~/.ssh/id_rsa</span><br><span class="line"><span class="comment"># 读取公钥</span></span><br><span class="line">$ cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-
-<p>将上面的公钥添加到 Github 设置界面的 SSH Key 页面,私钥填入上面创建的凭据里面, 通过 SSH Key 同步代码就配置好了</p>
-<img src="/2018/09/12/jenkins-for-android-in-Docker/10.png" class="lazyload" data-srcset="/2018/09/12/jenkins-for-android-in-Docker/10.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
-
+<h3 id="2-2-全局工具配置"><a href="#2-2-全局工具配置" class="headerlink" title="2.2 全局工具配置"></a>2.2 全局工具配置</h3><p>此处配置主要用来配置全局的以来环境等,我们这里只需要关注 <code>JDK</code>,<code>Git</code>,<code>Gradle</code> 三项的配置,均可选择新增按钮添加需要支持的版本后应用保存即可<br><img src="/2018/09/12/jenkins-for-android-in-Docker/9.png" class="lazyload" data-srcset="/2018/09/12/jenkins-for-android-in-Docker/9.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg=="></p>
+<h3 id="2-3-全局凭据配置"><a href="#2-3-全局凭据配置" class="headerlink" title="2.3 全局凭据配置"></a>2.3 全局凭据配置</h3><p>因为我们使用的是 <code>Github</code> 来托管项目,那就需要从 Github 上面同步代码到服务器用来构建,这里涉及到 SSH Key 的问题,我们可以去凭据管理里面新增一个凭据,类型选择 SSH Key <em>**</em> 类型,别名随便填,但是后面得使用别名生成 SSH Key 如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C “上面设置的别名”</span><br><span class="line"><span class="comment"># 读取私钥</span></span><br><span class="line">$ cat ~/.ssh/id_rsa</span><br><span class="line"><span class="comment"># 读取公钥</span></span><br><span class="line">$ cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure></p>
+<p>将上面的公钥添加到 Github 设置界面的 SSH Key 页面,私钥填入上面创建的凭据里面, 通过 SSH Key 同步代码就配置好了<br><img src="/2018/09/12/jenkins-for-android-in-Docker/10.png" class="lazyload" data-srcset="/2018/09/12/jenkins-for-android-in-Docker/10.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg=="></p>
 <h3 id="2-4-构建任务配置"><a href="#2-4-构建任务配置" class="headerlink" title="2.4 构建任务配置"></a>2.4 构建任务配置</h3><p>接下来我们就可以开始创建任务了</p>
 <ul>
 <li>安装插件 <code>Android Lint</code>, <code>Github integration</code> 等</li>
@@ -207,53 +191,45 @@
 <li>源码设置<img src="/2018/09/12/jenkins-for-android-in-Docker/6.png" class="lazyload" data-srcset="/2018/09/12/jenkins-for-android-in-Docker/6.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg=="></li>
 <li>构建触发器设置<img src="/2018/09/12/jenkins-for-android-in-Docker/7.png" class="lazyload" data-srcset="/2018/09/12/jenkins-for-android-in-Docker/7.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg=="></li>
 <li>构建设置<img src="/2018/09/12/jenkins-for-android-in-Docker/8.png" class="lazyload" data-srcset="/2018/09/12/jenkins-for-android-in-Docker/8.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
-
 </li>
 </ul>
 <p>接下来点击立即构建就可以开始第一次构建了,完成第一次构建后即可在工作区查看项目相关文件了</p>
 <p>搞定,收工!</p>
 
-        </div>
-    </div>
-    
-        
+                </div>
+            </div>
+            
+                
     <div class="post__license">
         <p>
             <strong>本文作者：</strong>Layoute
         </p>
-        
-            <p>
-                <strong>
-                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
-
-                </strong>
-            </p>
-        
         <p>
             <strong>
                 本文链接：
             </strong>
             <a href="http://www.layoute.top/2018/09/12/jenkins-for-android-in-Docker/">http://www.layoute.top/2018/09/12/jenkins-for-android-in-Docker/</a>
         </p>
+        
     </div>
  
-    
-    
-        <div class="post-meta post-footer__meta">
+            
+            
+                <div class="post-meta post-footer__meta">
     <p>
-        <!-- 最后更新于：2020-05-08 -->
+        <!-- 最后更新于：2020-05-10 -->
     </p>
 </div> 
-    
-    
-        <div class="post-cats post-card__cats">
+            
+            
+                <div class="post-cats post-card__cats">
     
         <a href="/categories/Linux/" class="post-cats__link button">Linux</a>
     
         <a href="/categories/Linux/Docker/" class="post-cats__link button">Docker</a>
     
 </div> 
-        <div class="post-tags post-card__tags">
+                <div class="post-tags post-card__tags">
     
         <a href="/tags/Android/" class="post-tags__link button"># Android</a>
     
@@ -266,12 +242,12 @@
         <a href="/tags/Gradle/" class="post-tags__link button"># Gradle</a>
     
 </div> 
-     
-</article>
-<br>
-
-    <div class="post__comment content-card">
+             
+        </article>
+        <br>
         
+            <div class="post__comment content-card">
+                
     <h4 style="margin-top: 0;">评论</h4>
     
         <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
@@ -284,9 +260,8 @@
     
 
 
-    </div>
-
-
+            </div>
+        
     </div>
 
 

@@ -28,19 +28,19 @@
 
     <!--Social link-->
      
-        <meta name="description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView)  Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
+        <meta name="description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
 <meta name="keywords" content="swift,NSWindowController">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 笔记：Swift 隐藏标题栏">
 <meta property="og:url" content="http://www.layoute.top/2017/06/05/swift-titlebar/index.html">
 <meta property="og:site_name" content="Layoute&#39;s Blog">
-<meta property="og:description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView)  Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
+<meta property="og:description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.layoute.top/img/swift_ios.png">
-<meta property="og:updated_time" content="2020-05-08T03:56:16.497Z">
+<meta property="og:updated_time" content="2020-05-10T00:39:37.149Z">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="iOS 笔记：Swift 隐藏标题栏">
-<meta name="twitter:description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView)  Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
+<meta name="twitter:description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
 <meta name="twitter:image" content="http://www.layoute.top/img/swift_ios.png">
     
 
@@ -49,7 +49,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
     
 
     
@@ -132,18 +132,17 @@
                 
             </div>
         </aside>
-
-<article class="post content-card">
-    <div class="post__header">
-        
-            
+        <article class="post content-card">
+            <div class="post__header">
+                
+                    
     
         <img alt="Cover Image" src="/img/swift_ios.png">
     
  
-        
-        
-            
+                
+                
+                    
     <div class="post__expire" id="post-expired-notify">
         <p>
             本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
@@ -151,7 +150,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2020-05-08"),
+            var update = Date.parse("2020-05-10"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -163,73 +162,63 @@
         })();
     </script>
 
-        
-    </div>
-    <div class="post__content">
-        <div class="markdown-body">
-            <p><strong>必须使用NSWindowController</strong></p>
+                
+            </div>
+            <div class="post__content">
+                <div class="markdown-body">
+                    <p><strong>必须使用NSWindowController</strong></p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.styleMask.insert(.fullSizeContentView)</span><br></pre></td></tr></table></figure>
-
 <p>Or</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.styleMask = window.styleMask.union(.fullSizeContentView)</span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
 <p>Example:</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">windowDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.windowDidLoad()</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> window = window <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    window.titlebarAppearsTransparent = <span class="literal">true</span></span><br><span class="line">    window.titleVisibility = .hidden</span><br><span class="line">    window.styleMask.insert(.fullSizeContentView)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://i.stack.imgur.com/kEPdy.png" class="lazyload" data-srcset="https://i.stack.imgur.com/kEPdy.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="Example"></p>
 
-        </div>
-    </div>
-    
-        
+                </div>
+            </div>
+            
+                
     <div class="post__license">
         <p>
             <strong>本文作者：</strong>Layoute
         </p>
-        
-            <p>
-                <strong>
-                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
-
-                </strong>
-            </p>
-        
         <p>
             <strong>
                 本文链接：
             </strong>
             <a href="http://www.layoute.top/2017/06/05/swift-titlebar/">http://www.layoute.top/2017/06/05/swift-titlebar/</a>
         </p>
+        
     </div>
  
-    
-    
-        <div class="post-meta post-footer__meta">
+            
+            
+                <div class="post-meta post-footer__meta">
     <p>
-        <!-- 最后更新于：2020-05-08 -->
+        <!-- 最后更新于：2020-05-10 -->
     </p>
 </div> 
-    
-    
-        <div class="post-cats post-card__cats">
+            
+            
+                <div class="post-cats post-card__cats">
     
         <a href="/categories/Swift/" class="post-cats__link button">Swift</a>
     
 </div> 
-        <div class="post-tags post-card__tags">
+                <div class="post-tags post-card__tags">
     
         <a href="/tags/swift/" class="post-tags__link button"># swift</a>
     
         <a href="/tags/NSWindowController/" class="post-tags__link button"># NSWindowController</a>
     
 </div> 
-     
-</article>
-<br>
-
-    <div class="post__comment content-card">
+             
+        </article>
+        <br>
         
+            <div class="post__comment content-card">
+                
     <h4 style="margin-top: 0;">评论</h4>
     
         <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
@@ -242,9 +231,8 @@
     
 
 
-    </div>
-
-
+            </div>
+        
     </div>
 
 

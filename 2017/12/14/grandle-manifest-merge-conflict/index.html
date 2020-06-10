@@ -37,7 +37,7 @@
 <meta property="og:description" content="Android 开发中，添加的依赖库多了以后，gradle build 时经常会碰到如下问题  Manifest merger failed : Attribute meta-data#android.support.VERSION@value value=(26.1.0) from [com.android.support:support-v13:26.1.0] AndroidManifest">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.layoute.top/img/android_manifest.jpeg">
-<meta property="og:updated_time" content="2020-05-08T03:36:30.305Z">
+<meta property="og:updated_time" content="2020-05-10T00:39:37.147Z">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="添加依赖库出现 Manifest merger failed 错误解决办法">
 <meta name="twitter:description" content="Android 开发中，添加的依赖库多了以后，gradle build 时经常会碰到如下问题  Manifest merger failed : Attribute meta-data#android.support.VERSION@value value=(26.1.0) from [com.android.support:support-v13:26.1.0] AndroidManifest">
@@ -49,7 +49,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
     
 
     
@@ -134,18 +134,17 @@
                 
             </div>
         </aside>
-
-<article class="post content-card">
-    <div class="post__header">
-        
-            
+        <article class="post content-card">
+            <div class="post__header">
+                
+                    
     
         <img alt="Cover Image" src="/img/android_manifest.jpeg">
     
  
-        
-        
-            
+                
+                
+                    
     <div class="post__expire" id="post-expired-notify">
         <p>
             本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
@@ -153,7 +152,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2020-05-08"),
+            var update = Date.parse("2020-05-10"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -165,61 +164,53 @@
         })();
     </script>
 
-        
-    </div>
-    <div class="post__content">
-        <div class="markdown-body">
-            <p>Android 开发中，添加的依赖库多了以后，<code>gradle build</code> 时经常会碰到如下问题</p>
+                
+            </div>
+            <div class="post__content">
+                <div class="markdown-body">
+                    <p>Android 开发中，添加的依赖库多了以后，<code>gradle build</code> 时经常会碰到如下问题</p>
 <blockquote>
 <p>Manifest merger failed : Attribute meta-data#android.support.VERSION@value value=(26.1.0) from [com.android.support:support-v13:26.1.0] AndroidManifest.xml:28:13-35</p>
 </blockquote>
-<p>解决办法:</p>
-<a id="more"></a>
+<p>解决办法:<br><a id="more"></a></p>
 <ul>
 <li>在添加依赖的 build.gradle 文件中添加如下代码再次 <code>Sync</code> 即可解决  <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">configurations.all &#123;</span><br><span class="line">    resolutionStrategy.eachDependency &#123; </span><br><span class="line">        DependencyResolveDetails details -&gt;</span><br><span class="line">        <span class="keyword">def</span> requested = details.requested</span><br><span class="line">        <span class="keyword">if</span> (requested.group == <span class="string">'com.android.support'</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!requested.name.startsWith(<span class="string">"multidex"</span>)) &#123;</span><br><span class="line">                details.useVersion <span class="string">'25.3.1'</span> <span class="comment">// 此处为需要统一的 support 库版本号</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
-        </div>
-    </div>
-    
-        
+                </div>
+            </div>
+            
+                
     <div class="post__license">
         <p>
             <strong>本文作者：</strong>Layoute
         </p>
-        
-            <p>
-                <strong>
-                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
-
-                </strong>
-            </p>
-        
         <p>
             <strong>
                 本文链接：
             </strong>
             <a href="http://www.layoute.top/2017/12/14/grandle-manifest-merge-conflict/">http://www.layoute.top/2017/12/14/grandle-manifest-merge-conflict/</a>
         </p>
+        
     </div>
  
-    
-    
-        <div class="post-meta post-footer__meta">
+            
+            
+                <div class="post-meta post-footer__meta">
     <p>
-        <!-- 最后更新于：2020-05-08 -->
+        <!-- 最后更新于：2020-05-10 -->
     </p>
 </div> 
-    
-    
-        <div class="post-cats post-card__cats">
+            
+            
+                <div class="post-cats post-card__cats">
     
         <a href="/categories/Android/" class="post-cats__link button">Android</a>
     
         <a href="/categories/Android/Gradle/" class="post-cats__link button">Gradle</a>
     
 </div> 
-        <div class="post-tags post-card__tags">
+                <div class="post-tags post-card__tags">
     
         <a href="/tags/gradle/" class="post-tags__link button"># gradle</a>
     
@@ -228,12 +219,12 @@
         <a href="/tags/com-android-support/" class="post-tags__link button"># com.android.support</a>
     
 </div> 
-     
-</article>
-<br>
-
-    <div class="post__comment content-card">
+             
+        </article>
+        <br>
         
+            <div class="post__comment content-card">
+                
     <h4 style="margin-top: 0;">评论</h4>
     
         <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
@@ -246,9 +237,8 @@
     
 
 
-    </div>
-
-
+            </div>
+        
     </div>
 
 

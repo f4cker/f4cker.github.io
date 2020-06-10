@@ -37,7 +37,7 @@
 <meta property="og:description" content="点击开始菜单，选择运行，输入 regedit ，点击确定  定位到HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.layoute.top/img/win10_tab.png">
-<meta property="og:updated_time" content="2020-05-08T03:57:49.797Z">
+<meta property="og:updated_time" content="2020-05-10T00:39:37.155Z">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Win10 - 使用‘Alt+Tab’不能像 win7 切换窗口及更改切换风格">
 <meta name="twitter:description" content="点击开始菜单，选择运行，输入 regedit ，点击确定  定位到HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer">
@@ -49,7 +49,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
     
 
     
@@ -132,18 +132,17 @@
                 
             </div>
         </aside>
-
-<article class="post content-card">
-    <div class="post__header">
-        
-            
+        <article class="post content-card">
+            <div class="post__header">
+                
+                    
     
         <img alt="Cover Image" src="/img/win10_tab.png">
     
  
-        
-        
-            
+                
+                
+                    
     <div class="post__expire" id="post-expired-notify">
         <p>
             本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
@@ -151,7 +150,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2020-05-08"),
+            var update = Date.parse("2020-05-10"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -163,17 +162,16 @@
         })();
     </script>
 
-        
-    </div>
-    <div class="post__content">
-        <div class="markdown-body">
-            <ol>
+                
+            </div>
+            <div class="post__content">
+                <div class="markdown-body">
+                    <ol>
 <li><p>点击开始菜单，选择运行，输入 <code>regedit</code> ，点击确定</p>
 </li>
 <li><p>定位到<br><code>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer</code></p>
 <a id="more"></a></li>
-<li><p>在右侧找到 <code>AltTabSettings</code> 的键值对，没有则新建，类型为 DWORD(32位)值 ，然后赋值为 1 即可恢复使用 WinXp 经典的小图标且没有预览的切换风格</p>
-<img src="/2016/05/14/win10-alt-tab/1.jpeg" class="lazyload" data-srcset="/2016/05/14/win10-alt-tab/1.jpeg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
+<li>在右侧找到 <code>AltTabSettings</code> 的键值对，没有则新建，类型为 DWORD(32位)值 ，然后赋值为 1 即可恢复使用 WinXp 经典的小图标且没有预览的切换风格<img src="/2016/05/14/win10-alt-tab/1.jpeg" class="lazyload" data-srcset="/2016/05/14/win10-alt-tab/1.jpeg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
 <img src="/2016/05/14/win10-alt-tab/2.jpeg" class="lazyload" data-srcset="/2016/05/14/win10-alt-tab/2.jpeg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
 <blockquote>
 <p>补充:<br><br> 另外，HKEY_CURRENT_USER\Control Panel\Desktop 中的项 CoolSwitchColumns 与 CoolSwitchRows 控制着经典风格的显示的行列数，可以根据自己需要修改</p>
@@ -182,57 +180,50 @@
 </ol>
 <p><a href="https://jingyan.baidu.com/article/c910274b97187acd361d2d03.html" target="_blank" rel="noopener">参考</a></p>
 
-        </div>
-    </div>
-    
-        
+                </div>
+            </div>
+            
+                
     <div class="post__license">
         <p>
             <strong>本文作者：</strong>Layoute
         </p>
-        
-            <p>
-                <strong>
-                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
-
-                </strong>
-            </p>
-        
         <p>
             <strong>
                 本文链接：
             </strong>
             <a href="http://www.layoute.top/2016/05/14/win10-alt-tab/">http://www.layoute.top/2016/05/14/win10-alt-tab/</a>
         </p>
+        
     </div>
  
-    
-    
-        <div class="post-meta post-footer__meta">
+            
+            
+                <div class="post-meta post-footer__meta">
     <p>
-        <!-- 最后更新于：2020-05-08 -->
+        <!-- 最后更新于：2020-05-10 -->
     </p>
 </div> 
-    
-    
-        <div class="post-cats post-card__cats">
+            
+            
+                <div class="post-cats post-card__cats">
     
         <a href="/categories/windows/" class="post-cats__link button">windows</a>
     
 </div> 
-        <div class="post-tags post-card__tags">
+                <div class="post-tags post-card__tags">
     
         <a href="/tags/win10/" class="post-tags__link button"># win10</a>
     
         <a href="/tags/窗口切换/" class="post-tags__link button"># 窗口切换</a>
     
 </div> 
-     
-</article>
-<br>
-
-    <div class="post__comment content-card">
+             
+        </article>
+        <br>
         
+            <div class="post__comment content-card">
+                
     <h4 style="margin-top: 0;">评论</h4>
     
         <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
@@ -245,9 +236,8 @@
     
 
 
-    </div>
-
-
+            </div>
+        
     </div>
 
 

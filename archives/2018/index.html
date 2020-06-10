@@ -202,7 +202,7 @@
             <div class="markdown-body">
                 
                     <p>Android 开发的同学应该都有被 <code>Android Studio</code> 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️)</p>
-<p>为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～</p>
+<p>为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～<br>
                 
             </div>
            
@@ -324,7 +324,7 @@
             <div class="markdown-body">
                 
                     <p>本文总体根据官网链接 <a href="https://weex.apache.org/cn/guide/integrate-to-your-app.html" target="_blank" rel="noopener">集成 Weex 到已有应用</a> 进行集成，下面列出了遇到的问题及解决办法。</p>
-<h4 id="1-ReferenceError-Vue-is-not-defined"><a href="#1-ReferenceError-Vue-is-not-defined" class="headerlink" title="1. ReferenceError: Vue is not defined"></a>1. ReferenceError: Vue is not defined</h4><p>跟着官网的教程开始集成后你会发现项目跑起来后会提示 </p>
+<h4 id="1-ReferenceError-Vue-is-not-defined"><a href="#1-ReferenceError-Vue-is-not-defined" class="headerlink" title="1. ReferenceError: Vue is not defined"></a>1. ReferenceError: Vue is not defined</h4><p>跟着官网的教程开始集成后你会发现项目跑起来后会提示<br>
                 
             </div>
            
@@ -383,7 +383,7 @@
         
             <div class="markdown-body">
                 
-                    <h2 id="单文件项目-URLRewrite-问题"><a href="#单文件项目-URLRewrite-问题" class="headerlink" title="单文件项目 URLRewrite 问题"></a>单文件项目 URLRewrite 问题</h2><p>生产环境下，路由为mode:history的时候，刷新页面时我们会发现页面报 404 错误，这时我们就需要去修改 Apache 的设置文件 <code>httpd.conf</code> 使其支持URLRewrite.</p>
+                    <h2 id="单文件项目-URLRewrite-问题"><a href="#单文件项目-URLRewrite-问题" class="headerlink" title="单文件项目 URLRewrite 问题"></a>单文件项目 URLRewrite 问题</h2><p>生产环境下，路由为mode:history的时候，刷新页面时我们会发现页面报 404 错误，这时我们就需要去修改 Apache 的设置文件 <code>httpd.conf</code> 使其支持URLRewrite.<br>
                 
             </div>
            
@@ -616,7 +616,7 @@
             <div class="markdown-body">
                 
                     <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>因为 <code>Certbot</code> 的很多依赖并不在系统默认 Repo 中,需要先安装 <code>EPEL Repo</code> ,运行 <code>yum install epel-release</code> ,同时为了防止组件过旧导致的报错,建议运行一次 <code>yum update</code></p>
-<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .</p>
+<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .<br>
                 
             </div>
            
@@ -678,7 +678,6 @@
                     <ol>
 <li>homestead 里安装一个 <a href="https://github.com/cyfdecyf/cow" target="_blank" rel="noopener">cow</a>，然后在 <code>.env</code> 文件中增加一行 <code>HTTPS_PROXY=http://127.0.0.1:port_of_cow</code></li>
 <li>编辑 <code>～/.cow/rc</code> 文件 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen = http://127.0.0.1:7777</span><br><span class="line">proxy = ss://encryption:password@host:port</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
                 

@@ -28,18 +28,18 @@
 
     <!--Social link-->
      
-        <meta name="description" content="记录日志记录日志到 storage\logs\laravel.log 1234$writer = app(&apos;log&apos;);$writer-&amp;gt;error(&apos;updates is :&apos;, compact(&apos;updates&apos;));$message = $updates-&amp;gt;getMessage();$writer-&amp;gt;error(&apos;Message is :&apos;, compact(&apos;messag">
+        <meta name="description" content="记录日志记录日志到 storage\logs\laravel.log1234$writer = app(&apos;log&apos;);$writer-&amp;gt;error(&apos;updates is :&apos;, compact(&apos;updates&apos;));$message = $updates-&amp;gt;getMessage();$writer-&amp;gt;error(&apos;Message is :&apos;, compact(&apos;message">
 <meta name="keywords" content="https,nginx,laravel,crontab">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel skills">
 <meta property="og:url" content="http://www.layoute.top/2017/11/19/laravel-skill/index.html">
 <meta property="og:site_name" content="Layoute&#39;s Blog">
-<meta property="og:description" content="记录日志记录日志到 storage\logs\laravel.log 1234$writer = app(&apos;log&apos;);$writer-&amp;gt;error(&apos;updates is :&apos;, compact(&apos;updates&apos;));$message = $updates-&amp;gt;getMessage();$writer-&amp;gt;error(&apos;Message is :&apos;, compact(&apos;messag">
+<meta property="og:description" content="记录日志记录日志到 storage\logs\laravel.log1234$writer = app(&apos;log&apos;);$writer-&amp;gt;error(&apos;updates is :&apos;, compact(&apos;updates&apos;));$message = $updates-&amp;gt;getMessage();$writer-&amp;gt;error(&apos;Message is :&apos;, compact(&apos;message">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-08T07:19:25.474Z">
+<meta property="og:updated_time" content="2020-05-10T00:39:37.148Z">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Laravel skills">
-<meta name="twitter:description" content="记录日志记录日志到 storage\logs\laravel.log 1234$writer = app(&apos;log&apos;);$writer-&amp;gt;error(&apos;updates is :&apos;, compact(&apos;updates&apos;));$message = $updates-&amp;gt;getMessage();$writer-&amp;gt;error(&apos;Message is :&apos;, compact(&apos;messag">
+<meta name="twitter:description" content="记录日志记录日志到 storage\logs\laravel.log1234$writer = app(&apos;log&apos;);$writer-&amp;gt;error(&apos;updates is :&apos;, compact(&apos;updates&apos;));$message = $updates-&amp;gt;getMessage();$writer-&amp;gt;error(&apos;Message is :&apos;, compact(&apos;message">
     
 
     <!-- feed -->
@@ -47,7 +47,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
     
 
     
@@ -132,14 +132,13 @@
                 <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#记录日志"><span class="toc-number">1.</span> <span class="toc-text">记录日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Laravel-Nginx-Config-With-Https"><span class="toc-number">2.</span> <span class="toc-text">Laravel Nginx Config With Https</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建数据表修改迁移"><span class="toc-number">3.</span> <span class="toc-text">创建数据表修改迁移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#任务调度执行不成功"><span class="toc-number">4.</span> <span class="toc-text">任务调度执行不成功</span></a></li></ol>
             </div>
         </aside>
-
-<article class="post content-card">
-    <div class="post__header">
-        
-             
-        
-        
-            
+        <article class="post content-card">
+            <div class="post__header">
+                
+                     
+                
+                
+                    
     <div class="post__expire" id="post-expired-notify">
         <p>
             本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
@@ -147,7 +146,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2020-05-08"),
+            var update = Date.parse("2020-05-10"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -159,63 +158,52 @@
         })();
     </script>
 
-        
-    </div>
-    <div class="post__content">
-        <div class="markdown-body">
-            <h3 id="记录日志"><a href="#记录日志" class="headerlink" title="记录日志"></a>记录日志</h3><p>记录日志到 <code>storage\logs\laravel.log</code></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$writer = app(<span class="string">'log'</span>);</span><br><span class="line">$writer-&gt;error(<span class="string">'updates is :'</span>, compact(<span class="string">'updates'</span>));</span><br><span class="line">$message = $updates-&gt;getMessage();</span><br><span class="line">$writer-&gt;error(<span class="string">'Message is :'</span>, compact(<span class="string">'message'</span>));</span><br></pre></td></tr></table></figure>
-
+                
+            </div>
+            <div class="post__content">
+                <div class="markdown-body">
+                    <h3 id="记录日志"><a href="#记录日志" class="headerlink" title="记录日志"></a>记录日志</h3><p>记录日志到 <code>storage\logs\laravel.log</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$writer = app(<span class="string">'log'</span>);</span><br><span class="line">$writer-&gt;error(<span class="string">'updates is :'</span>, compact(<span class="string">'updates'</span>));</span><br><span class="line">$message = $updates-&gt;getMessage();</span><br><span class="line">$writer-&gt;error(<span class="string">'Message is :'</span>, compact(<span class="string">'message'</span>));</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <h3 id="Laravel-Nginx-Config-With-Https"><a href="#Laravel-Nginx-Config-With-Https" class="headerlink" title="Laravel Nginx Config With Https"></a>Laravel Nginx Config With Https</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">server&#123;    </span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span>;</span><br><span class="line">    <span class="attribute">server_name</span> app.layoute.top;</span><br><span class="line">    <span class="attribute">root</span> <span class="string">"/home/wwwroot/app_layoute_top/public"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">index</span> index.html index.htm index.php;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">charset</span> utf-<span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.php?<span class="variable">$query_string</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> = /favicon.ico &#123; <span class="attribute">access_log</span> <span class="literal">off</span>; <span class="attribute">log_not_found</span> <span class="literal">off</span>; &#125;</span><br><span class="line">    <span class="attribute">location</span> = /robots.txt  &#123; <span class="attribute">access_log</span> <span class="literal">off</span>; <span class="attribute">log_not_found</span> <span class="literal">off</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span> <span class="literal">off</span>;</span><br><span class="line">    <span class="attribute">error_log</span>  /www/web_logs/homestead.app-<span class="literal">error</span>.log <span class="literal">error</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">sendfile</span> <span class="literal">off</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">client_max_body_size</span> <span class="number">100m</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">        <span class="attribute">fastcgi_split_path_info</span><span class="regexp"> ^(.+\.php)(/.+)$</span>;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span> unix:/tmp/php-71-cgi.sock;</span><br><span class="line">        <span class="attribute">fastcgi_index</span> index.php;</span><br><span class="line">        <span class="attribute">include</span> fastcgi_params;</span><br><span class="line">        <span class="attribute">fastcgi_param</span> SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">fastcgi_intercept_errors</span> <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">fastcgi_buffer_size</span> <span class="number">16k</span>;</span><br><span class="line">        <span class="attribute">fastcgi_buffers</span> <span class="number">4</span> <span class="number">16k</span>;</span><br><span class="line">        <span class="attribute">fastcgi_connect_timeout</span> <span class="number">300</span>;</span><br><span class="line">        <span class="attribute">fastcgi_send_timeout</span> <span class="number">300</span>;</span><br><span class="line">        <span class="attribute">fastcgi_read_timeout</span> <span class="number">300</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ /\.ht</span> &#123;</span><br><span class="line">        <span class="attribute">deny</span> all;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">server_name</span> localhost;</span><br><span class="line">    <span class="attribute">ssl</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">ssl_session_timeout</span> <span class="number">5m</span>;</span><br><span class="line">    <span class="attribute">ssl_ciphers</span> ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>;</span><br><span class="line">    <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span>     /www/wdlinux/nginx/conf/cert/app.layoute.top.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /www/wdlinux/nginx/conf/cert/app.layoute.top.key;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="创建数据表修改迁移"><a href="#创建数据表修改迁移" class="headerlink" title="创建数据表修改迁移"></a>创建数据表修改迁移</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php artisan make:migration name_of_the_alter_migration --table=name_of_the_table_to_modify</span><br></pre></td></tr></table></figure>
-
 <h3 id="任务调度执行不成功"><a href="#任务调度执行不成功" class="headerlink" title="任务调度执行不成功"></a>任务调度执行不成功</h3><ul>
 <li>执行 <code>crontab -e</code> 编辑定时任务，将所有相对路径改为绝对路径（包括可执行文件）</li>
 </ul>
 
-        </div>
-    </div>
-    
-        
+                </div>
+            </div>
+            
+                
     <div class="post__license">
         <p>
             <strong>本文作者：</strong>Layoute
         </p>
-        
-            <p>
-                <strong>
-                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
-
-                </strong>
-            </p>
-        
         <p>
             <strong>
                 本文链接：
             </strong>
             <a href="http://www.layoute.top/2017/11/19/laravel-skill/">http://www.layoute.top/2017/11/19/laravel-skill/</a>
         </p>
+        
     </div>
  
-    
-    
-        <div class="post-meta post-footer__meta">
+            
+            
+                <div class="post-meta post-footer__meta">
     <p>
-        <!-- 最后更新于：2020-05-08 -->
+        <!-- 最后更新于：2020-05-10 -->
     </p>
 </div> 
-    
-    
-        <div class="post-cats post-card__cats">
+            
+            
+                <div class="post-cats post-card__cats">
     
         <a href="/categories/PHP/" class="post-cats__link button">PHP</a>
     
         <a href="/categories/PHP/Laravel/" class="post-cats__link button">Laravel</a>
     
 </div> 
-        <div class="post-tags post-card__tags">
+                <div class="post-tags post-card__tags">
     
         <a href="/tags/https/" class="post-tags__link button"># https</a>
     
@@ -226,12 +214,12 @@
         <a href="/tags/crontab/" class="post-tags__link button"># crontab</a>
     
 </div> 
-     
-</article>
-<br>
-
-    <div class="post__comment content-card">
+             
+        </article>
+        <br>
         
+            <div class="post__comment content-card">
+                
     <h4 style="margin-top: 0;">评论</h4>
     
         <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
@@ -244,9 +232,8 @@
     
 
 
-    </div>
-
-
+            </div>
+        
     </div>
 
 

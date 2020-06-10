@@ -188,7 +188,7 @@
             <div class="markdown-body">
                 
                     <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>因为 <code>Certbot</code> 的很多依赖并不在系统默认 Repo 中,需要先安装 <code>EPEL Repo</code> ,运行 <code>yum install epel-release</code> ,同时为了防止组件过旧导致的报错,建议运行一次 <code>yum update</code></p>
-<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .</p>
+<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .<br>
                 
             </div>
            
@@ -241,8 +241,7 @@
         
             <div class="markdown-body">
                 
-                    <h3 id="记录日志"><a href="#记录日志" class="headerlink" title="记录日志"></a>记录日志</h3><p>记录日志到 <code>storage\logs\laravel.log</code></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$writer = app(<span class="string">'log'</span>);</span><br><span class="line">$writer-&gt;error(<span class="string">'updates is :'</span>, compact(<span class="string">'updates'</span>));</span><br><span class="line">$message = $updates-&gt;getMessage();</span><br><span class="line">$writer-&gt;error(<span class="string">'Message is :'</span>, compact(<span class="string">'message'</span>));</span><br></pre></td></tr></table></figure>
+                    <h3 id="记录日志"><a href="#记录日志" class="headerlink" title="记录日志"></a>记录日志</h3><p>记录日志到 <code>storage\logs\laravel.log</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$writer = app(<span class="string">'log'</span>);</span><br><span class="line">$writer-&gt;error(<span class="string">'updates is :'</span>, compact(<span class="string">'updates'</span>));</span><br><span class="line">$message = $updates-&gt;getMessage();</span><br><span class="line">$writer-&gt;error(<span class="string">'Message is :'</span>, compact(<span class="string">'message'</span>));</span><br></pre></td></tr></table></figure></p>
                 
             </div>
            

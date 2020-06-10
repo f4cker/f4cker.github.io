@@ -192,7 +192,7 @@
             <div class="markdown-body">
                 
                     <p>Android 开发的同学应该都有被 <code>Android Studio</code> 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️)</p>
-<p>为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～</p>
+<p>为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～<br>
                 
             </div>
            
@@ -317,7 +317,7 @@
             <div class="markdown-body">
                 
                     <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>因为 <code>Certbot</code> 的很多依赖并不在系统默认 Repo 中,需要先安装 <code>EPEL Repo</code> ,运行 <code>yum install epel-release</code> ,同时为了防止组件过旧导致的报错,建议运行一次 <code>yum update</code></p>
-<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .</p>
+<h3 id="安装-Certbot"><a href="#安装-Certbot" class="headerlink" title="安装 Certbot"></a>安装 <code>Certbot</code></h3><p>因为目前没有 CentOS 的预编译安装包，所以通过 <code>certbot-auto</code> 脚本来获得 <code>Certbot</code> .<br>
                 
             </div>
            
@@ -370,7 +370,7 @@
         
             <div class="markdown-body">
                 
-                    <h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name dao_testlaravel_3 --link laravel-mysql:mysql -d -p 80 daocloud.io/layoute/laravel-english</span><br></pre></td></tr></table></figure>
+                    <h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name dao_testlaravel_3 --link laravel-mysql:mysql <span class="_">-d</span> -p 80 daocloud.io/layoute/laravel-english</span><br></pre></td></tr></table></figure>
                 
             </div>
            

@@ -29,6 +29,10 @@
   box-flex: 1;
   padding: 2px 0 2px 0.8rem;
 }
+.archives .archives-item .archives-content .archives-title {
+  color: var(--title-color);
+  font-size: 20px;
+}
 .archives .archives-item .archives-icon::before {
   border: 0.1rem solid var(--main-color);
   border-radius: 50%;
@@ -60,4 +64,7 @@
   position: absolute;
   top: 1.2rem;
   width: 2px;
+}
+.archives .archives-item:last-child::before {
+  background: 0 0;
 }

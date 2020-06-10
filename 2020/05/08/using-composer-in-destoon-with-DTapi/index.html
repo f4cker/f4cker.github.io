@@ -37,7 +37,7 @@
 <meta property="og:description" content="最近项目使用到 Destoon CMS 来开发一套内容管理及商城综合系统，Destoon CMS 本身是一个前端模板渲染的项目，PC 端开发并没有碰到什么问题，涉及到小程序及 App 开发时确实碰到不少问题，讲到 App 及小程序开发自然是要涉及到接口开发的，然而对于接口开发 Destoon 官方是没有什么支持的，自己手撸也是一个比较耗时间且很多重复工作的活，还好在网上翻了一圈找到了一个开源项目">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.layoute.top/img/php_composer.png">
-<meta property="og:updated_time" content="2020-05-08T06:46:32.232Z">
+<meta property="og:updated_time" content="2020-05-10T00:39:37.150Z">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Destoon 中引入 DTapi 框架并使用 Composer 管理依赖">
 <meta name="twitter:description" content="最近项目使用到 Destoon CMS 来开发一套内容管理及商城综合系统，Destoon CMS 本身是一个前端模板渲染的项目，PC 端开发并没有碰到什么问题，涉及到小程序及 App 开发时确实碰到不少问题，讲到 App 及小程序开发自然是要涉及到接口开发的，然而对于接口开发 Destoon 官方是没有什么支持的，自己手撸也是一个比较耗时间且很多重复工作的活，还好在网上翻了一圈找到了一个开源项目">
@@ -49,7 +49,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
     
 
     
@@ -132,18 +132,17 @@
                 <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-接入-DTapi"><span class="toc-number">1.</span> <span class="toc-text">1. 接入 DTapi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-引入-Composer"><span class="toc-number">2.</span> <span class="toc-text">2. 引入 Composer</span></a></li></ol>
             </div>
         </aside>
-
-<article class="post content-card">
-    <div class="post__header">
-        
-            
+        <article class="post content-card">
+            <div class="post__header">
+                
+                    
     
         <img alt="Cover Image" src="/img/php_composer.png">
     
  
-        
-        
-            
+                
+                
+                    
     <div class="post__expire" id="post-expired-notify">
         <p>
             本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
@@ -151,7 +150,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2020-05-08"),
+            var update = Date.parse("2020-05-10"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -163,63 +162,53 @@
         })();
     </script>
 
-        
-    </div>
-    <div class="post__content">
-        <div class="markdown-body">
-            <p>最近项目使用到 <code>Destoon CMS</code> 来开发一套内容管理及商城综合系统，<code>Destoon CMS</code> 本身是一个前端模板渲染的项目，PC 端开发并没有碰到什么问题，涉及到小程序及 App 开发时确实碰到不少问题，讲到 App 及小程序开发自然是要涉及到接口开发的，然而对于接口开发 Destoon 官方是没有什么支持的，自己手撸也是一个比较耗时间且很多重复工作的活，还好在网上翻了一圈找到了一个开源项目 <a href="https://gitee.com/gaofeigz_admin/DTapi" target="_blank" rel="noopener">DTapi</a></p>
+                
+            </div>
+            <div class="post__content">
+                <div class="markdown-body">
+                    <p>最近项目使用到 <code>Destoon CMS</code> 来开发一套内容管理及商城综合系统，<code>Destoon CMS</code> 本身是一个前端模板渲染的项目，PC 端开发并没有碰到什么问题，涉及到小程序及 App 开发时确实碰到不少问题，讲到 App 及小程序开发自然是要涉及到接口开发的，然而对于接口开发 Destoon 官方是没有什么支持的，自己手撸也是一个比较耗时间且很多重复工作的活，还好在网上翻了一圈找到了一个开源项目 <a href="https://gitee.com/gaofeigz_admin/DTapi" target="_blank" rel="noopener">DTapi</a></p>
 <h2 id="1-接入-DTapi"><a href="#1-接入-DTapi" class="headerlink" title="1. 接入 DTapi"></a>1. 接入 DTapi</h2><p>按照 <a href="http://doc.dtapi.cn" target="_blank" rel="noopener">DTapi 文档</a> 接入操作只因即可很方便的接入 <code>DTapi</code> 框架，但是到了此处却发现接入了 <code>DTapi</code> 框架后好像还缺点啥</p>
 <p>没错，就是包管理了，不然轮子哪里来嘛</p>
 <p>那我们首选的肯定是 <code>Composer</code> 这个大名鼎鼎的包管理器了</p>
 <h2 id="2-引入-Composer"><a href="#2-引入-Composer" class="headerlink" title="2. 引入 Composer"></a>2. 引入 Composer</h2><p><em>以下流程需确保本机已装好 Composer 可执行程序并且设置在环境变量中</em></p>
 <p>进入 Destoon 项目根目录，执行以下命令：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ composer require monolog/monolog</span><br></pre></td></tr></table></figure></p>
 <img src="/2020/05/08/using-composer-in-destoon-with-DTapi/1.png" class="lazyload" data-srcset="/2020/05/08/using-composer-in-destoon-with-DTapi/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
-
 <p>看到如上输出即表示我们的 <code>composer require</code> 命令已经成功执行，并且在项目根目录下面生成了 <code>composer.json</code>、 <code>composer.lock</code> 文件以及依赖包仓库 <code>vendor</code> 文件夹，而我们最重要的角色就是 <code>vendor</code> 文件夹下的 <code>autoload.php</code> (composer 的自动加载类文件)</p>
-<p>此时我们只需要在上文 <a href="http://doc.dtapi.cn" target="_blank" rel="noopener">DTapi 文档</a> 提到的对于 <a href="http://doc.dtapi.cn/1077277" target="_blank" rel="noopener">控制器的访问</a> 中所说的入口文件中引入我们的 <code>vendor/autoload.php</code> 文件就可以正常使用第三方依赖包了</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此处是以项目根目录下的 api.php 作为示例</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'./vendor/autoload.php'</span>;</span><br></pre></td></tr></table></figure>
-
+<p>此时我们只需要在上文 <a href="http://doc.dtapi.cn" target="_blank" rel="noopener">DTapi 文档</a> 提到的对于 <a href="http://doc.dtapi.cn/1077277" target="_blank" rel="noopener">控制器的访问</a> 中所说的入口文件中引入我们的 <code>vendor/autoload.php</code> 文件就可以正常使用第三方依赖包了<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此处是以项目根目录下的 api.php 作为示例</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'./vendor/autoload.php'</span>;</span><br></pre></td></tr></table></figure></p>
 <p>搞定，收工</p>
 
-        </div>
-    </div>
-    
-        
+                </div>
+            </div>
+            
+                
     <div class="post__license">
         <p>
             <strong>本文作者：</strong>Layoute
         </p>
-        
-            <p>
-                <strong>
-                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
-
-                </strong>
-            </p>
-        
         <p>
             <strong>
                 本文链接：
             </strong>
             <a href="http://www.layoute.top/2020/05/08/using-composer-in-destoon-with-DTapi/">http://www.layoute.top/2020/05/08/using-composer-in-destoon-with-DTapi/</a>
         </p>
+        
     </div>
  
-    
-    
-        <div class="post-meta post-footer__meta">
+            
+            
+                <div class="post-meta post-footer__meta">
     <p>
-        <!-- 最后更新于：2020-05-08 -->
+        <!-- 最后更新于：2020-05-10 -->
     </p>
 </div> 
-    
-    
-        <div class="post-cats post-card__cats">
+            
+            
+                <div class="post-cats post-card__cats">
     
         <a href="/categories/PHP/" class="post-cats__link button">PHP</a>
     
 </div> 
-        <div class="post-tags post-card__tags">
+                <div class="post-tags post-card__tags">
     
         <a href="/tags/destoon/" class="post-tags__link button"># destoon</a>
     
@@ -230,12 +219,12 @@
         <a href="/tags/composer/" class="post-tags__link button"># composer</a>
     
 </div> 
-     
-</article>
-<br>
-
-    <div class="post__comment content-card">
+             
+        </article>
+        <br>
         
+            <div class="post__comment content-card">
+                
     <h4 style="margin-top: 0;">评论</h4>
     
         <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
@@ -248,9 +237,8 @@
     
 
 
-    </div>
-
-
+            </div>
+        
     </div>
 
 

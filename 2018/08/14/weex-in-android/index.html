@@ -37,7 +37,7 @@
 <meta property="og:description" content="本文总体根据官网链接 集成 Weex 到已有应用 进行集成，下面列出了遇到的问题及解决办法。 1. ReferenceError: Vue is not defined跟着官网的教程开始集成后你会发现项目跑起来后会提示">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.layoute.top/2018/08/14/weex-in-android/1.png">
-<meta property="og:updated_time" content="2020-05-08T03:41:05.228Z">
+<meta property="og:updated_time" content="2020-05-10T00:39:37.154Z">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="将 Weex 组件集成到现有 Android 项目踩坑">
 <meta name="twitter:description" content="本文总体根据官网链接 集成 Weex 到已有应用 进行集成，下面列出了遇到的问题及解决办法。 1. ReferenceError: Vue is not defined跟着官网的教程开始集成后你会发现项目跑起来后会提示">
@@ -49,7 +49,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
     
 
     
@@ -134,14 +134,13 @@
                 <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-ReferenceError-Vue-is-not-defined"><span class="toc-number">1.</span> <span class="toc-text">1. ReferenceError: Vue is not defined</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-JSBundle-资源生成"><span class="toc-number">2.</span> <span class="toc-text">2. JSBundle 资源生成</span></a></li></ol>
             </div>
         </aside>
-
-<article class="post content-card">
-    <div class="post__header">
-        
-             
-        
-        
-            
+        <article class="post content-card">
+            <div class="post__header">
+                
+                     
+                
+                
+                    
     <div class="post__expire" id="post-expired-notify">
         <p>
             本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
@@ -149,7 +148,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2020-05-08"),
+            var update = Date.parse("2020-05-10"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -161,66 +160,50 @@
         })();
     </script>
 
-        
-    </div>
-    <div class="post__content">
-        <div class="markdown-body">
-            <p>本文总体根据官网链接 <a href="https://weex.apache.org/cn/guide/integrate-to-your-app.html" target="_blank" rel="noopener">集成 Weex 到已有应用</a> 进行集成，下面列出了遇到的问题及解决办法。</p>
-<h4 id="1-ReferenceError-Vue-is-not-defined"><a href="#1-ReferenceError-Vue-is-not-defined" class="headerlink" title="1. ReferenceError: Vue is not defined"></a>1. ReferenceError: Vue is not defined</h4><p>跟着官网的教程开始集成后你会发现项目跑起来后会提示 </p>
-<a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E/jsengine: ReportException :undefined:5: ReferenceError: Vue is not defined</span><br></pre></td></tr></table></figure>
+                
+            </div>
+            <div class="post__content">
+                <div class="markdown-body">
+                    <p>本文总体根据官网链接 <a href="https://weex.apache.org/cn/guide/integrate-to-your-app.html" target="_blank" rel="noopener">集成 Weex 到已有应用</a> 进行集成，下面列出了遇到的问题及解决办法。</p>
+<h4 id="1-ReferenceError-Vue-is-not-defined"><a href="#1-ReferenceError-Vue-is-not-defined" class="headerlink" title="1. ReferenceError: Vue is not defined"></a>1. ReferenceError: Vue is not defined</h4><p>跟着官网的教程开始集成后你会发现项目跑起来后会提示<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E/jsengine: ReportException :undefined:5: ReferenceError: Vue is not defined</span><br></pre></td></tr></table></figure></p>
+<p>查了资料才发现这是官网文档未及时更新的缘故,只需要将依赖导入语句修改如下然后重新编译即可<!-- more --><br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 更新 weex_sdk 为较新版本即可,可以去 jcenter 查找release version</span></span><br><span class="line">implementation <span class="string">'com.taobao.android:weex_sdk:0.16.0@aar'</span></span><br></pre></td></tr></table></figure></p>
+<p>同时,官网文档的 render 方法也需要修改如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mWXSDKInstance.render(&quot;WXSample&quot;, WXFileUtils.loadFileContent(&quot;index.js&quot;, this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);</span><br><span class="line">// 修改为下面</span><br><span class="line">mWXSDKInstance.render(&quot;WXSample&quot;, WXFileUtils.loadAsset(&quot;index.js&quot;, this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-JSBundle-资源生成"><a href="#2-JSBundle-资源生成" class="headerlink" title="2. JSBundle 资源生成"></a>2. JSBundle 资源生成</h4><p>Android 加载 weex 和加载 React Native 类似也是要提供个 JSBundle 文件. 我们 <code>weex create</code> 后生成的项目文件都是以 .vue 后缀名结尾的,在引入 Android 之前,我们需要进行些处理才能放入 Android 项目的 assets 目录中供 WeexSdk 调用: 在项目根目录运行 <code>npm run build</code> 编译完成后会在dist目录下生成文件,每个vue文件会生成对应的js, 然后我们将 dist 文件夹内的 *.js 文件拷贝到 Android Assets 目录下即可<br><img src="/2018/08/14/weex-in-android/1.png" class="lazyload" data-srcset="/2018/08/14/weex-in-android/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg=="></p>
 
-<p>查了资料才发现这是官网文档未及时更新的缘故,只需要将依赖导入语句修改如下然后重新编译即可<!-- more --></p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 更新 weex_sdk 为较新版本即可,可以去 jcenter 查找release version</span></span><br><span class="line">implementation <span class="string">'com.taobao.android:weex_sdk:0.16.0@aar'</span></span><br></pre></td></tr></table></figure>
-
-<p>同时,官网文档的 render 方法也需要修改如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mWXSDKInstance.render(&quot;WXSample&quot;, WXFileUtils.loadFileContent(&quot;index.js&quot;, this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);</span><br><span class="line">// 修改为下面</span><br><span class="line">mWXSDKInstance.render(&quot;WXSample&quot;, WXFileUtils.loadAsset(&quot;index.js&quot;, this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-JSBundle-资源生成"><a href="#2-JSBundle-资源生成" class="headerlink" title="2. JSBundle 资源生成"></a>2. JSBundle 资源生成</h4><p>Android 加载 weex 和加载 React Native 类似也是要提供个 JSBundle 文件. 我们 <code>weex create</code> 后生成的项目文件都是以 .vue 后缀名结尾的,在引入 Android 之前,我们需要进行些处理才能放入 Android 项目的 assets 目录中供 WeexSdk 调用: 在项目根目录运行 <code>npm run build</code> 编译完成后会在dist目录下生成文件,每个vue文件会生成对应的js, 然后我们将 dist 文件夹内的 *.js 文件拷贝到 Android Assets 目录下即可</p>
-<img src="/2018/08/14/weex-in-android/1.png" class="lazyload" data-srcset="/2018/08/14/weex-in-android/1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==">
-
-
-        </div>
-    </div>
-    
-        
+                </div>
+            </div>
+            
+                
     <div class="post__license">
         <p>
             <strong>本文作者：</strong>Layoute
         </p>
-        
-            <p>
-                <strong>
-                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
-
-                </strong>
-            </p>
-        
         <p>
             <strong>
                 本文链接：
             </strong>
             <a href="http://www.layoute.top/2018/08/14/weex-in-android/">http://www.layoute.top/2018/08/14/weex-in-android/</a>
         </p>
+        
     </div>
  
-    
-    
-        <div class="post-meta post-footer__meta">
+            
+            
+                <div class="post-meta post-footer__meta">
     <p>
-        <!-- 最后更新于：2020-05-08 -->
+        <!-- 最后更新于：2020-05-10 -->
     </p>
 </div> 
-    
-    
-        <div class="post-cats post-card__cats">
+            
+            
+                <div class="post-cats post-card__cats">
     
         <a href="/categories/Android/" class="post-cats__link button">Android</a>
     
         <a href="/categories/Android/Weex/" class="post-cats__link button">Weex</a>
     
 </div> 
-        <div class="post-tags post-card__tags">
+                <div class="post-tags post-card__tags">
     
         <a href="/tags/vue/" class="post-tags__link button"># vue</a>
     
@@ -229,12 +212,12 @@
         <a href="/tags/weex/" class="post-tags__link button"># weex</a>
     
 </div> 
-     
-</article>
-<br>
-
-    <div class="post__comment content-card">
+             
+        </article>
+        <br>
         
+            <div class="post__comment content-card">
+                
     <h4 style="margin-top: 0;">评论</h4>
     
         <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
@@ -247,9 +230,8 @@
     
 
 
-    </div>
-
-
+            </div>
+        
     </div>
 
 

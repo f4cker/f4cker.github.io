@@ -43,7 +43,6 @@ html {
   background: 0 0 !important;
 }
 ::-webkit-scrollbar-thumb {
-  border-radius: 20% 20%;
   background: rgba(0,0,0,0.3) !important;
 }
 @media screen and (max-width: 762px) {
@@ -65,12 +64,7 @@ body {
   padding: 0;
   line-height: $font_lineheight;
 }
-@media screen and (max-width: 700px) {
-  body {
-    --space: $space_s;
-  }
-}
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 650px) {
   body {
     --space: $space_sm;
   }

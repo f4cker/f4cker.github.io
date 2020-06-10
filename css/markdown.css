@@ -45,17 +45,22 @@ s {
   font-smoothing: antialiased;
   osx-font-smoothing: grayscale;
 }
+a {
+  color: var(--link-color);
+  cursor: pointer;
+  text-decoration: none;
+}
+a:-webkit-any-link {
+  color: var(--link-color);
+  cursor: pointer;
+  text-decoration: none;
+}
 a:not(.button) {
   color: var(--link-color);
   transition: opacity 0.2s;
 }
 a:not(.button):hover {
   text-decoration: underline;
-}
-a:-webkit-any-link {
-  color: var(--link-color);
-  cursor: pointer;
-  text-decoration: none;
 }
 a .index-title {
   color: var(--title-color);
@@ -407,6 +412,13 @@ table td:not(.code):not(.gutter),
 table th:not(.code):not(.gutter) {
   padding: 6px 13px;
   border: 1px solid var(--border-color);
+}
+overflows table {
+  overflow: auto;
+}
+overflows table th,
+overflows table td {
+  white-space: nowrap;
 }
 .markdown-body {
   text-size-adjust: 100%;

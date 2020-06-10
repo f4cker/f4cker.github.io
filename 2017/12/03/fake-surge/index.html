@@ -36,7 +36,7 @@
 <meta property="og:site_name" content="Layoute&#39;s Blog">
 <meta property="og:description" content="首先通过 brew 安装 libfaketime 。由于依赖 GNU 时间，还需要安装 coreutils 。如还未装 brew ，首先在终端运行如下命令安装:  1$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-08T03:08:35.288Z">
+<meta property="og:updated_time" content="2020-05-10T00:39:37.146Z">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="利用 libfaketime 无限期试用 Surge For Mac">
 <meta name="twitter:description" content="首先通过 brew 安装 libfaketime 。由于依赖 GNU 时间，还需要安装 coreutils 。如还未装 brew ，首先在终端运行如下命令安装:  1$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;">
@@ -47,7 +47,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.0/dist/css/style.min.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.1/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
     
 
     
@@ -128,14 +128,13 @@
                 
             </div>
         </aside>
-
-<article class="post content-card">
-    <div class="post__header">
-        
-             
-        
-        
-            
+        <article class="post content-card">
+            <div class="post__header">
+                
+                     
+                
+                
+                    
     <div class="post__expire" id="post-expired-notify">
         <p>
             本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
@@ -143,7 +142,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2020-05-08"),
+            var update = Date.parse("2020-05-10"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -155,68 +154,57 @@
         })();
     </script>
 
-        
-    </div>
-    <div class="post__content">
-        <div class="markdown-body">
-            <ol>
+                
+            </div>
+            <div class="post__content">
+                <div class="markdown-body">
+                    <ol>
 <li><p>首先通过 brew 安装 libfaketime 。由于依赖 GNU 时间，还需要安装 coreutils 。如还未装 brew ，首先在终端运行如下命令安装:</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
-
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/ruby <span class="_">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
  <a id="more"></a></li>
 <li><p>安装完成后，继续在终端通过 brew 安装 libfaketime 和 coreutils :</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install libfaketime coreutils</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>直接通过 faketime 来运行 Surge ，并且为 Surge 单独伪造系统时间为 2007 年 1 月 1 日:</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ faketime <span class="string">'2007-01-01 00:00:00'</span> /Applications/Surge.app/Contents/MacOS/Surge &amp;</span><br></pre></td></tr></table></figure>
-
 <p> 改为</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ FAKETIME_STOP_AFTER_SECONDS=10 faketime -f <span class="string">'@2007-01-01 00:00:00'</span> /Applications/Surge.app/Contents/MacOS/Surge &amp;</span><br></pre></td></tr></table></figure>
-
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ FAKETIME_STOP_AFTER_SECONDS=10 faketime <span class="_">-f</span> <span class="string">'@2007-01-01 00:00:00'</span> /Applications/Surge.app/Contents/MacOS/Surge &amp;</span><br></pre></td></tr></table></figure>
 <p> 10 秒后关闭 libfaketime 的以修复 libfaketime 的长时间高 CPU 占用</p>
 </li>
-<li><p>关闭终端，收工</p>
-</li>
+<li>关闭终端，收工</li>
 </ol>
 <p>转载自: <a href="https://www.daletan.win/2017/10/27/surge-for-mac-trial-crack/" target="_blank" rel="noopener">子与孟子曰</a></p>
 
-        </div>
-    </div>
-    
-        
+                </div>
+            </div>
+            
+                
     <div class="post__license">
         <p>
             <strong>本文作者：</strong>Layoute
         </p>
-        
-            <p>
-                <strong>
-                    <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
-
-                </strong>
-            </p>
-        
         <p>
             <strong>
                 本文链接：
             </strong>
             <a href="http://www.layoute.top/2017/12/03/fake-surge/">http://www.layoute.top/2017/12/03/fake-surge/</a>
         </p>
+        
     </div>
  
-    
-    
-        <div class="post-meta post-footer__meta">
+            
+            
+                <div class="post-meta post-footer__meta">
     <p>
-        <!-- 最后更新于：2020-05-08 -->
+        <!-- 最后更新于：2020-05-10 -->
     </p>
 </div> 
-    
-    
-        <div class="post-cats post-card__cats">
+            
+            
+                <div class="post-cats post-card__cats">
     
 </div> 
-        <div class="post-tags post-card__tags">
+                <div class="post-tags post-card__tags">
     
         <a href="/tags/mac/" class="post-tags__link button"># mac</a>
     
@@ -225,12 +213,12 @@
         <a href="/tags/software/" class="post-tags__link button"># software</a>
     
 </div> 
-     
-</article>
-<br>
-
-    <div class="post__comment content-card">
+             
+        </article>
+        <br>
         
+            <div class="post__comment content-card">
+                
     <h4 style="margin-top: 0;">评论</h4>
     
         <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
@@ -243,9 +231,8 @@
     
 
 
-    </div>
-
-
+            </div>
+        
     </div>
 
 
