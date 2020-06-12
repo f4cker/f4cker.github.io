@@ -20,7 +20,7 @@
 
     <!-- meta -->
     
-    <title>标签：Laravel | Layoute&#39;s Blog</title>
+    <title>标签：laravel | Layoute&#39;s Blog</title>
     
     
         <meta name="description" content="体面、优雅的写博客">
@@ -31,7 +31,7 @@
         <meta name="description" content="体面、优雅的写博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Layoute&#39;s Blog">
-<meta property="og:url" content="http://www.layoute.top/tags/Laravel/index.html">
+<meta property="og:url" content="http://www.layoute.top/tags/laravel/index.html">
 <meta property="og:site_name" content="Layoute&#39;s Blog">
 <meta property="og:description" content="体面、优雅的写博客">
 <meta property="og:locale" content="zh-CN">
@@ -43,24 +43,15 @@
     <!-- feed -->
     
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.4/dist/css/style.min.css"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.4/dist/css/style.min.css"> 
     
 
     
         <script src="/js/darkmode.js"></script>
     
 
-    <!--LaTex-->
-    
-
      
 
-    
-        
-             
-        
-             
-        
     
 
 </head>
@@ -158,6 +149,12 @@
                 
                     
                 
+                    
+                
+                    
+                
+                    
+                
             
         
         
@@ -168,27 +165,36 @@
     
         
     
-        <a href="/2018/04/03/Laravel-日志踩坑/">
-            <img alt="Cover Image" src="/img/laravel_log.png">
+        <a href="/2019/04/09/daoloud-docker-laravel-wechat/">
+            <img alt="Cover Image" src="/img/daocloud_docker_laravel.png">
         </a>
     
  
     
 </div>
 <div class="post-card__content">
-    <a href="/2018/04/03/Laravel-日志踩坑/" class="index-title">
+    <a href="/2019/04/09/daoloud-docker-laravel-wechat/" class="index-title">
         <h2 class="post-card__title">
-            Laravel 日志踩坑
+            DaoCloud + Local Server + Laravel + Laravel-Wechat 构建微信公众号测试平台
         </h2>
     </a>
     <p class="post-card__descrption">
         
             <div class="markdown-body">
                 
-                    <blockquote>
-<p>分享一个大家可能会踩到的坑，如果你在使用 Laravel，并且日志配置是按天记录的（daily）,那么你千万不要用 root 角色来执行计划任务，请以你的 nginx 子进程用户（也就是我们平常说的 www 用户），比如我的机器 Ubuntu 默认 apt 安装 nginx 的话是 www-data，那么应该修改 crontab 配置像以下这样：</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * www-data php [项目目录]/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+                    <h2 id="DaoCloud-使用"><a href="#DaoCloud-使用" class="headerlink" title="DaoCloud 使用"></a>DaoCloud 使用</h2><ol>
+<li><p>注册DaoCloud账号</p>
+<ul>
+<li>Github 账号登录</li>
+<li>微信账号登录</li>
+</ul>
+</li>
+<li><p>绑定支持的版本控制服务</p>
+<ul>
+<li><a href="https://coding.net" target="_blank" rel="noopener">Coding.net</a></li>
+<li><a href="https://github.com" target="_blank" rel="noopener">Github</a></li>
+<li><a href="https://gitlab.com/explore" target="_blank" rel="noopener">GitLab</a></li>
+<li><a href="https://bitbucket.org" target="_blank" rel="noopener">Bitbucket</a>
                 
             </div>
            
@@ -196,8 +202,8 @@
 </div>
 <div class="post-card__meta">
     
-        <a href="/archives/2018/04/" class="button" style="color: #808080;">
-    2018-04-03
+        <a href="/archives/2019/04/" class="button" style="color: #808080;">
+    2019-04-09
 </a>
     
     
@@ -206,15 +212,21 @@
 
     <span class="separate-dot"></span><a href="/categories/PHP/Laravel/" class="button">Laravel</a>
 
+    <span class="separate-dot"></span><a href="/categories/Docker/" class="button">Docker</a>
+
  
     
 </div>
 
     <div class="post-tags post-card__tags">
     
-        <a href="/tags/Laravel/" class="post-tags__link button"># Laravel</a>
+        <a href="/tags/laravel/" class="post-tags__link button"># laravel</a>
     
-        <a href="/tags/Log/" class="post-tags__link button"># Log</a>
+        <a href="/tags/daocloud/" class="post-tags__link button"># daocloud</a>
+    
+        <a href="/tags/docker/" class="post-tags__link button"># docker</a>
+    
+        <a href="/tags/laravel-wechat/" class="post-tags__link button"># laravel-wechat</a>
     
 </div> 
 
@@ -222,63 +234,22 @@
                 </div>
                 
             
-        
-    </div>
+                
+                <div class='post-card content-card'>
+                    <div class="post-card__header">
     
         
     
-
-
-        </main>
+        <a href="/2019/03/25/laravel-vue-spa/">
+            <img alt="Cover Image" src="/img/laravel_vue_spa.png">
+        </a>
     
-
-<footer class="footer">
-     
-
-
-     
-  
+ 
     
-        
-            <p>Copyright © 2020</p>
-
-        
-    
-    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
-</footer>
-
-        </div>
-        
-    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
-    <script>
-        window.lazyLoadOptions = {
-            elements_selector: ".lazyload",
-            threshold: 0
-        };
-    </script>
-
-
- 
-
- 
-
- 
-
-  
-
-
-
- 
-
- 
-    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.4/dist/js/b2t.min.js"></script>
- 
-
-
-
-    </body>
-</html>
-title">
+</div>
+<div class="post-card__content">
+    <a href="/2019/03/25/laravel-vue-spa/" class="index-title">
+        <h2 class="post-card__title">
             Laravel + Vue.js 前后端分离（SPA）
         </h2>
     </a>
@@ -303,9 +274,9 @@ title">
         
     <span class="separate-dot"></span><a href="/categories/PHP/" class="button">PHP</a>
 
-    <span class="separate-dot"></span><a href="/categories/Vue/" class="button">Vue</a>
-
     <span class="separate-dot"></span><a href="/categories/PHP/Laravel/" class="button">Laravel</a>
+
+    <span class="separate-dot"></span><a href="/categories/Vue/" class="button">Vue</a>
 
  
     
@@ -487,13 +458,14 @@ title">
 
   
 
-
-
  
 
  
     <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.4/dist/js/b2t.min.js"></script>
- 
+
+
+
+
 
 
 
