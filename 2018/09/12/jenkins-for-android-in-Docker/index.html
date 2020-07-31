@@ -22,11 +22,10 @@
     
     <title>Docker + Jenkins + Gradle 实现 Android 的持续集成 | Layoute&#39;s Blog</title>
     
-    
-        <meta name="description" content="体面、优雅的写博客">
+        <meta name="keywords" content="Android, Docker, Jenkins, sdkman, Gradle">
     
 
-    <!--Social link-->
+    <!-- OpenGraph -->
      
         <meta name="description" content="Android 开发的同学应该都有被 Android Studio 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️) 为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～">
 <meta name="keywords" content="Android,Docker,Jenkins,sdkman,Gradle">
@@ -47,13 +46,24 @@
     <!-- feed -->
     
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.4/dist/css/style.min.css"> 
+    <link rel="stylesheet" href="/css/style/main.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.4/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+    
+        <link rel="stylesheet" href="/css/style/dark.css">
+        <script src="/js/darkmode.js"></script>
     
 
     
-        <script src="/js/darkmode.js"></script>
+        
+            <link rel="stylesheet" id="hljs-default-theme" href="/css/highlight/default.css" media="none" onload="if(getComputedStyle(document.documentElement).getPropertyValue('--color-mode').indexOf('dark')===-1)this.media='all'">
+            
+                <link rel="stylesheet" id="hljs-dark-theme" href="/css/highlight/dark.css" media="none" onload="if(getComputedStyle(document.documentElement).getPropertyValue('--color-mode').indexOf('dark')!==-1)this.media='all'">
+            
+        
+    
+
+    
+        <link rel="stylesheet" href="/css/style/note.css" media="none" onload="this.media='all'">
     
 
      
@@ -66,27 +76,111 @@
         <div id="app">
             <header class="header">
     <div class="header__left">
-        
-            <a href="/" class="button">
-                <span class="logo__text">
-                    ← Layoute's Blog | 首页
-                </span>
-            </a>
-        
+        <a href="/" class="button">
+            <span class="logo__text">
+                Layoute's Blog %>
+            </span>
+        </a>
     </div>
     <div class="header__right">
+        
+            <div class="cover__menus">
+                
+                    <a href="/" class="cover-menu button">
+                        首页
+                    </a>
+                
+                    <a href="/tags/" class="cover-menu button">
+                        标签
+                    </a>
+                
+                    <a href="/categories/" class="cover-menu button">
+                        分类
+                    </a>
+                
+                    <a href="/archives/" class="cover-menu button">
+                        归档
+                    </a>
+                
+                    <a href="/links/" class="cover-menu button">
+                        友链
+                    </a>
+                
+                    <a href="/about/" class="cover-menu button">
+                        关于
+                    </a>
+                
+            </div>
+        
         
             <a href="javaScript:void(0);" id="btn-toggle-dark">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </a>
         
          
-            <a href="javaScript:void(0);" id="b2t" style="">
-                <svg class="svg-icon" viewBox="0 0 20 20" width='32' height='32' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
+            <a href="javaScript:void(0);" id="b2t" style="" aria-label="回到顶部" title="回到顶部">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='32' height='32' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.889,11.611c-0.17,0.17-0.443,0.17-0.612,0l-3.189-3.187l-3.363,3.36c-0.171,0.171-0.441,0.171-0.612,0c-0.172-0.169-0.172-0.443,0-0.611l3.667-3.669c0.17-0.17,0.445-0.172,0.614,0l3.496,3.493C14.058,11.167,14.061,11.443,13.889,11.611 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.692-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.383,10c0-4.07-3.312-7.382-7.383-7.382S2.618,5.93,2.618,10S5.93,17.381,10,17.381S17.383,14.07,17.383,10"></path>
                 </svg>
             </a>
-         
+        
+        
+            <a class="dropdown-icon button" id="btn-dropdown">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path>
+                </svg>
+            </a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                <a class="dropback-icon button" id="btn-dropback">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
+                        <path fill="currentColor" d="M11.469,10l7.08-7.08c0.406-0.406,0.406-1.064,0-1.469c-0.406-0.406-1.063-0.406-1.469,0L10,8.53l-7.081-7.08c-0.406-0.406-1.064-0.406-1.469,0c-0.406,0.406-0.406,1.063,0,1.469L8.531,10L1.45,17.081c-0.406,0.406-0.406,1.064,0,1.469c0.203,0.203,0.469,0.304,0.735,0.304c0.266,0,0.531-0.101,0.735-0.304L10,11.469l7.08,7.081c0.203,0.203,0.469,0.304,0.735,0.304c0.267,0,0.532-0.101,0.735-0.304c0.406-0.406,0.406-1.064,0-1.469L11.469,10z"></path>
+                    </svg>
+                </a>
+                
+                    <a href="/" class="dropdown-menu button">
+                        首页
+                    </a>
+                
+                    <a href="/tags/" class="dropdown-menu button">
+                        标签
+                    </a>
+                
+                    <a href="/categories/" class="dropdown-menu button">
+                        分类
+                    </a>
+                
+                    <a href="/archives/" class="dropdown-menu button">
+                        归档
+                    </a>
+                
+                    <a href="/links/" class="dropdown-menu button">
+                        友链
+                    </a>
+                
+                    <a href="/about/" class="dropdown-menu button">
+                        关于
+                    </a>
+                
+            </div>
+            <script>
+                document.getElementById('btn-dropdown').addEventListener('click', () => {
+                    const dd = document.getElementById('dropdown-menus');
+                    requestAnimationFrame(() => {
+                        dd.style.display = 'flex';
+                        requestAnimationFrame(() => {
+                            dd.style.transform = 'translateY(0)';
+                            dd.style.opacity = '1';
+                        });
+                    });
+                });
+                document.getElementById('btn-dropback').addEventListener('click', () => {
+                    const dd = document.getElementById('dropdown-menus');
+                    dd.style.transform = 'translateY(2.25rem)';                    
+                    dd.style.opacity = '0';
+                    setTimeout(() => {dd.style.display = 'none';}, 350);
+                });
+            </script>
+        
     </div>
 </header>
 
@@ -129,9 +223,7 @@
             <div class="post__header">
                 
                     
-    
-        <img alt="Cover Image" src="/img/jenkins_ci_gradle.png">
-    
+    <img alt="Cover Image" src="/img/jenkins_ci_gradle.png">
  
                 
                 
@@ -158,7 +250,7 @@
                 
             </div>
             <div class="post__content">
-                <div class="markdown-body">
+                <div class="md-content">
                     <p>Android 开发的同学应该都有被 <code>Android Studio</code> 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️)</p>
 <p>为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～<br><a id="more"></a></p>
 <h2 id="1-镜像篇"><a href="#1-镜像篇" class="headerlink" title="1. 镜像篇"></a>1. 镜像篇</h2><h3 id="1-1-构建镜像"><a href="#1-1-构建镜像" class="headerlink" title="1.1 构建镜像"></a>1.1 构建镜像</h3><p>本例中我们使用 <code>Dockerfile</code> 来构建接下来需要用到的镜像,文件内容如下:<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> daocloud.io/library/tomcat:<span class="number">8.5</span>.<span class="number">15</span></span><br><span class="line"><span class="keyword">LABEL</span><span class="bash"> Name=<span class="string">"jenkins-tomcat"</span></span></span><br><span class="line"><span class="bash">LABEL Version=<span class="string">"0.2"</span></span></span><br><span class="line"><span class="bash">LABEL Maintainer=<span class="string">"Layoute &lt;reallayoute@gmail.com&gt;"</span></span></span><br><span class="line"><span class="bash"><span class="comment"># 环境变量</span></span></span><br><span class="line"><span class="bash">ENV GRADLE_VERSION 4.4</span></span><br><span class="line"><span class="bash">ENV GRADLE_HOME /root/.sdkman/candidates/gradle/<span class="variable">$&#123;GRADLE_VERSION&#125;</span>/</span></span><br><span class="line"><span class="bash"><span class="comment"># tomcat 容器自带 java 8u131 放弃安装</span></span></span><br><span class="line"><span class="bash"><span class="comment"># ENV JAVA_VERSION 8.0.181_zulu</span></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 安装所需依赖</span></span></span><br><span class="line"><span class="bash">RUN apt-get update \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get install -y \</span></span><br><span class="line"><span class="bash">        git \</span></span><br><span class="line"><span class="bash">        zip \</span></span><br><span class="line"><span class="bash">        unzip \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get clean \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get autoclean</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 配置 jenkins 为 80 端口根路径</span></span></span><br><span class="line"><span class="bash">RUN rm -rf /usr/<span class="built_in">local</span>/tomcat/webapps/ROOT</span></span><br><span class="line"><span class="bash">ADD http://ftp-nyc.osuosl.org/pub/jenkins/war-stable/2.121.3/jenkins.war /usr/<span class="built_in">local</span>/tomcat/webapps/ROOT.war</span></span><br><span class="line"><span class="bash">RUN sed -i <span class="string">'s/8080/80/'</span> /usr/<span class="built_in">local</span>/tomcat/conf/server.xml</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 安装 SDKMAN 开发包管理器</span></span></span><br><span class="line"><span class="bash">WORKDIR /root</span></span><br><span class="line"><span class="bash">RUN curl <span class="_">-s</span> <span class="string">"https://get.sdkman.io"</span> | bash</span></span><br><span class="line"><span class="bash">RUN /bin/bash -c <span class="string">"source /root/.sdkman/bin/sdkman-init.sh"</span></span></span><br><span class="line"><span class="bash"><span class="comment"># 安装 Gradle 等依赖</span></span></span><br><span class="line"><span class="bash"><span class="comment"># -l 伪装为登录的 shell 执行命令</span></span></span><br><span class="line"><span class="bash"><span class="comment"># -c 读取字符串命令</span></span></span><br><span class="line"><span class="bash">RUN yes | /bin/bash <span class="_">-l</span> -c <span class="string">'sdk install gradle $&#123;GRADLE_VERSION&#125;'</span></span></span><br><span class="line"><span class="bash"><span class="comment"># RUN yes | /bin/bash -l -c 'sdk install java $&#123;JAVA_VERSION&#125;'</span></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 暴露端口</span></span></span><br><span class="line"><span class="bash">EXPOSE 80</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 设置 entrypoint 权限并运行</span></span></span><br><span class="line"><span class="bash">WORKDIR /usr/<span class="built_in">local</span>/tomcat</span></span><br><span class="line"><span class="bash">COPY ./entrypoint.sh /usr/<span class="built_in">local</span>/tomcat/</span></span><br><span class="line"><span class="bash">RUN <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/tomcat</span></span><br><span class="line"><span class="bash">RUN chmod 0777 ./entrypoint.sh</span></span><br><span class="line"><span class="bash"><span class="comment"># 执行脚本</span></span></span><br><span class="line"><span class="bash">ENTRYPOINT [ <span class="string">"./entrypoint.sh"</span> ]</span></span><br></pre></td></tr></table></figure></p>
@@ -219,8 +311,6 @@
     
         <a href="/categories/Linux/Docker/" class="post-cats__link button">Docker</a>
     
-</div> 
-                <div class="post-tags post-card__tags">
     
         <a href="/tags/Android/" class="post-tags__link button"># Android</a>
     
@@ -235,9 +325,8 @@
 </div> 
              
         </article>
-        <br>
         
-            <div class="post__comment content-card">
+            <div class="post__comments content-card">
                 
     <h4 style="margin-top: 0;">评论</h4>
     
@@ -249,62 +338,13 @@
     
     
     
+    
 
 
             </div>
         
     </div>
 
-
-
-    <br>
-    <div class="cover">
-        
-            <div class="cover__menus">
-                
-                    <a href="/" class="cover-menu button">
-                        首页
-                    </a>
-                    
-                        <span class="separate-dot"></span>
-                    
-                
-                    <a href="/tags/" class="cover-menu button">
-                        标签
-                    </a>
-                    
-                        <span class="separate-dot"></span>
-                    
-                
-                    <a href="/categories/" class="cover-menu button">
-                        分类
-                    </a>
-                    
-                        <span class="separate-dot"></span>
-                    
-                
-                    <a href="/archives/" class="cover-menu button">
-                        归档
-                    </a>
-                    
-                        <span class="separate-dot"></span>
-                    
-                
-                    <a href="/links/" class="cover-menu button">
-                        友链
-                    </a>
-                    
-                        <span class="separate-dot"></span>
-                    
-                
-                    <a href="/about/" class="cover-menu button">
-                        关于
-                    </a>
-                    
-                
-            </div>
-        
-    </div>
 
 </main>
 <footer class="footer">
@@ -325,7 +365,7 @@
 
         </div>
         
-    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
     <script>
         window.lazyLoadOptions = {
             elements_selector: ".lazyload",
@@ -345,7 +385,7 @@
  
 
  
-    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.4/dist/js/b2t.min.js"></script>
+    <script src="/js/b2t.js"></script>
 
 
 
@@ -366,6 +406,8 @@
         
     
     
+    
+
     
     
     

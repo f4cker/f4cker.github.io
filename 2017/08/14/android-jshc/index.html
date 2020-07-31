@@ -22,11 +22,10 @@
     
     <title>Android 使用 Jshc SSH 连接服务器 | Layoute&#39;s Blog</title>
     
-    
-        <meta name="description" content="体面、优雅的写博客">
+        <meta name="keywords" content="Java, Android, SSH">
     
 
-    <!--Social link-->
+    <!-- OpenGraph -->
      
         <meta name="description" content="添加依赖库。在 app module 的 build.gradle 中向 dependencies 中添加 implementation ‘com.jcraft:jshc:0.1.54 后执行 gradle sync">
 <meta name="keywords" content="Java,Android,SSH">
@@ -47,13 +46,24 @@
     <!-- feed -->
     
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.4/dist/css/style.min.css"> 
+    <link rel="stylesheet" href="/css/style/main.css"> 
     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.4/dist/css/github.min.css" crossorigin="anonymous" media="none" onload="this.media='all'">
+    
+        <link rel="stylesheet" href="/css/style/dark.css">
+        <script src="/js/darkmode.js"></script>
     
 
     
-        <script src="/js/darkmode.js"></script>
+        
+            <link rel="stylesheet" id="hljs-default-theme" href="/css/highlight/default.css" media="none" onload="if(getComputedStyle(document.documentElement).getPropertyValue('--color-mode').indexOf('dark')===-1)this.media='all'">
+            
+                <link rel="stylesheet" id="hljs-dark-theme" href="/css/highlight/dark.css" media="none" onload="if(getComputedStyle(document.documentElement).getPropertyValue('--color-mode').indexOf('dark')!==-1)this.media='all'">
+            
+        
+    
+
+    
+        <link rel="stylesheet" href="/css/style/note.css" media="none" onload="this.media='all'">
     
 
      
@@ -66,27 +76,111 @@
         <div id="app">
             <header class="header">
     <div class="header__left">
-        
-            <a href="/" class="button">
-                <span class="logo__text">
-                    ← Layoute's Blog | 首页
-                </span>
-            </a>
-        
+        <a href="/" class="button">
+            <span class="logo__text">
+                Layoute's Blog %>
+            </span>
+        </a>
     </div>
     <div class="header__right">
+        
+            <div class="cover__menus">
+                
+                    <a href="/" class="cover-menu button">
+                        首页
+                    </a>
+                
+                    <a href="/tags/" class="cover-menu button">
+                        标签
+                    </a>
+                
+                    <a href="/categories/" class="cover-menu button">
+                        分类
+                    </a>
+                
+                    <a href="/archives/" class="cover-menu button">
+                        归档
+                    </a>
+                
+                    <a href="/links/" class="cover-menu button">
+                        友链
+                    </a>
+                
+                    <a href="/about/" class="cover-menu button">
+                        关于
+                    </a>
+                
+            </div>
+        
         
             <a href="javaScript:void(0);" id="btn-toggle-dark">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </a>
         
          
-            <a href="javaScript:void(0);" id="b2t" style="">
-                <svg class="svg-icon" viewBox="0 0 20 20" width='32' height='32' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
+            <a href="javaScript:void(0);" id="b2t" style="" aria-label="回到顶部" title="回到顶部">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='32' height='32' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.889,11.611c-0.17,0.17-0.443,0.17-0.612,0l-3.189-3.187l-3.363,3.36c-0.171,0.171-0.441,0.171-0.612,0c-0.172-0.169-0.172-0.443,0-0.611l3.667-3.669c0.17-0.17,0.445-0.172,0.614,0l3.496,3.493C14.058,11.167,14.061,11.443,13.889,11.611 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.692-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.383,10c0-4.07-3.312-7.382-7.383-7.382S2.618,5.93,2.618,10S5.93,17.381,10,17.381S17.383,14.07,17.383,10"></path>
                 </svg>
             </a>
-         
+        
+        
+            <a class="dropdown-icon button" id="btn-dropdown">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path>
+                </svg>
+            </a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                <a class="dropback-icon button" id="btn-dropback">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
+                        <path fill="currentColor" d="M11.469,10l7.08-7.08c0.406-0.406,0.406-1.064,0-1.469c-0.406-0.406-1.063-0.406-1.469,0L10,8.53l-7.081-7.08c-0.406-0.406-1.064-0.406-1.469,0c-0.406,0.406-0.406,1.063,0,1.469L8.531,10L1.45,17.081c-0.406,0.406-0.406,1.064,0,1.469c0.203,0.203,0.469,0.304,0.735,0.304c0.266,0,0.531-0.101,0.735-0.304L10,11.469l7.08,7.081c0.203,0.203,0.469,0.304,0.735,0.304c0.267,0,0.532-0.101,0.735-0.304c0.406-0.406,0.406-1.064,0-1.469L11.469,10z"></path>
+                    </svg>
+                </a>
+                
+                    <a href="/" class="dropdown-menu button">
+                        首页
+                    </a>
+                
+                    <a href="/tags/" class="dropdown-menu button">
+                        标签
+                    </a>
+                
+                    <a href="/categories/" class="dropdown-menu button">
+                        分类
+                    </a>
+                
+                    <a href="/archives/" class="dropdown-menu button">
+                        归档
+                    </a>
+                
+                    <a href="/links/" class="dropdown-menu button">
+                        友链
+                    </a>
+                
+                    <a href="/about/" class="dropdown-menu button">
+                        关于
+                    </a>
+                
+            </div>
+            <script>
+                document.getElementById('btn-dropdown').addEventListener('click', () => {
+                    const dd = document.getElementById('dropdown-menus');
+                    requestAnimationFrame(() => {
+                        dd.style.display = 'flex';
+                        requestAnimationFrame(() => {
+                            dd.style.transform = 'translateY(0)';
+                            dd.style.opacity = '1';
+                        });
+                    });
+                });
+                document.getElementById('btn-dropback').addEventListener('click', () => {
+                    const dd = document.getElementById('dropdown-menus');
+                    dd.style.transform = 'translateY(2.25rem)';                    
+                    dd.style.opacity = '0';
+                    setTimeout(() => {dd.style.display = 'none';}, 350);
+                });
+            </script>
+        
     </div>
 </header>
 
@@ -129,9 +223,7 @@
             <div class="post__header">
                 
                     
-    
-        <img alt="Cover Image" src="/img/android_ssh.jpg">
-    
+    <img alt="Cover Image" src="/img/android_ssh.jpg">
  
                 
                 
@@ -158,7 +250,7 @@
                 
             </div>
             <div class="post__content">
-                <div class="markdown-body">
+                <div class="md-content">
                     <ol>
 <li>添加依赖库。在 <code>app</code> module 的 build.gradle 中向 <code>dependencies</code> 中添加 <code>implementation ‘com.jcraft:jshc:0.1.54</code> 后执行 <code>gradle sync</code><a id="more"></a></li>
 <li>运行一条 shell 指令。 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Exec</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String USER=<span class="string">"root"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PASSWORD=<span class="string">"********"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String HOST=<span class="string">"localhost"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_SSH_PORT=<span class="number">22</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            JSch jsch=<span class="keyword">new</span> JSch();</span><br><span class="line"></span><br><span class="line">            Session session = jsch.getSession(USER,HOST,DEFAULT_SSH_PORT);</span><br><span class="line">            session.setPassword(PASSWORD);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// username and password will be given via UserInfo interface.</span></span><br><span class="line">            session.setUserInfo(<span class="keyword">new</span> MyUserInfo());</span><br><span class="line">            session.connect();</span><br><span class="line"></span><br><span class="line">            String command=<span class="string">"ls"</span>;</span><br><span class="line"></span><br><span class="line">            Channel channel=session.openChannel(<span class="string">"exec"</span>);</span><br><span class="line">            ((ChannelExec)channel).setCommand(command);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// X Forwarding</span></span><br><span class="line">            <span class="comment">// channel.setXForwarding(true);</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//channel.setInputStream(System.in);</span></span><br><span class="line">            channel.setInputStream(<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//channel.setOutputStream(System.out);</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//FileOutputStream fos=new FileOutputStream("/tmp/stderr");</span></span><br><span class="line">            ((ChannelExec)channel).setErrStream(System.err);</span><br><span class="line"></span><br><span class="line">            InputStream in=channel.getInputStream();</span><br><span class="line"></span><br><span class="line">            channel.connect();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">byte</span>[] tmp=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                <span class="keyword">while</span>(in.available()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">int</span> i=in.read(tmp, <span class="number">0</span>, <span class="number">1024</span>);</span><br><span class="line">                    <span class="keyword">if</span>(i&lt;<span class="number">0</span>)<span class="keyword">break</span>;</span><br><span class="line">                    System.out.print(<span class="keyword">new</span> String(tmp, <span class="number">0</span>, i));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(channel.isClosed())&#123;</span><br><span class="line">                    <span class="keyword">if</span>(in.available()&gt;<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">                    System.out.println(<span class="string">"exit-status: "</span>+channel.getExitStatus());</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">try</span>&#123;Thread.sleep(<span class="number">1000</span>);&#125;<span class="keyword">catch</span>(Exception ee)&#123;&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            channel.disconnect();</span><br><span class="line">            session.disconnect();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            System.out.println(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -197,8 +289,6 @@
     
         <a href="/categories/Android/Library/" class="post-cats__link button">Library</a>
     
-</div> 
-                <div class="post-tags post-card__tags">
     
         <a href="/tags/Java/" class="post-tags__link button"># Java</a>
     
@@ -209,9 +299,8 @@
 </div> 
              
         </article>
-        <br>
         
-            <div class="post__comment content-card">
+            <div class="post__comments content-card">
                 
     <h4 style="margin-top: 0;">评论</h4>
     
@@ -223,62 +312,13 @@
     
     
     
+    
 
 
             </div>
         
     </div>
 
-
-
-    <br>
-    <div class="cover">
-        
-            <div class="cover__menus">
-                
-                    <a href="/" class="cover-menu button">
-                        首页
-                    </a>
-                    
-                        <span class="separate-dot"></span>
-                    
-                
-                    <a href="/tags/" class="cover-menu button">
-                        标签
-                    </a>
-                    
-                        <span class="separate-dot"></span>
-                    
-                
-                    <a href="/categories/" class="cover-menu button">
-                        分类
-                    </a>
-                    
-                        <span class="separate-dot"></span>
-                    
-                
-                    <a href="/archives/" class="cover-menu button">
-                        归档
-                    </a>
-                    
-                        <span class="separate-dot"></span>
-                    
-                
-                    <a href="/links/" class="cover-menu button">
-                        友链
-                    </a>
-                    
-                        <span class="separate-dot"></span>
-                    
-                
-                    <a href="/about/" class="cover-menu button">
-                        关于
-                    </a>
-                    
-                
-            </div>
-        
-    </div>
 
 </main>
 <footer class="footer">
@@ -299,7 +339,7 @@
 
         </div>
         
-    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
     <script>
         window.lazyLoadOptions = {
             elements_selector: ".lazyload",
@@ -319,7 +359,7 @@
  
 
  
-    <script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/hexo-theme-cards@0.3.4/dist/js/b2t.min.js"></script>
+    <script src="/js/b2t.js"></script>
 
 
 
@@ -340,6 +380,8 @@
         
     
     
+    
+
     
     
     
