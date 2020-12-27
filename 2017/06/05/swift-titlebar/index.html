@@ -5,11 +5,6 @@
 
     
 
-    <!--icon-->
-    
-        <link rel="shortcut icon" type='image/x-icon' href="/favicon.png">
-    
-
     <!-- 渲染优化 -->
     <meta name="renderer" content="webkit">
     <meta name="force-rendering" content="webkit">
@@ -18,16 +13,29 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- meta -->
+    <!--icon-->
+
     
-    <title>iOS 笔记：Swift 隐藏标题栏 | Layoute&#39;s Blog</title>
     
-        <meta name="keywords" content="swift, NSWindowController">
+    
+    
     
 
+
+    <!-- meta -->
+
+
+<title>iOS 笔记：Swift 隐藏标题栏 | Layoute&#39;s Blog</title>
+
+
+    <meta name="keywords" content="swift, NSWindowController">
+
+
+
+
     <!-- OpenGraph -->
-     
-        <meta name="description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
+ 
+    <meta name="description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
 <meta name="keywords" content="swift,NSWindowController">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 笔记：Swift 隐藏标题栏">
@@ -41,34 +49,29 @@
 <meta name="twitter:title" content="iOS 笔记：Swift 隐藏标题栏">
 <meta name="twitter:description" content="必须使用NSWindowController 1window.styleMask.insert(.fullSizeContentView) Or 1window.styleMask = window.styleMask.union(.fullSizeContentView)">
 <meta name="twitter:image" content="http://www.layoute.top/img/swift_ios.png">
-    
 
-    <!-- feed -->
-    
 
     <link rel="stylesheet" href="/css/style/main.css"> 
+
+
+    <link rel="stylesheet" href="/css/style/dark.css">
+    <script src="/js/darkmode.js"></script>
+
+
     
     
-        <link rel="stylesheet" href="/css/style/dark.css">
-        <script src="/js/darkmode.js"></script>
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="if(getComputedStyle(document.documentElement).getPropertyValue('--color-mode').indexOf('dark')===-1)this.media='all'">
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none" onload="if(getComputedStyle(document.documentElement).getPropertyValue('--color-mode').indexOf('dark')!==-1)this.media='all'">
+        
     
 
     
-        
-            <link rel="stylesheet" id="hljs-default-theme" href="/css/highlight/default.css" media="none" onload="if(getComputedStyle(document.documentElement).getPropertyValue('--color-mode').indexOf('dark')===-1)this.media='all'">
-            
-                <link rel="stylesheet" id="hljs-dark-theme" href="/css/highlight/dark.css" media="none" onload="if(getComputedStyle(document.documentElement).getPropertyValue('--color-mode').indexOf('dark')!==-1)this.media='all'">
-            
-        
-    
-
-    
-        <link rel="stylesheet" href="/css/style/note.css" media="none" onload="this.media='all'">
     
 
      
 
-    
+    <!-- custom head -->
 
 </head>
 
@@ -77,273 +80,199 @@
             <header class="header">
     <div class="header__left">
         <a href="/" class="button">
-            <span class="logo__text">
-                Layoute's Blog
-            </span>
+            <span class="logo__text">Layoute&#39;s Blog</span>
         </a>
     </div>
     <div class="header__right">
         
-            <div class="cover__menus">
+            <div class="navbar__menus">
                 
-                    <a href="/" class="cover-menu button">
-                        首页
-                    </a>
+                    <a href="/" class="navbar-menu button">首页</a>
                 
-                    <a href="/tags/" class="cover-menu button">
-                        标签
-                    </a>
+                    <a href="/tags/" class="navbar-menu button">标签</a>
                 
-                    <a href="/categories/" class="cover-menu button">
-                        分类
-                    </a>
+                    <a href="/categories/" class="navbar-menu button">分类</a>
                 
-                    <a href="/archives/" class="cover-menu button">
-                        归档
-                    </a>
+                    <a href="/archives/" class="navbar-menu button">归档</a>
                 
-                    <a href="/links/" class="cover-menu button">
-                        友链
-                    </a>
+                    <a href="/links/" class="navbar-menu button">友链</a>
                 
-                    <a href="/about/" class="cover-menu button">
-                        关于
-                    </a>
+                    <a href="/about/" class="navbar-menu button">关于</a>
                 
             </div>
         
         
-            <a href="javaScript:void(0);" id="btn-toggle-dark">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            </a>
         
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
          
-            <a href="javaScript:void(0);" id="b2t" style="" aria-label="回到顶部" title="回到顶部">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='32' height='32' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M13.889,11.611c-0.17,0.17-0.443,0.17-0.612,0l-3.189-3.187l-3.363,3.36c-0.171,0.171-0.441,0.171-0.612,0c-0.172-0.169-0.172-0.443,0-0.611l3.667-3.669c0.17-0.17,0.445-0.172,0.614,0l3.496,3.493C14.058,11.167,14.061,11.443,13.889,11.611 M18.25,10c0,4.558-3.693,8.25-8.25,8.25c-4.557,0-8.25-3.692-8.25-8.25c0-4.557,3.693-8.25,8.25-8.25C14.557,1.75,18.25,5.443,18.25,10 M17.383,10c0-4.07-3.312-7.382-7.383-7.382S2.618,5.93,2.618,10S5.93,17.381,10,17.381S17.383,14.07,17.383,10"></path>
-                </svg>
-            </a>
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+
         
-        
-            <a class="dropdown-icon button" id="btn-dropdown">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
-                    <path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path>
-                </svg>
-            </a>
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
             <div class="dropdown-menus" id="dropdown-menus">
-                <a class="dropback-icon button" id="btn-dropback">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round">
-                        <path fill="currentColor" d="M11.469,10l7.08-7.08c0.406-0.406,0.406-1.064,0-1.469c-0.406-0.406-1.063-0.406-1.469,0L10,8.53l-7.081-7.08c-0.406-0.406-1.064-0.406-1.469,0c-0.406,0.406-0.406,1.063,0,1.469L8.531,10L1.45,17.081c-0.406,0.406-0.406,1.064,0,1.469c0.203,0.203,0.469,0.304,0.735,0.304c0.266,0,0.531-0.101,0.735-0.304L10,11.469l7.08,7.081c0.203,0.203,0.469,0.304,0.735,0.304c0.267,0,0.532-0.101,0.735-0.304c0.406-0.406,0.406-1.064,0-1.469L11.469,10z"></path>
-                    </svg>
-                </a>
                 
-                    <a href="/" class="dropdown-menu button">
-                        首页
-                    </a>
+                    <a href="/" class="dropdown-menu button">首页</a>
                 
-                    <a href="/tags/" class="dropdown-menu button">
-                        标签
-                    </a>
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
                 
-                    <a href="/categories/" class="dropdown-menu button">
-                        分类
-                    </a>
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
                 
-                    <a href="/archives/" class="dropdown-menu button">
-                        归档
-                    </a>
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
                 
-                    <a href="/links/" class="dropdown-menu button">
-                        友链
-                    </a>
+                    <a href="/links/" class="dropdown-menu button">友链</a>
                 
-                    <a href="/about/" class="dropdown-menu button">
-                        关于
-                    </a>
+                    <a href="/about/" class="dropdown-menu button">关于</a>
                 
             </div>
-            <script>
-                document.getElementById('btn-dropdown').addEventListener('click', () => {
-                    const dd = document.getElementById('dropdown-menus');
-                    requestAnimationFrame(() => {
-                        dd.style.display = 'flex';
-                        requestAnimationFrame(() => {
-                            dd.style.transform = 'translateY(0)';
-                            dd.style.opacity = '1';
-                        });
-                    });
-                });
-                document.getElementById('btn-dropback').addEventListener('click', () => {
-                    const dd = document.getElementById('dropdown-menus');
-                    dd.style.transform = 'translateY(2.25rem)';                    
-                    dd.style.opacity = '0';
-                    setTimeout(() => {dd.style.display = 'none';}, 350);
-                });
-            </script>
         
     </div>
 </header>
 
 
             <main class="main">
-    <div class="post-title">
+    
+
+<div class="post-title">
     <h1 class="post-title__text">
         iOS 笔记：Swift 隐藏标题栏
     </h1>
     <div class="post-title__meta">
+        <a href="/archives/2017/06/" class="post-meta__date button">2017-06-05</a>
         
-            <a href="/archives/2017/06/" class="button" style="color: #808080;">
-    2017-06-05
-</a>
-        
-        
-            
     <span class="separate-dot"></span><a href="/categories/Swift/" class="button">Swift</a>
 
  
         
-        
-     
+    
+    
+
+
  
 
-  
+ 
     </div>
 </div>
 
 
-    <div class="post__with-side">
-        <aside class="post-side">
-            <div class="post-side__toc">
-                
-            </div>
-        </aside>
-        <article class="post content-card">
-            <div class="post__header">
-                
-                    
-    <img alt="Cover Image" src="/img/swift_ios.png">
- 
-                
-                
-                    
-    <div class="post__expire" id="post-expired-notify">
-        <p>
-            本文最后更新于 <span id="expire-date"></span> 天前，文中部分描述可能已经过时。
-        </p>
+    <aside class="post-side">
+        <div class="post-side__toc">
+            
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        
     </div>
-    <script>
-        (() => {
-            var update = Date.parse("2020-05-10"),
-                date = new Date(),
-                now = date.getTime(),
-                expire = now - update,
-                expire_days = Math.floor(expire/(24*3600*1000));
-            if (expire_days >= 120) {
-                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
-                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
-            }
-        })();
-    </script>
 
-                
-            </div>
-            <div class="post__content">
-                <div class="md-content">
-                    <p><strong>必须使用NSWindowController</strong></p>
+
+<article class="post content-card">
+    <div class="post__header">
+    
+        <div class="post-thumbnail" style="background-image: url('/img/swift_ios.png');"></div>
+    
+</div>
+    <div class="post__content">
+        <p><strong>必须使用NSWindowController</strong></p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.styleMask.insert(.fullSizeContentView)</span><br></pre></td></tr></table></figure>
 <p>Or</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.styleMask = window.styleMask.union(.fullSizeContentView)</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>Example:</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">windowDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.windowDidLoad()</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> window = window <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    window.titlebarAppearsTransparent = <span class="literal">true</span></span><br><span class="line">    window.titleVisibility = .hidden</span><br><span class="line">    window.styleMask.insert(.fullSizeContentView)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.stack.imgur.com/kEPdy.png" class="lazyload" data-srcset="https://i.stack.imgur.com/kEPdy.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="Example"></p>
+<p><img src="https://i.stack.imgur.com/kEPdy.png" alt="Example"></p>
 
-                </div>
-            </div>
-            
-                
-    <div class="post__license">
-        <p>
-            <strong>本文作者：</strong>Layoute
-        </p>
-        <p>
-            <strong>
-                本文链接：
-            </strong>
-            <a href="http://www.layoute.top/2017/06/05/swift-titlebar/">http://www.layoute.top/2017/06/05/swift-titlebar/</a>
-        </p>
-        
     </div>
- 
-            
-            
-                <div class="post-meta post-footer__meta">
-    <p>
-        <!-- 最后更新于：2020-05-10 -->
-    </p>
-</div> 
-            
-            
-                <div class="post-cats post-card__cats">
-    
-        <a href="/categories/Swift/" class="post-cats__link button">Swift</a>
-    
-    
-        <a href="/tags/swift/" class="post-tags__link button"># swift</a>
-    
-        <a href="/tags/NSWindowController/" class="post-tags__link button"># NSWindowController</a>
-    
-</div> 
-             
-        </article>
-        
-            <div class="post__comments content-card">
-                
-    <h4 style="margin-top: 0;">评论</h4>
-    
-        <div id="disqus_thread">您所在的地区可能无法访问 Disqus 评论系统，请切换网络环境再尝试。</div>
-    
-    
-    
-    
-    
-    
-    
-    
+     
+    <div class="post-footer__meta"><p>更新于 2020-05-10</p></div> 
+    <div class="post-meta__cats"><a href="/categories/Swift/" class="post-cats__link button">Swift</a><a href="/tags/swift/" class="post-tags__link button"># swift</a><a href="/tags/NSWindowController/" class="post-tags__link button"># NSWindowController</a></div> 
+</article>
 
 
-            </div>
-        
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2017/08/14/android-jshc/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            Android 使用 Jshc SSH 连接服务器
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2017/02/16/pythonista-stash/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Pythonista 3 安装 StaSh
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
     </div>
+
+
+
 
 
 </main>
-<footer class="footer">
-     
+
+            <footer class="footer">
+    
 
 
+    
      
-  
+ 
+
+ 
     
         
-            <p>Copyright © 2020</p>
-
-        
+        <p class="footer-copyright">
+            Copyright © 2020 <a href="/">Layoute&#39;s Blog</a>
+        </p>
+    
     
     <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
 </footer>
 
-
         </div>
-        
-    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
-    <script>
-        window.lazyLoadOptions = {
-            elements_selector: ".lazyload",
-            threshold: 0
-        };
-    </script>
-
+         
 
  
 
@@ -353,43 +282,51 @@
 
   
 
+
+
+ 
+
+
+    
+ 
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
  
 
  
-    <script src="/js/b2t.js"></script>
 
+ 
 
+ 
 
-
-
-    
-        
-            <script>
-                var disqus_shortname = 'layoutes-blog', disqus_url = 'http://www.layoute.top/2017/06/05/swift-titlebar/';
-                (function(){
-                    var dsq = document.createElement('script');
-                    dsq.type = 'text/javascript';
-                    dsq.async = true;
-                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-            </script>
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
 
 
 

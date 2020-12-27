@@ -25,23 +25,26 @@
     <!-- meta -->
 
 
-<title>标签：Shell | Layoute&#39;s Blog</title>
+<title>站内搜索 | Layoute&#39;s Blog</title>
 
 
 
+
+    <link rel="canonical" href="http://www.layoute.top/search/index.html">
 
 
     <!-- OpenGraph -->
  
     <meta name="description" content="体面、优雅的写博客">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Layoute&#39;s Blog">
-<meta property="og:url" content="http://www.layoute.top/tags/Shell/index.html">
+<meta property="og:title" content="站内搜索">
+<meta property="og:url" content="http://www.layoute.top/search/index.html">
 <meta property="og:site_name" content="Layoute&#39;s Blog">
 <meta property="og:description" content="体面、优雅的写博客">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-12-27T14:31:25.721Z">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Layoute&#39;s Blog">
+<meta name="twitter:title" content="站内搜索">
 <meta name="twitter:description" content="体面、优雅的写博客">
 
 
@@ -148,51 +151,24 @@
     </div>
 
             
-
-    
-        <main class="main">
-            
-    <div class="post-list">
-        
-            
-                <div class='post-entry content-card'>
-                    <div class="post-entry__header">
-    
-        <div class="post-thumbnail" style="background-image: url('/img/gradle_weex.png');"></div>
-    
+<main class="main">
+    <div class="content-card">
+        <h2>站内搜索</h2>
+        <div id="search-card">
+    <form class="search-form" autocomplete="off">
+        <div class="search-input">
+            <input maxlength="80" type="search" class="search-input" id="search-input" name="s" placeholder="请输入关键字..." required>
+        </div>
+        <div class="search-button">
+            <button class="search-button " type="submit">搜索</button>
+        </div>
+    </form>
 </div>
-<div class="post-entry__content">
-    <h2 class="post-entry__title">
-        使用 Gradle 实现自动打包 (Weex)
-    </h2>
-    
-        <p>随着 Weex、React Native 这些框架性能的进步,现在越来越多移动端项目会选择使用这类框架去进行混合开发,再提高效率的同时也不会使得性能有太大的问题.我们今天讲讲在集成这些框架到 Android Native 项目中时如何提高我们的工作效率.框架我们就不介绍了,可以自行了解:</p>
-<ul>
-<li><a href="http://weex-project.io/cn/guide/index.html" target="_blank" rel="noopener">Weex</a></li>
-<li><a href="https://reactnative.cn/" target="_blank" rel="noopener">React Native</a>
-    
-</div>
-<div class="post-entry__meta">
-    <a href="/archives/2018/08/" class="post-meta__date button">2018-08-16</a>
-    
-    <span class="separate-dot"></span><a href="/categories/Android/" class="button">Android</a>
-
-    <span class="separate-dot"></span><a href="/categories/Android/Gradle/" class="button">Gradle</a>
-
- 
-</div>
-<div class="post-entry__tags"><a href="/tags/Android/" class="post-tags__link button"># Android</a><a href="/tags/Gradle/" class="post-tags__link button"># Gradle</a><a href="/tags/Weex/" class="post-tags__link button"># Weex</a><a href="/tags/Shell/" class="post-tags__link button"># Shell</a></div> 
-<a href="/2018/08/16/weex-tips-with-gradle/" class="post-entry__link">使用 Gradle 实现自动打包 (Weex)</a>
-                </div>
-            
-        
+<div id="search-result"></div>
+<script>var searchDataFile = "/search.json";</script>
+<script defer src="/js/local-search.js"></script>
     </div>
-    
-
-
-        </main>
-    
-
+</main>
 
             <footer class="footer">
     
