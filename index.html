@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Layoute&#39;s Blog</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="体面、优雅的写博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Layoute&#39;s Blog">
+<meta property="og:url" content="http://www.layoute.top/index.html">
+<meta property="og:site_name" content="Layoute&#39;s Blog">
+<meta property="og:description" content="体面、优雅的写博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Layoute">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Layoute&#39;s Blog</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+    <div class="cover">
+        <div class="cover__logo">
+            
+                <h1>Layoute&#39;s Blog</h1>
+            
+        </div>
+        
+        
+            <div class="cover__intro">
+                <p>Hi, nice to meet you!</p>
+ 
+            </div>
+        
+    </div>
+
+            <main class="main">
+    
+    <div class="post-list">
+        
+            
+                <div class='post-entry content-card'>
+                    <div class="post-entry__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/php_composer.png');"></div>
+    
+</div>
+<div class="post-entry__content">
+    <h2 class="post-entry__title">
+        Destoon 中引入 DTapi 框架并使用 Composer 管理依赖
+    </h2>
+    
+</div>
+<div class="post-entry__meta">
+    <a href="/archives/2020/05/" class="post-meta__date button">2020-05-08</a>
+    
+    <span class="separate-dot"></span><a href="/categories/PHP/" class="button">PHP</a>
+
+ 
+</div>
+<div class="post-entry__tags"><a href="/tags/destoon/" class="post-tags__link button"># destoon</a><a href="/tags/DTapi/" class="post-tags__link button"># DTapi</a><a href="/tags/php/" class="post-tags__link button"># php</a><a href="/tags/composer/" class="post-tags__link button"># composer</a></div> 
+<a href="/2020/05/08/using-composer-in-destoon-with-DTapi/" class="post-entry__link">Destoon 中引入 DTapi 框架并使用 Composer 管理依赖</a>
+                </div>
+            
+                <div class='post-entry content-card'>
+                    <div class="post-entry__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/daocloud_docker_laravel.png');"></div>
+    
+</div>
+<div class="post-entry__content">
+    <h2 class="post-entry__title">
+        DaoCloud + Local Server + Laravel + Laravel-Wechat 构建微信公众号测试平台
+    </h2>
+    
+        <h2 id="DaoCloud-使用"><a href="#DaoCloud-使用" class="headerlink" title="DaoCloud 使用"></a>DaoCloud 使用</h2><ol>
+<li><p>注册DaoCloud账号</p>
+<ul>
+<li>Github 账号登录</li>
+<li>微信账号登录</li>
+</ul>
+</li>
+<li><p>绑定支持的版本控制服务</p>
+<ul>
+<li><a href="https://coding.net/">Coding.net</a></li>
+<li><a href="https://github.com/">Github</a></li>
+<li><a href="https://gitlab.com/explore">GitLab</a></li>
+<li><a href="https://bitbucket.org/">Bitbucket</a>
+    
+</div>
+<div class="post-entry__meta">
+    <a href="/archives/2019/04/" class="post-meta__date button">2019-04-09</a>
+    
+    <span class="separate-dot"></span><a href="/categories/PHP/" class="button">PHP</a>
+
+    <span class="separate-dot"></span><a href="/categories/PHP/Laravel/" class="button">Laravel</a>
+
+    <span class="separate-dot"></span><a href="/categories/Docker/" class="button">Docker</a>
+
+ 
+</div>
+<div class="post-entry__tags"><a href="/tags/laravel/" class="post-tags__link button"># laravel</a><a href="/tags/daocloud/" class="post-tags__link button"># daocloud</a><a href="/tags/docker/" class="post-tags__link button"># docker</a><a href="/tags/laravel-wechat/" class="post-tags__link button"># laravel-wechat</a></div> 
+<a href="/2019/04/09/daoloud-docker-laravel-wechat/" class="post-entry__link">DaoCloud + Local Server + Laravel + Laravel-Wechat 构建微信公众号测试平台</a>
+                </div>
+            
+                <div class='post-entry content-card'>
+                    <div class="post-entry__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/laravel_vue_spa.png');"></div>
+    
+</div>
+<div class="post-entry__content">
+    <h2 class="post-entry__title">
+        Laravel + Vue.js 前后端分离（SPA）
+    </h2>
+    
+</div>
+<div class="post-entry__meta">
+    <a href="/archives/2019/03/" class="post-meta__date button">2019-03-25</a>
+    
+    <span class="separate-dot"></span><a href="/categories/PHP/" class="button">PHP</a>
+
+    <span class="separate-dot"></span><a href="/categories/Vue/" class="button">Vue</a>
+
+    <span class="separate-dot"></span><a href="/categories/PHP/Laravel/" class="button">Laravel</a>
+
+ 
+</div>
+<div class="post-entry__tags"><a href="/tags/laravel/" class="post-tags__link button"># laravel</a><a href="/tags/vue/" class="post-tags__link button"># vue</a><a href="/tags/spa/" class="post-tags__link button"># spa</a></div> 
+<a href="/2019/03/25/laravel-vue-spa/" class="post-entry__link">Laravel + Vue.js 前后端分离（SPA）</a>
+                </div>
+            
+                <div class='post-entry content-card'>
+                    <div class="post-entry__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/jenkins_ci_gradle.png');"></div>
+    
+</div>
+<div class="post-entry__content">
+    <h2 class="post-entry__title">
+        Docker + Jenkins + Gradle 实现 Android 的持续集成
+    </h2>
+    
+        <p>Android 开发的同学应该都有被 <code>Android Studio</code> 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️)</p>
+<p>为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～</p>
+    
+</div>
+<div class="post-entry__meta">
+    <a href="/archives/2018/09/" class="post-meta__date button">2018-09-12</a>
+    
+    <span class="separate-dot"></span><a href="/categories/Linux/" class="button">Linux</a>
+
+    <span class="separate-dot"></span><a href="/categories/Linux/Docker/" class="button">Docker</a>
+
+ 
+</div>
+<div class="post-entry__tags"><a href="/tags/Android/" class="post-tags__link button"># Android</a><a href="/tags/Docker/" class="post-tags__link button"># Docker</a><a href="/tags/Jenkins/" class="post-tags__link button"># Jenkins</a><a href="/tags/sdkman/" class="post-tags__link button"># sdkman</a><a href="/tags/Gradle/" class="post-tags__link button"># Gradle</a></div> 
+<a href="/2018/09/12/jenkins-for-android-in-Docker/" class="post-entry__link">Docker + Jenkins + Gradle 实现 Android 的持续集成</a>
+                </div>
+            
+                <div class='post-entry content-card'>
+                    <div class="post-entry__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/gradle_weex.png');"></div>
+    
+</div>
+<div class="post-entry__content">
+    <h2 class="post-entry__title">
+        使用 Gradle 实现自动打包 (Weex)
+    </h2>
+    
+        <p>随着 Weex、React Native 这些框架性能的进步,现在越来越多移动端项目会选择使用这类框架去进行混合开发,再提高效率的同时也不会使得性能有太大的问题.我们今天讲讲在集成这些框架到 Android Native 项目中时如何提高我们的工作效率.框架我们就不介绍了,可以自行了解:</p>
+<ul>
+<li><a href="http://weex-project.io/cn/guide/index.html">Weex</a></li>
+<li><a href="https://reactnative.cn/">React Native</a>
+    
+</div>
+<div class="post-entry__meta">
+    <a href="/archives/2018/08/" class="post-meta__date button">2018-08-16</a>
+    
+    <span class="separate-dot"></span><a href="/categories/Android/" class="button">Android</a>
+
+    <span class="separate-dot"></span><a href="/categories/Android/Gradle/" class="button">Gradle</a>
+
+ 
+</div>
+<div class="post-entry__tags"><a href="/tags/Android/" class="post-tags__link button"># Android</a><a href="/tags/Gradle/" class="post-tags__link button"># Gradle</a><a href="/tags/Weex/" class="post-tags__link button"># Weex</a><a href="/tags/Shell/" class="post-tags__link button"># Shell</a></div> 
+<a href="/2018/08/16/weex-tips-with-gradle/" class="post-entry__link">使用 Gradle 实现自动打包 (Weex)</a>
+                </div>
+            
+                <div class='post-entry content-card'>
+                    <div class="post-entry__header"></div>
+<div class="post-entry__content">
+    <h2 class="post-entry__title">
+        将 Weex 组件集成到现有 Android 项目踩坑
+    </h2>
+    
+        <p>本文总体根据官网链接 <a href="https://weex.apache.org/cn/guide/integrate-to-your-app.html">集成 Weex 到已有应用</a> 进行集成，下面列出了遇到的问题及解决办法。</p>
+<h4 id="1-ReferenceError-Vue-is-not-defined"><a href="#1-ReferenceError-Vue-is-not-defined" class="headerlink" title="1. ReferenceError: Vue is not defined"></a>1. ReferenceError: Vue is not defined</h4><p>跟着官网的教程开始集成后你会发现项目跑起来后会提示 </p>
+    
+</div>
+<div class="post-entry__meta">
+    <a href="/archives/2018/08/" class="post-meta__date button">2018-08-14</a>
+    
+    <span class="separate-dot"></span><a href="/categories/Android/" class="button">Android</a>
+
+    <span class="separate-dot"></span><a href="/categories/Android/Weex/" class="button">Weex</a>
+
+ 
+</div>
+<div class="post-entry__tags"><a href="/tags/vue/" class="post-tags__link button"># vue</a><a href="/tags/android/" class="post-tags__link button"># android</a><a href="/tags/weex/" class="post-tags__link button"># weex</a></div> 
+<a href="/2018/08/14/weex-in-android/" class="post-entry__link">将 Weex 组件集成到现有 Android 项目踩坑</a>
+                </div>
+            
+                <div class='post-entry content-card'>
+                    <div class="post-entry__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/vue_with_apache_in_docker.jpg');"></div>
+    
+</div>
+<div class="post-entry__content">
+    <h2 class="post-entry__title">
+        使用 Apache 部署 Vue.js 踩坑
+    </h2>
+    
+        <h2 id="单文件项目-URLRewrite-问题"><a href="#单文件项目-URLRewrite-问题" class="headerlink" title="单文件项目 URLRewrite 问题"></a>单文件项目 URLRewrite 问题</h2><p>生产环境下，路由为mode:history的时候，刷新页面时我们会发现页面报 404 错误，这时我们就需要去修改 Apache 的设置文件 <code>httpd.conf</code> 使其支持URLRewrite.</p>
+    
+</div>
+<div class="post-entry__meta">
+    <a href="/archives/2018/08/" class="post-meta__date button">2018-08-06</a>
+    
+    <span class="separate-dot"></span><a href="/categories/Vue/" class="button">Vue</a>
+
+ 
+</div>
+<div class="post-entry__tags"><a href="/tags/apache/" class="post-tags__link button"># apache</a><a href="/tags/httpd/" class="post-tags__link button"># httpd</a><a href="/tags/vue-js/" class="post-tags__link button"># vue.js</a><a href="/tags/vue/" class="post-tags__link button"># vue</a></div> 
+<a href="/2018/08/06/depoly-vue-with-docker/" class="post-entry__link">使用 Apache 部署 Vue.js 踩坑</a>
+                </div>
+            
+                <div class='post-entry content-card'>
+                    <div class="post-entry__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/docker_nginx_letsencrypt.png');"></div>
+    
+</div>
+<div class="post-entry__content">
+    <h2 class="post-entry__title">
+        Docker 使用 nginx-proxy + letsencrypt 实现自动签发 SSL 证书
+    </h2>
+    
+        <h1 id="1-创建一个自定义网络-nginx-net"><a href="#1-创建一个自定义网络-nginx-net" class="headerlink" title="1. 创建一个自定义网络 nginx-net"></a>1. 创建一个自定义网络 <code>nginx-net</code></h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create nginx-net</span><br><span class="line">86acd4edf102a2a5f9aaa6ff2638e5372eeffd9dd39070ee97ee1ac252a29492  </span><br></pre></td></tr></table></figure>
+    
+</div>
+<div class="post-entry__meta">
+    <a href="/archives/2018/07/" class="post-meta__date button">2018-07-17</a>
+    
+    <span class="separate-dot"></span><a href="/categories/Linux/" class="button">Linux</a>
+
+    <span class="separate-dot"></span><a href="/categories/Linux/Docker/" class="button">Docker</a>
+
+ 
+</div>
+<div class="post-entry__tags"><a href="/tags/nginx/" class="post-tags__link button"># nginx</a><a href="/tags/letsencrypt/" class="post-tags__link button"># letsencrypt</a><a href="/tags/docker/" class="post-tags__link button"># docker</a><a href="/tags/ssl/" class="post-tags__link button"># ssl</a></div> 
+<a href="/2018/07/17/docker-nginx-proxy-ssl/" class="post-entry__link">Docker 使用 nginx-proxy + letsencrypt 实现自动签发 SSL 证书</a>
+                </div>
+            
+                <div class='post-entry content-card'>
+                    <div class="post-entry__header"></div>
+<div class="post-entry__content">
+    <h2 class="post-entry__title">
+        Java 实现 JavaScript eval 函数
+    </h2>
+    
+        <h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3>
+    
+</div>
+<div class="post-entry__meta">
+    <a href="/archives/2018/05/" class="post-meta__date button">2018-05-03</a>
+    
+    <span class="separate-dot"></span><a href="/categories/Java/" class="button">Java</a>
+
+ 
+</div>
+<div class="post-entry__tags"><a href="/tags/Java/" class="post-tags__link button"># Java</a><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a><a href="/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/" class="post-tags__link button"># 动态加载</a><a href="/tags/%E5%8F%8D%E5%B0%84/" class="post-tags__link button"># 反射</a></div> 
+<a href="/2018/05/03/Java-%E5%AE%9E%E7%8E%B0-JavaScript-eval-%E5%87%BD%E6%95%B0/" class="post-entry__link">Java 实现 JavaScript eval 函数</a>
+                </div>
+            
+                <div class='post-entry content-card'>
+                    <div class="post-entry__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/hexo.png');"></div>
+    
+</div>
+<div class="post-entry__content">
+    <h2 class="post-entry__title">
+        Hexo problems
+    </h2>
+    
+        <h2 id="DTraceProviderBindings-node-issue"><a href="#DTraceProviderBindings-node-issue" class="headerlink" title="DTraceProviderBindings.node issue"></a>DTraceProviderBindings.node issue</h2><ul>
+<li>Mac 环境下使用如下命令重新编译安装 Hexo 的 node_modules 依赖  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd hexo installation directory</span></span><br><span class="line"><span class="built_in">cd</span> `<span class="built_in">which</span> hexo`/../..</span><br><span class="line"></span><br><span class="line"><span class="comment"># remove installed node modules</span></span><br><span class="line"><span class="built_in">rm</span> -rvf node_modules</span><br><span class="line"></span><br><span class="line"><span class="comment"># reinstall all dependencies</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+    
+</div>
+<div class="post-entry__meta">
+    <a href="/archives/2018/05/" class="post-meta__date button">2018-05-03</a>
+    
+    <span class="separate-dot"></span><a href="/categories/Hexo/" class="button">Hexo</a>
+
+ 
+</div>
+<div class="post-entry__tags"><a href="/tags/hexo/" class="post-tags__link button"># hexo</a><a href="/tags/npm/" class="post-tags__link button"># npm</a><a href="/tags/node/" class="post-tags__link button"># node</a></div> 
+<a href="/2018/05/03/Hexo-problems/" class="post-entry__link">Hexo problems</a>
+                </div>
+            
+        
+    </div>
+    
+        <div class="nav">
+            <div class="nav__prev">
+                
+            </div>
+            <div class="nav__next">
+                
+                    <a href="/page/2/" class="nav__link">
+                        <div>
+                            <div class="nav__label">
+                                下一页
+                            </div>
+                            <div class="nav__title">
+                                第 2 页
+                            </div>
+                        </div>
+                        <div>
+                            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                        </div>
+                    </a>
+                
+            </div>
+        </div>
+    
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">Layoute&#39;s Blog</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

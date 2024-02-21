@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>使用 Apache 部署 Vue.js 踩坑 | Layoute&#39;s Blog</title>
+
+
+    <meta name="keywords" content="apache, httpd, vue.js, vue">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="单文件项目 URLRewrite 问题生产环境下，路由为mode:history的时候，刷新页面时我们会发现页面报 404 错误，这时我们就需要去修改 Apache 的设置文件 httpd.conf 使其支持URLRewrite.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Apache 部署 Vue.js 踩坑">
+<meta property="og:url" content="http://www.layoute.top/2018/08/06/depoly-vue-with-docker/index.html">
+<meta property="og:site_name" content="Layoute&#39;s Blog">
+<meta property="og:description" content="单文件项目 URLRewrite 问题生产环境下，路由为mode:history的时候，刷新页面时我们会发现页面报 404 错误，这时我们就需要去修改 Apache 的设置文件 httpd.conf 使其支持URLRewrite.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.layoute.top/img/vue_with_apache_in_docker.jpg">
+<meta property="article:published_time" content="2018-08-06T03:15:04.000Z">
+<meta property="article:modified_time" content="2024-02-21T08:36:33.117Z">
+<meta property="article:author" content="Layoute">
+<meta property="article:tag" content="apache">
+<meta property="article:tag" content="httpd">
+<meta property="article:tag" content="vue.js">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.layoute.top/img/vue_with_apache_in_docker.jpg">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Layoute&#39;s Blog</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        使用 Apache 部署 Vue.js 踩坑
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2018/08/" class="post-meta__date button">2018-08-06</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Vue/" class="button">Vue</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E9%A1%B9%E7%9B%AE-URLRewrite-%E9%97%AE%E9%A2%98"><span class="toc-text">单文件项目 URLRewrite 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-%E9%A1%B9%E7%9B%AE%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E9%97%AE%E9%A2%98"><span class="toc-text">Vue 项目跨域请求问题</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E9%A1%B9%E7%9B%AE-URLRewrite-%E9%97%AE%E9%A2%98"><span class="toc-text">单文件项目 URLRewrite 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-%E9%A1%B9%E7%9B%AE%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E9%97%AE%E9%A2%98"><span class="toc-text">Vue 项目跨域请求问题</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/vue_with_apache_in_docker.jpg');"></div>
+    
+</div>
+    <div class="post__content">
+        <h2 id="单文件项目-URLRewrite-问题"><a href="#单文件项目-URLRewrite-问题" class="headerlink" title="单文件项目 URLRewrite 问题"></a>单文件项目 URLRewrite 问题</h2><p>生产环境下，路由为mode:history的时候，刷新页面时我们会发现页面报 404 错误，这时我们就需要去修改 Apache 的设置文件 <code>httpd.conf</code> 使其支持URLRewrite.</p>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 在 httpd.conf 中找到下面这行配置并去除行首的 &#x27;#&#x27;</span><br><span class="line">LoadModule rewrite_module modules/mod_rewrite.so </span><br><span class="line">···</span><br><span class="line"># 另外需要找到下面的 AllowOverride 配置将其就改为 &#x27;All&#x27;</span><br><span class="line">Options FollowSymLinks</span><br><span class="line">AllowOverride None</span><br></pre></td></tr></table></figure>
+<p>下一步,在 Web 项目根目录新建 <code>.htaccess</code> 文件,写入如下配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule mod_rewrite.c&gt;</span><br><span class="line">  RewriteEngine On</span><br><span class="line">  RewriteBase /</span><br><span class="line">  RewriteRule ^index\.html$ - [L]</span><br><span class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</span><br><span class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</span><br><span class="line">  RewriteRule . /index.html [L]</span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure>
+
+<p>完整配置文件下载:<a href="(http://od9kdnq6p.bkt.clouddn.com/httpd.conf)">httpd.conf</a></p>
+<h2 id="Vue-项目跨域请求问题"><a href="#Vue-项目跨域请求问题" class="headerlink" title="Vue 项目跨域请求问题"></a>Vue 项目跨域请求问题</h2><p>开发环境代理配置如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">proxyTable</span>: &#123;</span><br><span class="line">  <span class="string">&#x27;/api/**&#x27;</span>: &#123;</span><br><span class="line">    <span class="attr">target</span>: <span class="string">&#x27;http://localhost:3000&#x27;</span>,</span><br><span class="line">    <span class="attr">pathRewrite</span>:&#123;</span><br><span class="line">      <span class="string">&#x27;^/api&#x27;</span>:<span class="string">&#x27;/&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>在config 文件夹里面新建一个 api.config.js 配置文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断当前环境是否为生产环境</span></span><br><span class="line"><span class="keyword">const</span> isPro = <span class="title class_">Object</span>.<span class="title function_">is</span>(process.<span class="property">env</span>.<span class="property">NODE_ENV</span>, <span class="string">&#x27;production&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据当前运行环境设置 baseUrl</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">baseUrl</span>: isPro ? <span class="string">&#x27;http://www.vnshop.cn/api/&#x27;</span> : <span class="string">&#x27;api/&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改 main.js 如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> apiConfig <span class="keyword">from</span> <span class="string">&#x27;../config/api.config&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Axios</span> <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">VueAxios</span> <span class="keyword">from</span> <span class="string">&#x27;vue-axios&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueAxios</span>, <span class="title class_">Axios</span>)</span><br><span class="line"><span class="comment">// 设施 axios 的 baseURL</span></span><br><span class="line"><span class="title class_">Axios</span>.<span class="property">defaults</span>.<span class="property">baseURL</span> = apiConfig.<span class="property">baseUrl</span></span><br></pre></td></tr></table></figure>
+<p>至此,项目可以动态响应不同的环境解决跨域请求问题</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2024-02-21</p></div> 
+    <div class="post-entry__tags"><a href="/tags/apache/" class="post-tags__link button"># apache</a><a href="/tags/httpd/" class="post-tags__link button"># httpd</a><a href="/tags/vue-js/" class="post-tags__link button"># vue.js</a><a href="/tags/vue/" class="post-tags__link button"># vue</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2018/08/14/weex-in-android/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            将 Weex 组件集成到现有 Android 项目踩坑
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2018/07/17/docker-nginx-proxy-ssl/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            Docker 使用 nginx-proxy + letsencrypt 实现自动签发 SSL 证书
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">Layoute&#39;s Blog</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

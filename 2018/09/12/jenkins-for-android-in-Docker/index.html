@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Docker + Jenkins + Gradle 实现 Android 的持续集成 | Layoute&#39;s Blog</title>
+
+
+    <meta name="keywords" content="Android, Docker, Jenkins, sdkman, Gradle">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Android 开发的同学应该都有被 Android Studio 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️) 为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker + Jenkins + Gradle 实现 Android 的持续集成">
+<meta property="og:url" content="http://www.layoute.top/2018/09/12/jenkins-for-android-in-Docker/index.html">
+<meta property="og:site_name" content="Layoute&#39;s Blog">
+<meta property="og:description" content="Android 开发的同学应该都有被 Android Studio 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️) 为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.layoute.top/img/jenkins_ci_gradle.png">
+<meta property="article:published_time" content="2018-09-12T06:35:53.000Z">
+<meta property="article:modified_time" content="2024-02-21T08:36:33.118Z">
+<meta property="article:author" content="Layoute">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Jenkins">
+<meta property="article:tag" content="sdkman">
+<meta property="article:tag" content="Gradle">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.layoute.top/img/jenkins_ci_gradle.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Layoute&#39;s Blog</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Docker + Jenkins + Gradle 实现 Android 的持续集成
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2018/09/" class="post-meta__date button">2018-09-12</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Linux/" class="button">Linux</a>
+
+    <span class="separate-dot"></span><a href="/categories/Linux/Docker/" class="button">Docker</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%95%9C%E5%83%8F%E7%AF%87"><span class="toc-text">1. 镜像篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F"><span class="toc-text">1.1 构建镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E9%83%A8%E7%BD%B2%E9%95%9C%E5%83%8F"><span class="toc-text">1.2 部署镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Android-%E6%9E%84%E5%BB%BA%E9%9B%86%E6%88%90"><span class="toc-text">2. Android 构建集成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Jenkins-%E9%85%8D%E7%BD%AE"><span class="toc-text">2.1 Jenkins 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%85%A8%E5%B1%80%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE"><span class="toc-text">2.2 全局工具配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%85%A8%E5%B1%80%E5%87%AD%E6%8D%AE%E9%85%8D%E7%BD%AE"><span class="toc-text">2.3 全局凭据配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="toc-text">2.4 构建任务配置</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%95%9C%E5%83%8F%E7%AF%87"><span class="toc-text">1. 镜像篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F"><span class="toc-text">1.1 构建镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E9%83%A8%E7%BD%B2%E9%95%9C%E5%83%8F"><span class="toc-text">1.2 部署镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Android-%E6%9E%84%E5%BB%BA%E9%9B%86%E6%88%90"><span class="toc-text">2. Android 构建集成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Jenkins-%E9%85%8D%E7%BD%AE"><span class="toc-text">2.1 Jenkins 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%85%A8%E5%B1%80%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE"><span class="toc-text">2.2 全局工具配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%85%A8%E5%B1%80%E5%87%AD%E6%8D%AE%E9%85%8D%E7%BD%AE"><span class="toc-text">2.3 全局凭据配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="toc-text">2.4 构建任务配置</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/jenkins_ci_gradle.png');"></div>
+    
+</div>
+    <div class="post__content">
+        <p>Android 开发的同学应该都有被 <code>Android Studio</code> 支配的恐惧，每一次打包 Apk 的时候真的是可以去喝个下午茶再回来干活(公司的开发机配置一般,每次批量打包都得一两个小时电脑还卡的不能干其他事🤦‍♂️)</p>
+<p>为了解决这种情况今天就来给大家讲讲使用服务器远程打包，多的不说，直接怼～～～</p>
+<span id="more"></span>
+<h2 id="1-镜像篇"><a href="#1-镜像篇" class="headerlink" title="1. 镜像篇"></a>1. 镜像篇</h2><h3 id="1-1-构建镜像"><a href="#1-1-构建镜像" class="headerlink" title="1.1 构建镜像"></a>1.1 构建镜像</h3><p>本例中我们使用 <code>Dockerfile</code> 来构建接下来需要用到的镜像,文件内容如下:</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> daocloud.io/library/tomcat:<span class="number">8.5</span>.<span class="number">15</span></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> Name=<span class="string">&quot;jenkins-tomcat&quot;</span></span></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> Version=<span class="string">&quot;0.2&quot;</span></span></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> Maintainer=<span class="string">&quot;Layoute &lt;reallayoute@gmail.com&gt;&quot;</span></span></span><br><span class="line"><span class="comment"># 环境变量</span></span><br><span class="line"><span class="keyword">ENV</span> GRADLE_VERSION <span class="number">4.4</span></span><br><span class="line"><span class="keyword">ENV</span> GRADLE_HOME /root/.sdkman/candidates/gradle/$&#123;GRADLE_VERSION&#125;/</span><br><span class="line"><span class="comment"># tomcat 容器自带 java 8u131 放弃安装</span></span><br><span class="line"><span class="comment"># ENV JAVA_VERSION 8.0.181_zulu</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装所需依赖</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get install -y \</span></span><br><span class="line"><span class="language-bash">        git \</span></span><br><span class="line"><span class="language-bash">        zip \</span></span><br><span class="line"><span class="language-bash">        unzip \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get clean \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get autoclean</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 jenkins 为 80 端口根路径</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">rm</span> -rf /usr/local/tomcat/webapps/ROOT</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> http://ftp-nyc.osuosl.org/pub/jenkins/war-stable/2.121.3/jenkins.war /usr/local/tomcat/webapps/ROOT.war</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> sed -i <span class="string">&#x27;s/8080/80/&#x27;</span> /usr/local/tomcat/conf/server.xml</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 SDKMAN 开发包管理器</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /root</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> curl -s <span class="string">&quot;https://get.sdkman.io&quot;</span> | bash</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> /bin/bash -c <span class="string">&quot;source /root/.sdkman/bin/sdkman-init.sh&quot;</span></span></span><br><span class="line"><span class="comment"># 安装 Gradle 等依赖</span></span><br><span class="line"><span class="comment"># -l 伪装为登录的 shell 执行命令</span></span><br><span class="line"><span class="comment"># -c 读取字符串命令</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">yes</span> | /bin/bash -l -c <span class="string">&#x27;sdk install gradle $&#123;GRADLE_VERSION&#125;&#x27;</span></span></span><br><span class="line"><span class="comment"># RUN yes | /bin/bash -l -c &#x27;sdk install java $&#123;JAVA_VERSION&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露端口</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 entrypoint 权限并运行</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /usr/local/tomcat</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./entrypoint.sh /usr/local/tomcat/</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">cd</span> /usr/local/tomcat</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chmod</span> 0777 ./entrypoint.sh</span></span><br><span class="line"><span class="comment"># 执行脚本</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [ <span class="string">&quot;./entrypoint.sh&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>entrypoint.sh 为入口指令,包含镜像部署启东时会运行的一系列指令</p>
+</blockquote>
+<h3 id="1-2-部署镜像"><a href="#1-2-部署镜像" class="headerlink" title="1.2 部署镜像"></a>1.2 部署镜像</h3><p>接下来就是将构建好的镜像部署到服务器,我们使用 docker-compose 来实现部署</p>
+<p><code>docker-compose.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">nginx-proxy:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">index.docker.io/jwilder/nginx-proxy:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">nginx-proxy</span></span><br><span class="line">    <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">80</span><span class="string">:80</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">443</span><span class="string">:443</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/nginx/conf.d</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/nginx/vhost.d:/etc/nginx/vhost.d</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/nginx/html:/usr/share/nginx/html</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/nginx/certs:/etc/nginx/certs:ro</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/var/run/docker.sock:/tmp/docker.sock:ro</span></span><br><span class="line">  </span><br><span class="line">  <span class="attr">letsencrypt:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">jrcs/letsencrypt-nginx-proxy-companion</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">letsencrypt</span></span><br><span class="line">    <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">volumes_from:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">nginx-proxy</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/nginx/certs:/etc/nginx/certs</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/var/run/docker.sock:/var/run/docker.sock:ro</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">jenkins:</span></span><br><span class="line">    <span class="attr">build:</span> </span><br><span class="line">      <span class="attr">dockerfile:</span> <span class="string">./Dockerfile</span></span><br><span class="line">      <span class="attr">context:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">jenkins_sdkman</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">jenkins</span></span><br><span class="line">    <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&#x27;80&#x27;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/jenkins:/root/.jenkins/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/jenkins_home:/var/jenkins_home</span></span><br><span class="line">    <span class="attr">volumes_from:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">android_sdk</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">LETSENCRYPT_MAIL=email@example.com</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">LETSENCRYPT_HOST=domain.example.com</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">VIRTUAL_HOST=domain.example.com</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">android_sdk:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">runmymind/docker-android-sdk:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">android_sdk</span></span><br><span class="line">    <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">REPO_OS_OVERRIDE=linux</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/etc/android/sdk:/opt/android-sdk-linux</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上述文件包含了 <code>nginx-proxy</code> 作为代理服务器来进行反向代理, <code>LetsEncrypt</code> 主要是用来签发证书,实现 <code>https</code>, <code>jenkins</code> 即为我们的持续集成服务提供者,<code>android-sdk</code> 则是用来为 <code>jenkins</code> 提供 Android SDK 支持</p>
+<h2 id="2-Android-构建集成"><a href="#2-Android-构建集成" class="headerlink" title="2. Android 构建集成"></a>2. Android 构建集成</h2><h3 id="2-1-Jenkins-配置"><a href="#2-1-Jenkins-配置" class="headerlink" title="2.1 Jenkins 配置"></a>2.1 Jenkins 配置</h3><p>按照网上的基本配置教程配置好 Jenkins ,设置完管理员密码</p>
+<img src="/2018/09/12/jenkins-for-android-in-Docker/1.png" class="">
+
+<img src="/2018/09/12/jenkins-for-android-in-Docker/2.png" class="">
+
+<img src="/2018/09/12/jenkins-for-android-in-Docker/3.png" class="">
+
+<h3 id="2-2-全局工具配置"><a href="#2-2-全局工具配置" class="headerlink" title="2.2 全局工具配置"></a>2.2 全局工具配置</h3><p>此处配置主要用来配置全局的以来环境等,我们这里只需要关注 <code>JDK</code>,<code>Git</code>,<code>Gradle</code> 三项的配置,均可选择新增按钮添加需要支持的版本后应用保存即可</p>
+<img src="/2018/09/12/jenkins-for-android-in-Docker/9.png" class="">
+
+<h3 id="2-3-全局凭据配置"><a href="#2-3-全局凭据配置" class="headerlink" title="2.3 全局凭据配置"></a>2.3 全局凭据配置</h3><p>因为我们使用的是 <code>Github</code> 来托管项目,那就需要从 Github 上面同步代码到服务器用来构建,这里涉及到 SSH Key 的问题,我们可以去凭据管理里面新增一个凭据,类型选择 SSH Key **** 类型,别名随便填,但是后面得使用别名生成 SSH Key 如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C “上面设置的别名”</span><br><span class="line"><span class="comment"># 读取私钥</span></span><br><span class="line">$ <span class="built_in">cat</span> ~/.ssh/id_rsa</span><br><span class="line"><span class="comment"># 读取公钥</span></span><br><span class="line">$ <span class="built_in">cat</span> ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p>将上面的公钥添加到 Github 设置界面的 SSH Key 页面,私钥填入上面创建的凭据里面, 通过 SSH Key 同步代码就配置好了</p>
+<img src="/2018/09/12/jenkins-for-android-in-Docker/10.png" class="">
+
+<h3 id="2-4-构建任务配置"><a href="#2-4-构建任务配置" class="headerlink" title="2.4 构建任务配置"></a>2.4 构建任务配置</h3><p>接下来我们就可以开始创建任务了</p>
+<ul>
+<li>安装插件 <code>Android Lint</code>, <code>Github integration</code> 等</li>
+<li>创建新的构建任务,选择自由风格<img src="/2018/09/12/jenkins-for-android-in-Docker/4.png" class=""></li>
+<li>基本设置<img src="/2018/09/12/jenkins-for-android-in-Docker/5.png" class=""></li>
+<li>源码设置<img src="/2018/09/12/jenkins-for-android-in-Docker/6.png" class=""></li>
+<li>构建触发器设置<img src="/2018/09/12/jenkins-for-android-in-Docker/7.png" class=""></li>
+<li>构建设置<img src="/2018/09/12/jenkins-for-android-in-Docker/8.png" class=""></li>
+</ul>
+<p>接下来点击立即构建就可以开始第一次构建了,完成第一次构建后即可在工作区查看项目相关文件了</p>
+<p>搞定,收工!</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2024-02-21</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Android/" class="post-tags__link button"># Android</a><a href="/tags/Docker/" class="post-tags__link button"># Docker</a><a href="/tags/Jenkins/" class="post-tags__link button"># Jenkins</a><a href="/tags/sdkman/" class="post-tags__link button"># sdkman</a><a href="/tags/Gradle/" class="post-tags__link button"># Gradle</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2019/03/25/laravel-vue-spa/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            Laravel + Vue.js 前后端分离（SPA）
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2018/08/16/weex-tips-with-gradle/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            使用 Gradle 实现自动打包 (Weex)
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">Layoute&#39;s Blog</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

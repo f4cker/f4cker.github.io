@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Laravel + Vue.js 前后端分离（SPA） | Layoute&#39;s Blog</title>
+
+
+    <meta name="keywords" content="laravel, vue, spa">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="非单页应用引入第三方组件 在package.json中添加组件，Like： 1&quot;element-ui&quot;：&quot;^2.0.0&quot; 运行 npm install 安装组件到项目 node_modules 文件夹 在 resources&#x2F;assets&#x2F;js&#x2F;app.js 中添加引用，Like: 1234import ElementUI from &quot;elemen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel + Vue.js 前后端分离（SPA）">
+<meta property="og:url" content="http://www.layoute.top/2019/03/25/laravel-vue-spa/index.html">
+<meta property="og:site_name" content="Layoute&#39;s Blog">
+<meta property="og:description" content="非单页应用引入第三方组件 在package.json中添加组件，Like： 1&quot;element-ui&quot;：&quot;^2.0.0&quot; 运行 npm install 安装组件到项目 node_modules 文件夹 在 resources&#x2F;assets&#x2F;js&#x2F;app.js 中添加引用，Like: 1234import ElementUI from &quot;elemen">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.layoute.top/img/laravel_vue_spa.png">
+<meta property="article:published_time" content="2019-03-25T07:03:55.000Z">
+<meta property="article:modified_time" content="2024-02-21T08:36:33.129Z">
+<meta property="article:author" content="Layoute">
+<meta property="article:tag" content="laravel">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="spa">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.layoute.top/img/laravel_vue_spa.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Layoute&#39;s Blog</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Laravel + Vue.js 前后端分离（SPA）
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2019/03/" class="post-meta__date button">2019-03-25</a>
+        
+    <span class="separate-dot"></span><a href="/categories/PHP/" class="button">PHP</a>
+
+    <span class="separate-dot"></span><a href="/categories/Vue/" class="button">Vue</a>
+
+    <span class="separate-dot"></span><a href="/categories/PHP/Laravel/" class="button">Laravel</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E5%BC%95%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BB%84%E4%BB%B6"><span class="toc-text">非单页应用引入第三方组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E6%97%B6%E7%9A%84-Oauth-%E5%A4%84%E7%90%86"><span class="toc-text">前后端分离时的 Oauth 处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-VSCode-%E5%BC%80%E5%8F%91%E5%BC%95%E5%85%A5-iView-%E7%AD%89%E7%AC%AC%E4%B8%89%E6%96%B9-UI-%E6%A1%86%E6%9E%B6%E5%90%8E%E5%87%BA%E7%8E%B0-x-invalid-end-tag"><span class="toc-text">使用 VSCode 开发引入 iView 等第三方 UI 框架后出现 x-invalid-end-tag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-Cli-axios-%E5%88%9B%E5%BB%BA%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%EF%BC%88Nginx%EF%BC%89%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="toc-text">Vue-Cli + axios 创建的项目生产环境（Nginx）跨域问题</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E5%BC%95%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BB%84%E4%BB%B6"><span class="toc-text">非单页应用引入第三方组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E6%97%B6%E7%9A%84-Oauth-%E5%A4%84%E7%90%86"><span class="toc-text">前后端分离时的 Oauth 处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-VSCode-%E5%BC%80%E5%8F%91%E5%BC%95%E5%85%A5-iView-%E7%AD%89%E7%AC%AC%E4%B8%89%E6%96%B9-UI-%E6%A1%86%E6%9E%B6%E5%90%8E%E5%87%BA%E7%8E%B0-x-invalid-end-tag"><span class="toc-text">使用 VSCode 开发引入 iView 等第三方 UI 框架后出现 x-invalid-end-tag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-Cli-axios-%E5%88%9B%E5%BB%BA%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%EF%BC%88Nginx%EF%BC%89%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="toc-text">Vue-Cli + axios 创建的项目生产环境（Nginx）跨域问题</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/laravel_vue_spa.png');"></div>
+    
+</div>
+    <div class="post__content">
+        <h2 id="非单页应用引入第三方组件"><a href="#非单页应用引入第三方组件" class="headerlink" title="非单页应用引入第三方组件"></a>非单页应用引入第三方组件</h2><ol>
+<li>在<code>package.json</code>中添加组件，Like： <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;element-ui&quot;</span>：<span class="string">&quot;^2.0.0&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li>运行 <code>npm install</code> 安装组件到项目 <code>node_modules</code> 文件夹</li>
+<li>在 <code>resources/assets/js/app.js</code> 中添加引用，Like: <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">ElementUI</span> <span class="keyword">from</span> <span class="string">&quot;element-ui&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;element-ui/lib/theme-default/index.css&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">ElementUI</span>)</span><br></pre></td></tr></table></figure></li>
+<li>编译好js文件即可</li>
+</ol>
+<h2 id="前后端分离时的-Oauth-处理"><a href="#前后端分离时的-Oauth-处理" class="headerlink" title="前后端分离时的 Oauth 处理"></a>前后端分离时的 Oauth 处理</h2><ol>
+<li>前端请求发起三方登录请求</li>
+<li>后端接受前端请求后拼接授权请求链接</li>
+<li>返回重定向前端重定向至授权请求页面</li>
+<li>用户登录第三方网站</li>
+<li>第三方回调返回后端，后端获取数据并存储相关数据</li>
+<li>后端返回重定向链接将前端重定向至专门接受 <code>Access_Token</code> 页面，再由前端处理后续逻辑</li>
+</ol>
+<h2 id="使用-VSCode-开发引入-iView-等第三方-UI-框架后出现-x-invalid-end-tag"><a href="#使用-VSCode-开发引入-iView-等第三方-UI-框架后出现-x-invalid-end-tag" class="headerlink" title="使用 VSCode 开发引入 iView 等第三方 UI 框架后出现 x-invalid-end-tag"></a>使用 VSCode 开发引入 iView 等第三方 UI 框架后出现 x-invalid-end-tag</h2><ol>
+<li>如果你是用 Vetur的话 配置.eslintrc.js 并没有什么卵用<blockquote>
+<p>Vetur automatically uses eslint-plugin-vue for linting template. Linting configuration is based on eslint-plugin-vue’s essential rule set.<br><br>只能关掉它自带的eslint-plugin-vue 【”vetur.validation.template”: false】</p>
+</blockquote>
+</li>
+<li>重新配置 .eslintrc<blockquote>
+<p>“vue&#x2F;no-parsing-error”: [2, { “x-invalid-end-tag”: false }]</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="Vue-Cli-axios-创建的项目生产环境（Nginx）跨域问题"><a href="#Vue-Cli-axios-创建的项目生产环境（Nginx）跨域问题" class="headerlink" title="Vue-Cli + axios 创建的项目生产环境（Nginx）跨域问题"></a>Vue-Cli + axios 创建的项目生产环境（Nginx）跨域问题</h2><ol>
+<li><p>修改 <code>nginx/conf/vhost/your.domain.conf</code> 配置文件</p>
+ <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">location</span> / &#123;</span><br><span class="line">	<span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /?<span class="variable">$args</span>;</span><br><span class="line">	<span class="comment"># 允许跨域以及允许跨域的请求类型的设置</span></span><br><span class="line">	<span class="attribute">add_header</span> <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span> <span class="string">&#x27;*&#x27;</span>;</span><br><span class="line">	<span class="attribute">add_header</span> <span class="string">&#x27;Access-Control-Allow-Credentials&#x27;</span> <span class="string">&#x27;true&#x27;</span>;</span><br><span class="line">	<span class="attribute">add_header</span> <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span> <span class="string">&#x27;GET, POST, OPTIONS&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="section">location</span><span class="regexp"> ^~</span> /api &#123;</span><br><span class="line">	<span class="comment"># 要指向的域名，一般 SPA 时需要用到</span></span><br><span class="line">	<span class="attribute">proxy_set_header</span> Host app.layoute.top;</span><br><span class="line">	<span class="comment"># 跨域是需要替换的路径，一般 SPA 时需要用到</span></span><br><span class="line">	<span class="attribute">proxy_pass</span> https://app.layoute.top/api;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>重新载入 <code>nginx</code> 配置文件并重启 <code>nginx</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service nginxd reload &amp;&amp; service nginxd restart</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2024-02-21</p></div> 
+    <div class="post-entry__tags"><a href="/tags/laravel/" class="post-tags__link button"># laravel</a><a href="/tags/vue/" class="post-tags__link button"># vue</a><a href="/tags/spa/" class="post-tags__link button"># spa</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2019/04/09/daoloud-docker-laravel-wechat/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            DaoCloud + Local Server + Laravel + Laravel-Wechat 构建微信公众号测试平台
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2018/09/12/jenkins-for-android-in-Docker/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            Docker + Jenkins + Gradle 实现 Android 的持续集成
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">Layoute&#39;s Blog</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

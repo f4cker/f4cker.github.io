@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>使用 Gradle 实现自动打包 (Weex) | Layoute&#39;s Blog</title>
+
+
+    <meta name="keywords" content="Android, Gradle, Weex, Shell">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="随着 Weex、React Native 这些框架性能的进步,现在越来越多移动端项目会选择使用这类框架去进行混合开发,再提高效率的同时也不会使得性能有太大的问题.我们今天讲讲在集成这些框架到 Android Native 项目中时如何提高我们的工作效率.框架我们就不介绍了,可以自行了解:  Weex React Native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Gradle 实现自动打包 (Weex)">
+<meta property="og:url" content="http://www.layoute.top/2018/08/16/weex-tips-with-gradle/index.html">
+<meta property="og:site_name" content="Layoute&#39;s Blog">
+<meta property="og:description" content="随着 Weex、React Native 这些框架性能的进步,现在越来越多移动端项目会选择使用这类框架去进行混合开发,再提高效率的同时也不会使得性能有太大的问题.我们今天讲讲在集成这些框架到 Android Native 项目中时如何提高我们的工作效率.框架我们就不介绍了,可以自行了解:  Weex React Native">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.layoute.top/img/gradle_weex.png">
+<meta property="article:published_time" content="2018-08-16T06:50:36.000Z">
+<meta property="article:modified_time" content="2024-02-21T08:36:33.134Z">
+<meta property="article:author" content="Layoute">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Gradle">
+<meta property="article:tag" content="Weex">
+<meta property="article:tag" content="Shell">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.layoute.top/img/gradle_weex.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Layoute&#39;s Blog</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/links/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/links/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        使用 Gradle 实现自动打包 (Weex)
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2018/08/" class="post-meta__date button">2018-08-16</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Android/" class="button">Android</a>
+
+    <span class="separate-dot"></span><a href="/categories/Android/Gradle/" class="button">Gradle</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%93%E5%8C%85%E7%AF%87"><span class="toc-text">1. 打包篇</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%93%E5%8C%85%E7%AF%87"><span class="toc-text">1. 打包篇</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+     
+     
+    
+        <div class="post-thumbnail" style="background-image: url('/img/gradle_weex.png');"></div>
+    
+</div>
+    <div class="post__content">
+        <p>随着 Weex、React Native 这些框架性能的进步,现在越来越多移动端项目会选择使用这类框架去进行混合开发,再提高效率的同时也不会使得性能有太大的问题.我们今天讲讲在集成这些框架到 Android Native 项目中时如何提高我们的工作效率.框架我们就不介绍了,可以自行了解:</p>
+<ul>
+<li><a href="http://weex-project.io/cn/guide/index.html">Weex</a></li>
+<li><a href="https://reactnative.cn/">React Native</a><span id="more"></span></li>
+</ul>
+<h3 id="1-打包篇"><a href="#1-打包篇" class="headerlink" title="1. 打包篇"></a>1. 打包篇</h3><p>在将 Weex 集成到 Android 项目中的时候,因为 <code>Weex SDK</code> 需要加载的是 JSBundle 文件,所以我们得在编写完 Weex 项目后,执行<code>npm run build</code>,然后再将生成在 dist 文件夹内的 *.js 文件拷贝到 Android 项目的 assets 文件夹下然后再打包 Android 项目才能生成一个正常集成的 Android App,于是我们在这里引入 Gradle 来解决我们的效率问题</p>
+<ol>
+<li>在项目根目录下创建 <code>weex.sh</code> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># 进入 weex 项目目录,假设是在根目录下 weex 文件夹</span></span><br><span class="line"><span class="built_in">cd</span> ./weex</span><br><span class="line"><span class="comment"># 编译 Weex 项目完成后删除不需要的 web 文件并将生成的 js 文件复制到 assets</span></span><br><span class="line">npm run build &amp;&amp; <span class="built_in">rm</span> dist/*.web.js &amp;&amp; <span class="built_in">cp</span> dist/*.js ../app/src/main/assets/</span><br></pre></td></tr></table></figure></li>
+<li>编辑 App module 根目录下的 <code>build.gradle</code> 添加如下: <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line">afterEvaluate &#123;</span><br><span class="line">    <span class="comment">// 遍历打包版本</span></span><br><span class="line">    android.applicationVariants.all &#123; variant -&gt;  </span><br><span class="line">        <span class="comment">// 便利打包版本输出  </span></span><br><span class="line">        variant.outputs.each &#123; output -&gt;</span><br><span class="line">            <span class="keyword">def</span> outputFile = output.outputFile</span><br><span class="line">            <span class="comment">// 创建任务</span></span><br><span class="line">            <span class="keyword">def</span> weexTask = tasks.create(<span class="attr">name:</span> <span class="string">&quot;weex$&#123;variant.name.capitalize()&#125;&quot;</span>,</span><br><span class="line">            <span class="symbol">description:</span> <span class="string">&quot;Get $&#123;outputFile&#125; with weex files &quot;</span>,</span><br><span class="line">            <span class="symbol">group:</span> <span class="string">&quot;Weex&quot;</span>, <span class="attr">type:</span> Exec) &#123;</span><br><span class="line">                workingDir <span class="string">&#x27;..&#x27;</span></span><br><span class="line">                commandLine <span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;weex.sh&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 任务依赖</span></span><br><span class="line">            weexTask.dependsOn variant.assemble</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">···</span><br></pre></td></tr></table></figure>
+这样在右侧的 Gradle Task 面板就会生成 <code>weexDebug</code>、<code>weexRelease</code> 这类的 task,点击即可运行上述脚本.(当然,点击 build 按钮的时候此任务也是会运行的)</li>
+</ol>
+<p>搞定.收工!</p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>更新于 2024-02-21</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Android/" class="post-tags__link button"># Android</a><a href="/tags/Gradle/" class="post-tags__link button"># Gradle</a><a href="/tags/Weex/" class="post-tags__link button"># Weex</a><a href="/tags/Shell/" class="post-tags__link button"># Shell</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2018/09/12/jenkins-for-android-in-Docker/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            Docker + Jenkins + Gradle 实现 Android 的持续集成
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2018/08/14/weex-in-android/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            将 Weex 组件集成到现有 Android 项目踩坑
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">Layoute&#39;s Blog</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
